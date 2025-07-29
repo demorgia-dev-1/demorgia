@@ -16,7 +16,7 @@ const HeroSection = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const bgImage = "/bg1.png";
+  const bgImage = "/bg.png";
 
   return (
     <>
@@ -73,7 +73,11 @@ const HeroSection = () => {
               >
                 Request Demo
               </Button>
-              <Button variant="outlined" color="inherit">
+              <Button
+                variant="outlined"
+                color="inherit"
+                onClick={() => window.open("/")}
+              >
                 Explore Solutions
               </Button>
             </Box>

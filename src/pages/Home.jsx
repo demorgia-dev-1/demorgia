@@ -11,6 +11,7 @@ import ContactForm from '../components/ContactForm';
 import OurStory from '../components/OurStory';
 import Facts from '../components/Facts';
 import Partners from '../components/Partners';
+import Platform from "../components/Platform";
 
 const Home = () => {
   const location = useLocation();
@@ -40,6 +41,7 @@ const Home = () => {
       <OurStory />
       <div id="why"><WhyChooseUs /></div>
       <div id="solutions"><Solutions /></div>
+      <Platform />
       <div id="placement"><PlacementSolutions /></div>
       <Facts />
       <Partners />

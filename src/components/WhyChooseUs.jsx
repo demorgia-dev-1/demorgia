@@ -13,6 +13,7 @@ import ComputerIcon from "@mui/icons-material/Computer";
 import BuildCircleIcon from "@mui/icons-material/BuildCircle";
 import PublicIcon from "@mui/icons-material/Public";
 import { motion } from "framer-motion";
+import Achievements from "./Achievements";
 
 const data = [
   {
@@ -48,8 +49,7 @@ const WhyChooseUs = () => {
   const theme = useTheme();
 
   return (
-    <Container sx={{ py: { xs: 6, md: 10 } }}>
-    
+    <><Container sx={{ py: { xs: 6, md: 10 } }}>
       {/* Animated Heading */}
       <Box sx={{ textAlign: "center", mb: 4 }}>
         <motion.div
@@ -199,7 +199,11 @@ const WhyChooseUs = () => {
           </motion.div>
         ))}
       </Box>
+     
     </Container>
+     <Achievements />
+    </>
+    
   );
 };
 

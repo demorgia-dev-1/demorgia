@@ -22,7 +22,7 @@ const navLinks = [
   { label: "Why Us", to: "why" },
   { label: "Solutions", to: "solutions" },
   { label: "Placement", to: "placement" },
-  { label: "Testimonials", to: "testimonials" },
+  // { label: "Testimonials", to: "testimonials" },
   { label: "Contact", to: "contact" },
 ];
 
@@ -33,7 +33,6 @@ const Navbar = ({ onNavigate = {} }) => {
     <AppBar
       position="sticky"
       sx={{
-        // bgcolor: '#0d47a1'
         background: "linear-gradient(to right, #ffffff 20%, #0d47a1 80%)",
       }}
     >

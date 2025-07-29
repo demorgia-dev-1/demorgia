@@ -134,5 +134,5 @@ const OurGallery = () => {
     </Box>
   );
 };
- 
+
 export default OurGallery;

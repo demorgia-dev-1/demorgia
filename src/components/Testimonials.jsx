@@ -22,35 +22,40 @@ const testimonials = [
   {
     name: "Ajay Bhusan",
     role: "CEO, IASC Sector Skill Council",
-    text: "Demorgia’s skilled team brings deep expertise and professionalism to every engagement.",
+    text:
+      "Demorgia’s skilled team brings deep expertise and professionalism to every engagement.",
     img: "ajay-bhusan.jpg",
     rating: 5,
   },
   {
     name: "Col. Anand Kumar Singh (Retd.)",
     role: "CEO, CSDCI",
-    text: "Your support during the Rozgar Mela was outstanding—professional, precise, and impactful.",
+    text:
+      "Your support during the Rozgar Mela was outstanding—professional, precise, and impactful.",
     img: "col.jpg",
     rating: 4.5,
   },
   {
     name: "Prof. Jawed A Shaikh",
     role: "Director Placement, MGI",
-    text: "Demorgia bridges the gap between students and companies with excellent service delivery.",
+    text:
+      "Demorgia bridges the gap between students and companies with excellent service delivery.",
     img: "jawed.jpg",
     rating: 4,
   },
   {
     name: "Shivendra Singh",
     role: "T&P Head, Bhabha Group",
-    text: "A reliable partner that understands our goals and supports smooth collaboration throughout.",
+    text:
+      "A reliable partner that understands our goals and supports smooth collaboration throughout.",
     img: "shiv.jpg",
     rating: 5,
   },
   {
     name: "Divyasen Singh",
     role: "Sr Manager - CRC, SGI-SIET",
-    text: "Demorgia’s transparent, structured hiring process shows a deep commitment to quality talent.",
+    text:
+      "Demorgia’s transparent, structured hiring process shows a deep commitment to quality talent.",
     img: "divyasen.jpg",
     rating: 4.7,
   },
@@ -69,7 +74,10 @@ const renderStars = (rating) => {
       ))}
       {half && <MdStarHalf style={{ color: "#FFD700", fontSize: 18 }} />}
       {[...Array(empty)].map((_, i) => (
-        <MdStarBorder key={`e-${i}`} style={{ color: "#FFD700", fontSize: 18 }} />
+        <MdStarBorder
+          key={`e-${i}`}
+          style={{ color: "#FFD700", fontSize: 18 }}
+        />
       ))}
     </>
   );
@@ -87,48 +95,48 @@ const Testimonials = () => {
         background: "linear-gradient(to bottom, #f0f4f8, #ffffff)",
       }}
     >
-       {/* Animated Heading */}
-            <Box sx={{ textAlign: "center", mb: 4 }}>
-              <motion.div
-                initial={{ scaleX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, ease: "easeOut" }}
-                style={{ display: "inline-block" }}
-              >
-                <Typography
-                  variant="h4"
-                  fontWeight="bold"
-                  component="h2"
-                  sx={{
-                    display: "inline-block",
-                    position: "relative",
-                    px: 1,
-                    "&::after": {
-                      content: '""',
-                      position: "absolute",
-                      left: 0,
-                      bottom: -6,
-                      height: 4,
-                      width: "100%",
-                      backgroundColor: theme.palette.primary.main,
-                      borderRadius: 2,
-                      transform: "scaleX(0)",
-                      transformOrigin: "left",
-                      transition: "transform 0.4s ease-in-out",
-                    },
-                    "&:hover::after": {
-                      transform: "scaleX(1)",
-                    },
-                  }}
-                >
-                  What Our{" "}
-                  <Box component="span" sx={{ color: theme.palette.primary.main }}>
-                    Clients Say
-                  </Box>
-                </Typography>
-              </motion.div>
+      {/* Animated Heading */}
+      <Box sx={{ textAlign: "center", mb: 4 }}>
+        <motion.div
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          style={{ display: "inline-block" }}
+        >
+          <Typography
+            variant="h4"
+            fontWeight="bold"
+            component="h2"
+            sx={{
+              display: "inline-block",
+              position: "relative",
+              px: 1,
+              "&::after": {
+                content: '""',
+                position: "absolute",
+                left: 0,
+                bottom: -6,
+                height: 4,
+                width: "100%",
+                backgroundColor: theme.palette.primary.main,
+                borderRadius: 2,
+                transform: "scaleX(0)",
+                transformOrigin: "left",
+                transition: "transform 0.4s ease-in-out",
+              },
+              "&:hover::after": {
+                transform: "scaleX(1)",
+              },
+            }}
+          >
+            What Our{" "}
+            <Box component="span" sx={{ color: theme.palette.primary.main }}>
+              Clients Say
             </Box>
+          </Typography>
+        </motion.div>
+      </Box>
 
       <Swiper
         modules={[Autoplay, Pagination]}
@@ -277,3 +285,115 @@ const Testimonials = () => {
 };
 
 export default Testimonials;
+
+// import React from "react";
+// import { Box, Typography, Grid, Paper } from "@mui/material";
+
+// const Testimonials = () => {
+//   return (
+//     <Box
+//       sx={{
+//         mt: 14,
+//         maxWidth: "1536px",
+//         mx: "auto",
+//         p: { xs: 3, lg: 10 },
+//         backgroundImage: 'url(/Vector 7293.png)',
+//         // backgroundColor: "#1976d2",
+
+//         backgroundPosition: "center bottom",
+//         backgroundRepeat: "no-repeat",
+//         backgroundSize: "cover",
+//       }}
+//     >
+//       {/* Top Section */}
+//       <Grid
+//         container
+//         spacing={{ xs: 5, md: 2 }}
+//         alignItems="center"
+//         wrap="wrap"
+//         sx={{ mb: { xs: 8, lg: 0 } }}
+//       >
+//         {/* Left Text */}
+//         <Grid item xs={12} md={7}>
+//           <Typography
+//             variant="h5"
+//             sx={{
+//               fontSize: { xs: "1.25rem", md: "2rem" },
+//               fontWeight: 600,
+//               mb: 2,
+//               color: "white",
+//             }}
+//           >
+//             Secure, easy-to-conduct online exams with seamless evaluation and
+//             governance solution
+//           </Typography>
+//           <Typography
+//             variant="body2"
+//             sx={{ fontSize: { xs: "0.75rem", md: "0.875rem" }, color: "white" }}
+//           >
+//             As a leading educational platform provider, we help academic
+//             institutions create custom applications tailored to their unique
+//             needs, ensuring seamless integration and functionality that meets
+//             their vision.
+//           </Typography>
+//         </Grid>
+
+//         {/* Right Image */}
+//         <Grid item xs={12} md={5}>
+//           <Box
+//             component="img"
+//             src="/assets/elearning-solution.png"
+//             alt="elearning-solution"
+//             loading="lazy"
+//             sx={{
+//               width: "100%",
+//               maxWidth: 400,
+//               mx: "auto",
+//               display: "block",
+//               color: "transparent",
+//             }}
+//           />
+//         </Grid>
+//       </Grid>
+
+//       {/* Bottom Box */}
+//       <Paper
+//         elevation={2}
+//         sx={{
+//           mt: 5,
+//           display: "flex",
+//           alignItems: "center",
+//           maxWidth: "1024px",
+//           mx: "auto",
+//           p: { xs: 2, md: 4 },
+//         }}
+//       >
+//         <Box
+//           component="img"
+//           src="/icons/Border.png"
+//           alt="Border Icon"
+//           loading="lazy"
+//           sx={{
+//             width: 40,
+//             height: 40,
+//             mx: 2,
+//             color: "transparent",
+//           }}
+//         />
+//         <Typography
+//           variant="body2"
+//           sx={{
+//             fontSize: { xs: "0.75rem", md: "0.875rem" },
+//             px: { xs: 1, md: 3 },
+//           }}
+//         >
+//           Experience the online skill development platform, committed to
+//           delivering accessible, high-quality education and empowering learners
+//           to enhance their skills for career growth.
+//         </Typography>
+//       </Paper>
+//     </Box>
+//   );
+// };
+
+// export default Testimonials;

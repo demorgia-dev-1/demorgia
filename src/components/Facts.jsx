@@ -22,7 +22,6 @@ const Facts = () => {
       id="facts"
       sx={{
         py: 10,
-        // background: "linear-gradient(135deg, #e0f7fa, #f1f8e9)",
         background: "white",
         overflow: "hidden",
       }}
@@ -35,46 +34,49 @@ const Facts = () => {
           transition={{ duration: 0.6 }}
         >
           <Box sx={{ textAlign: "center", mb: 4 }}>
-                  <motion.div
-                    initial={{ scaleX: 0 }}
-                    whileInView={{ scaleX: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.7, ease: "easeOut" }}
-                    style={{ display: "inline-block" }}
-                  >
-                    <Typography
-                      variant="h4"
-                      fontWeight="bold"
-                      component="h2"
-                      sx={{
-                        display: "inline-block",
-                        position: "relative",
-                        px: 1,
-                        "&::after": {
-                          content: '""',
-                          position: "absolute",
-                          left: 0,
-                          bottom: -6,
-                          height: 4,
-                          width: "100%",
-                          backgroundColor: theme.palette.primary.main,
-                          borderRadius: 2,
-                          transform: "scaleX(0)",
-                          transformOrigin: "left",
-                          transition: "transform 0.4s ease-in-out",
-                        },
-                        "&:hover::after": {
-                          transform: "scaleX(1)",
-                        },
-                      }}
-                    >
-                      Fac
-                      <Box component="span" sx={{ color: theme.palette.primary.main }}>
-                        ts
-                      </Box>
-                    </Typography>
-                  </motion.div>
+            <motion.div
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+              style={{ display: "inline-block" }}
+            >
+              <Typography
+                variant="h4"
+                fontWeight="bold"
+                component="h2"
+                sx={{
+                  display: "inline-block",
+                  position: "relative",
+                  px: 1,
+                  "&::after": {
+                    content: '""',
+                    position: "absolute",
+                    left: 0,
+                    bottom: -6,
+                    height: 4,
+                    width: "100%",
+                    backgroundColor: theme.palette.primary.main,
+                    borderRadius: 2,
+                    transform: "scaleX(0)",
+                    transformOrigin: "left",
+                    transition: "transform 0.4s ease-in-out",
+                  },
+                  "&:hover::after": {
+                    transform: "scaleX(1)",
+                  },
+                }}
+              >
+                Fac
+                <Box
+                  component="span"
+                  sx={{ color: theme.palette.primary.main }}
+                >
+                  ts
                 </Box>
+              </Typography>
+            </motion.div>
+          </Box>
           <Typography
             align="center"
             sx={{ maxWidth: 800, mx: "auto", mb: 6, color: "text.secondary" }}

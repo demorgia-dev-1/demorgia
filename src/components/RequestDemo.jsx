@@ -1,5 +1,3 @@
-
-
 import {
   Paper,
   Box,
@@ -19,7 +17,6 @@ import PhoneIcon from "@mui/icons-material/Phone";
 import BusinessIcon from "@mui/icons-material/Business";
 import { motion } from "framer-motion";
 import logo from "/logo.png";
-
 
 const RequestDemoForm = ({ onClose }) => {
   const [formData, setFormData] = useState({
@@ -63,21 +60,21 @@ const RequestDemoForm = ({ onClose }) => {
         overflow: "hidden",
       }}
     >
-    <motion.img
-            src={logo}
-            alt="Logo"
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.6 }}
-            style={{
-              height: 100,
-              width: "auto",
-              objectFit: "contain",
-              padding: "5px 10px",
-              borderRadius: "8px",
-              cursor: "pointer",
-            }}
-          />
+      <motion.img
+        src={logo}
+        alt="Logo"
+        initial={{ scale: 0.8, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.6 }}
+        style={{
+          height: 100,
+          width: "auto",
+          objectFit: "contain",
+          padding: "5px 10px",
+          borderRadius: "8px",
+          cursor: "pointer",
+        }}
+      />
       {/* Top SVG Wave Background */}
       <Box
         sx={{
@@ -109,7 +106,6 @@ const RequestDemoForm = ({ onClose }) => {
         gutterBottom
         sx={{
           fontWeight: 700,
-          // mt: 2,
           background: "linear-gradient(to right, #1976d2, #0d47a1)",
           WebkitBackgroundClip: "text",
           WebkitTextFillColor: "transparent",

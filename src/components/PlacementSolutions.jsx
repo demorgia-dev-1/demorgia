@@ -85,48 +85,51 @@ const PlacementSolutions = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-           {/* Animated Heading */}
-                <Box sx={{ textAlign: "center", mb: 4 }}>
-                  <motion.div
-                    initial={{ scaleX: 0 }}
-                    whileInView={{ scaleX: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.7, ease: "easeOut" }}
-                    style={{ display: "inline-block" }}
-                  >
-                    <Typography
-                      variant="h4"
-                      fontWeight="bold"
-                      component="h2"
-                      sx={{
-                        display: "inline-block",
-                        position: "relative",
-                        px: 1,
-                        "&::after": {
-                          content: '""',
-                          position: "absolute",
-                          left: 0,
-                          bottom: -6,
-                          height: 4,
-                          width: "100%",
-                          backgroundColor: theme.palette.primary.main,
-                          borderRadius: 2,
-                          transform: "scaleX(0)",
-                          transformOrigin: "left",
-                          transition: "transform 0.4s ease-in-out",
-                        },
-                        "&:hover::after": {
-                          transform: "scaleX(1)",
-                        },
-                      }}
-                    >
-                     Placement &{" "}
-                      <Box component="span" sx={{ color: theme.palette.primary.main }}>
-                        Tracking
-                      </Box>
-                    </Typography>
-                  </motion.div>
+          {/* Animated Heading */}
+          <Box sx={{ textAlign: "center", mb: 4 }}>
+            <motion.div
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+              style={{ display: "inline-block" }}
+            >
+              <Typography
+                variant="h4"
+                fontWeight="bold"
+                component="h2"
+                sx={{
+                  display: "inline-block",
+                  position: "relative",
+                  px: 1,
+                  "&::after": {
+                    content: '""',
+                    position: "absolute",
+                    left: 0,
+                    bottom: -6,
+                    height: 4,
+                    width: "100%",
+                    backgroundColor: theme.palette.primary.main,
+                    borderRadius: 2,
+                    transform: "scaleX(0)",
+                    transformOrigin: "left",
+                    transition: "transform 0.4s ease-in-out",
+                  },
+                  "&:hover::after": {
+                    transform: "scaleX(1)",
+                  },
+                }}
+              >
+                Placement &{" "}
+                <Box
+                  component="span"
+                  sx={{ color: theme.palette.primary.main }}
+                >
+                  Tracking
                 </Box>
+              </Typography>
+            </motion.div>
+          </Box>
           <Typography
             align="center"
             maxWidth="md"

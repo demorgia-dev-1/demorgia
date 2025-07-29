@@ -5,13 +5,8 @@ import {
   Typography,
   Grid,
   Chip,
-  Tabs,
-  Tab,
-  Modal,
-  IconButton,
   Dialog,
   DialogContent,
-  Divider,
 } from "@mui/material";
 import { motion } from "framer-motion";
 import Slider from "react-slick";
@@ -159,8 +154,6 @@ const Services = () => {
       <Box
         id="services"
         sx={{
-          // py: 10,
-          // background: "linear-gradient(135deg, #e0f7fa, #f1f8e9)"
           background: "white",
         }}
       >

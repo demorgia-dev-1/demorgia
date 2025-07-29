@@ -30,21 +30,21 @@ const imageData = {
     "/assets/exam-evidance.png",
     "/assets/exam.png",
   ],
-  Assessir: [
-    "/assets/web-login.png",
-    "/assets/web-dash.png",
-    "/assets/web-evidence.png",
-    "/assets/exam-evidance.png",
-    "/assets/exam.png",
-  ],
+  // "Assessir Platform": [
+  //   "/assets/web-login.png",
+  //   "/assets/web-dash.png",
+  //   "/assets/web-evidence.png",
+  //   "/assets/exam-evidance.png",
+  //   "/assets/exam.png",
+  // ],
 
-  "General CBT Platform": [
-    "/assets/web-login.png",
-    "/assets/web-dash.png",
-    "/assets/web-evidence.png",
-    "/assets/exam-evidance.png",
-    "/assets/exam.png",
-  ],
+  // "General CBT Platform": [
+  //   "/assets/web-login.png",
+  //   "/assets/web-dash.png",
+  //   "/assets/web-evidence.png",
+  //   "/assets/exam-evidance.png",
+  //   "/assets/exam.png",
+  // ],
 };
 
 const icons = {
@@ -57,8 +57,8 @@ const icons = {
   "Offline Mobile/Tablet Application": (
     <TabletMacIcon sx={{ color: "#1976d2", mr: 1 }} />
   ),
-  Assessir: <WebIcon sx={{ color: "#1976d2", mr: 1 }} />,
-  "General CBT Platform": <CodeIcon sx={{ color: "#1976d2", mr: 1 }} />,
+  // "Assessir Platform": <WebIcon sx={{ color: "#1976d2", mr: 1 }} />,
+  // "General CBT Platform": <CodeIcon sx={{ color: "#1976d2", mr: 1 }} />,
 };
 
 const SectionCarousel = ({ images = [] }) => {
@@ -147,7 +147,7 @@ const Solutions = () => {
       <Box
         key={index}
         sx={{
-          backgroundSize: "contain",
+          backgroundSize: "cover",
           borderRadius: 3,
           py: { xs: 4, md: 6 },
           px: { xs: 2, md: 15 },
@@ -328,13 +328,13 @@ const Solutions = () => {
           </motion.div>
         </Box>
 
-        <Typography
+        {/* <Typography
           variant="h6"
           fontWeight="bold"
           sx={{ color: theme.palette.primary.main, mb: 3 }}
         >
           Assessment Platforms:
-        </Typography>
+        </Typography> */}
 
         {[
           {
@@ -360,17 +360,17 @@ const Solutions = () => {
           },
         ].map(renderSection)}
 
-        <Typography
+        {/* <Typography
           variant="h6"
           fontWeight="bold"
           sx={{ color: theme.palette.primary.main, my: 4 }}
         >
           Dedicated Assessment Portals:
-        </Typography>
+        </Typography> */}
 
-        {[
+        {/* {[
           {
-            title: "Assessir",
+            title: "Assessir Platform",
             points: [
               "Specialized NSDC and MSDE-aligned assessments.",
               "User-centric interface for streamlined evaluations.",
@@ -383,7 +383,7 @@ const Solutions = () => {
               "Supports customizable test structures and instant result generation.",
             ],
           },
-        ].map(renderSection)}
+        ].map(renderSection)} */}
       </Box>
     </Box>
   );
