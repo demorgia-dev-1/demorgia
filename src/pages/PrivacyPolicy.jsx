@@ -22,7 +22,7 @@ const PrivacyPolicy = () => {
         >
           Privacy Policy
         </Typography>
-
+{/* 
         <Typography
           variant="subtitle2"
           textAlign="center"
@@ -30,7 +30,7 @@ const PrivacyPolicy = () => {
           gutterBottom
         >
           Effective Date: [Insert Date]
-        </Typography>
+        </Typography> */}
 
         <Typography variant="body1" paragraph>
           At <strong>Demorgia Consulting Services Pvt Ltd</strong>, we are

@@ -16,6 +16,7 @@ import {
   FaGoogle,
   FaLinkedin,
 } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const footerLinks = [
   { label: "Home", path: "/" },
@@ -23,6 +24,7 @@ const footerLinks = [
   { label: "Privacy Policy", path: "/privacy-policy" },
   { label: "Safe Workplace Policy", path: "/safe-workplace-policy" },
   { label: "Grievance", path: "/grievance" },
+  { label: "Assessors", path: "/assessors" },
 ];
 
 const Footer = () => (
@@ -123,7 +125,7 @@ const Footer = () => (
         </Grid>
 
         {/* Group Company and Newsletter */}
-        <Grid item xs={12} md={3}>
+        {/* <Grid item xs={12} md={3}>
           <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
             GROUP COMPANY
           </Typography>
@@ -175,7 +177,109 @@ const Footer = () => (
               )
             )}
           </Box>
-        </Grid>
+        </Grid> */}
+        {/* Group Company and App Download */}
+<Grid item xs={12} md={3}>
+  <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
+    GROUP COMPANY
+  </Typography>
+  <Divider sx={{ width: 40, bgcolor: "#00ff7f", mb: 1 }} />
+  <Typography variant="body2" mb={2}>
+    <strong>"Vikram Aviation Pvt Ltd"</strong> <br />
+    Trusted Partner for Precision Calibration, Expert Repairs, Composite
+    Maintenance, and Consumable Solutions.
+  </Typography>
+
+<Typography variant="h6" gutterBottom sx={{ fontWeight: 600, mt: 3 }}>
+  GET THE APP
+</Typography>
+<Divider sx={{ width: 40, bgcolor: "#00ff7f", mb: 1 }} />
+
+<Box display="flex" flexWrap="wrap" gap={4} alignItems="flex-start">
+    {/* Candidate App */}
+    <Box>
+      <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
+        Candidate App
+      </Typography>
+      <a
+        href="/candidate.apk"
+        target="_blank"
+        rel="noopener noreferrer"
+        download
+      >
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+          alt="Download Candidate APK"
+          style={{ height: 40, marginTop: 8 }}
+        />
+      </a>
+    </Box>
+
+    {/* Assessor App */}
+    <Box>
+      <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
+        Assessor App
+      </Typography>
+      <a
+        href="/assessor.apk"
+        target="_blank"
+        rel="noopener noreferrer"
+        download
+      >
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+          alt="Download Assessor APK"
+          style={{ height: 40, marginTop: 8 }}
+        />
+      </a>
+    </Box>
+  </Box>
+
+  <Box display="flex">
+    <TextField
+      size="small"
+      placeholder="NEWSLETTER"
+      variant="outlined"
+      fullWidth
+      InputProps={{
+        sx: {
+          bgcolor: "#fff",
+          borderRadius: "4px 0 0 4px",
+          color: "#000",
+          fontWeight: 500,
+        },
+      }}
+    />
+    <Button
+      variant="contained"
+      color="secondary"
+      sx={{
+        color: "white",
+        borderRadius: "0 4px 4px 0",
+        px: 3,
+      }}
+    >
+      SUBSCRIBE
+    </Button>
+  </Box>
+
+  <Box mt={2}>
+    {[FaTwitter, FaFacebook, FaInstagram, FaGoogle, FaLinkedin].map(
+      (Icon, i) => (
+        <IconButton
+          key={i}
+          sx={{
+            color: "white",
+            "&:hover": { color: "#003300" },
+          }}
+        >
+          <Icon />
+        </IconButton>
+      )
+    )}
+  </Box>
+</Grid>
+
       </Grid>
 
       {/* Bottom Bar */}

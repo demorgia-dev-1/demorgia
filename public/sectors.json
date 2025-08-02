@@ -1,0 +1,202 @@
+[
+  {
+    "name": "Aerospace & Aviation SSC (AASSC)",
+    "url": "/question-papers/aerospace.pdf",
+    "image": "/icons/sectors/aerospace.png"
+  },
+  {
+    "name": "Agriculture Skill Council of India (ASCI)",
+    "url": "/question-papers/agriculture.pdf",
+    "image": "/icons/sectors/agriculture.png"
+  },
+  {
+    "name": "Apparel, Made-ups & Home Furnishing SSC (AMHFSSC)",
+    "url": "/question-papers/apparel.pdf",
+    "image": "/icons/sectors/apparel.png"
+  },
+  {
+    "name": "Automative Skill Development Council (ASDC)",
+    "url": "/question-papers/aerospace.pdf",
+    "image": "/icons/sectors/automotive.png"
+  },
+  {
+    "name": "Beauty & Wellness Sector Skill Council (B&WSSC)",
+    "url": "/question-papers/agriculture.pdf",
+    "image": "/icons/sectors/beauty.png"
+  },
+  {
+    "name": "BFSI Sector Skill Council (BFSI)",
+    "url": "/question-papers/apparel.pdf",
+    "image": "/icons/sectors/bfsi.png"
+  },
+  {
+    "name": "BNRC (BNRC)",
+    "url": "/question-papers/aerospace.pdf",
+    "image": "/icons/sectors/bnrc.png"
+  },
+  {
+    "name": "Capital Goods Skill Council (CGSC)",
+    "url": "/question-papers/agriculture.pdf",
+    "image": "/icons/sectors/capitalgoods.png"
+  },
+  {
+    "name": "Construction Skill Development Council of India (CSDCI)",
+    "url": "/question-papers/apparel.pdf",
+    "image": "/icons/sectors/construction.png"
+  },
+  {
+    "name": "Domestic Workers Sector Skill Council (DWSSC)",
+    "url": "/question-papers/aerospace.pdf",
+    "image": "/icons/sectors/domestic.png"
+  },
+  {
+    "name": "Electronics Sector Skill Council of India (ESSCI)",
+    "url": "/question-papers/agriculture.pdf",
+    "image": "/icons/sectors/electronics.png"
+  },
+  {
+    "name": "Food Industry Capacity and Skill Initiative (FICSI)",
+    "url": "/question-papers/apparel.pdf",
+    "image": "/icons/sectors/food.png"
+  },
+  {
+    "name": "Furniture & Fittings Skill Council (FFSC)",
+    "url": "/question-papers/aerospace.pdf",
+    "image": "/icons/sectors/furniture.png"
+  },
+  {
+    "name": "Gems And Jwellery Sector Skill Council of India (GJSSCI)",
+    "url": "/question-papers/agriculture.pdf",
+    "image": "/icons/sectors/gems.png"
+  },
+  {
+    "name": "Handicrafts And Carpet Sector Skill Council (HCSSC)",
+    "url": "/question-papers/apparel.pdf",
+    "image": "/icons/sectors/handicrafts.png"
+  },
+  {
+    "name": "Healthcare Sector Skill Council (HSC)",
+    "url": "/question-papers/aerospace.pdf",
+    "image": "/icons/sectors/healthcare.png"
+  },
+  {
+    "name": "Hydrocarbon Sector Skill Council (HSSC)",
+    "url": "/question-papers/agriculture.pdf",
+    "image": "/icons/sectors/hydrocarbon.png"
+  },
+  {
+    "name": "Indian Iron And Steel Sector Skill Council (IISC)",
+    "url": "/question-papers/apparel.pdf",
+    "image": "/icons/sectors/steel.png"
+  },
+  {
+    "name": "Infrastructure Equipment Skill Council (IESC)",
+    "url": "/question-papers/aerospace.pdf",
+    "image": "/icons/sectors/infrastructure.png"
+  },
+  {
+    "name": "Institution of Civil Engineers Society (ICES)",
+    "url": "/question-papers/agriculture.pdf",
+    "image": "/icons/sectors/civil.png"
+  },
+  {
+    "name": "Instrumentation, Automation, Surveillance & Communication (IASC)",
+    "url": "/question-papers/apparel.pdf",
+    "image": "/icons/sectors/instrumentation.png"
+  },
+  {
+    "name": "IT - ITES Sector Skill Council (ITITES)",
+    "url": "/question-papers/aerospace.pdf",
+    "image": "/icons/sectors/it.png"
+  },
+  {
+    "name": "Leather Sector Skill Council (LSSC)",
+    "url": "/question-papers/agriculture.pdf",
+    "image": "/icons/sectors/leather.png"
+  },
+  {
+    "name": "Life Science Sector Skill Development Council (LSSSDC)",
+    "url": "/question-papers/apparel.pdf",
+    "image": "/icons/sectors/lifescience.png"
+  },
+  {
+    "name": "Logistics Sector Skill Council (LSC)",
+    "url": "/question-papers/apparel.pdf",
+    "image": "/icons/sectors/logistics.png"
+  },
+  {
+    "name": "Management & Entrepreneurship & Professional Skill Council (MEPSC)",
+    "url": "/question-papers/aerospace.pdf",
+    "image": "/icons/sectors/management.png"
+  },
+  {
+    "name": "Media and Entertainment Skill Council (MESC)",
+    "url": "/question-papers/agriculture.pdf",
+    "image": "/icons/sectors/media.png"
+  },
+  {
+    "name": "Power Sector Skill Council (PSSC)",
+    "url": "/question-papers/apparel.pdf",
+    "image": "/icons/sectors/power.png"
+  },
+  {
+    "name": "Retailer's Association Skill Council of India (RASCI)",
+    "url": "/question-papers/apparel.pdf",
+    "image": "/icons/sectors/retail.png"
+  },
+  {
+    "name": "Rubber, Chemical and petrochemical Skill Development Council (RCPSDC)",
+    "url": "/question-papers/aerospace.pdf",
+    "image": "/icons/sectors/chemical.png"
+  },
+  {
+    "name": "Skill Council for Green Jobs (SCGJ)",
+    "url": "/question-papers/agriculture.pdf",
+    "image": "/icons/sectors/green.png"
+  },
+  {
+    "name": "Skill Council for Mining Sector (SCMS)",
+    "url": "/question-papers/apparel.pdf",
+    "image": "/icons/sectors/mining.png"
+  },
+  {
+    "name": "Skill Council for Person with Disability (SCPWD)",
+    "url": "/question-papers/apparel.pdf",
+    "image": "/icons/sectors/disability.png"
+  },
+  {
+    "name": "Sports, Physical Education, Fitness & Leisure Skill Council (SPEFL-SC)",
+    "url": "/question-papers/aerospace.pdf",
+    "image": "/icons/sectors/sports.png"
+  },
+  {
+    "name": "Telecom Sector Skill Council (TSSC)",
+    "url": "/question-papers/agriculture.pdf",
+    "image": "/icons/sectors/telecom.png"
+  },
+  {
+    "name": "Textile Sector Skill Council (TSC)",
+    "url": "/question-papers/apparel.pdf",
+    "image": "/icons/sectors/textile.png"
+  },
+  {
+    "name": "Third Party Sector (TPS)",
+    "url": "/question-papers/apparel.pdf",
+    "image": "/icons/sectors/thirdparty.png"
+  },
+  {
+    "name": "TNSDC (TNSDC)",
+    "url": "/question-papers/aerospace.pdf",
+    "image": "/icons/sectors/tnsdc.png"
+  },
+  {
+    "name": "Tourism and Hospitality Skill Council (THSC)",
+    "url": "/question-papers/agriculture.pdf",
+    "image": "/icons/sectors/tourism.png"
+  },
+  {
+    "name": "Water Management And Plumbing Skill Council (WMPSC)",
+    "url": "/question-papers/apparel.pdf",
+    "image": "/icons/sectors/water.png"
+  }
+]

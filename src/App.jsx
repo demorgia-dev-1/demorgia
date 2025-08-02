@@ -25,6 +25,7 @@ import Navbar from "./components/Navbar";
 import OurGallery from "./components/OurGallery";
 import { NavigationProvider } from "./utills/NavigationContext";
 import ChatBot from "./components/ChatBotWidget"; // Full chat window component
+import Assessors from "./components/Assessors";
 
 const AppContent = () => {
   const location = useLocation();
@@ -69,6 +70,7 @@ const AppContent = () => {
         />
         <Route path="/grievance" element={<Grievance />} />
         <Route path="/gallery" element={<OurGallery />} />
+        <Route path="/assessors" element={<Assessors />} />
       </Routes>
 
       <Footer />

@@ -6,15 +6,191 @@ import {
   Drawer,
   Box,
   List,
-  ListItem,
   ListItemText,
   Button,
+  Avatar,
+  ListItemButton,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import { useState } from "react";
 import { Link as ScrollLink } from "react-scroll";
 import { motion } from "framer-motion";
 import logo from "/logo.png";
+import { useEffect, useState, useRef } from "react";
+import { Menu, MenuItem } from "@mui/material";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import ExpandLess from "@mui/icons-material/ExpandLess";
+import ExpandMore from "@mui/icons-material/ExpandMore";
+import Collapse from "@mui/material/Collapse";
+
+const LoginDropdown = () => {
+  const [anchorEl, setAnchorEl] = useState(null);
+  const buttonRef = useRef();
+
+  const handleOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  return (
+    <>
+      <Button
+        color="inherit"
+        endIcon={<ArrowDropDownIcon />}
+        onClick={handleOpen}
+        ref={buttonRef}
+        aria-controls="login-menu"
+        aria-haspopup="true"
+      >
+        Login
+      </Button>
+      <Menu
+        id="login-menu"
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        <MenuItem onClick={handleClose} sx={{ textDecoration: "none" }}>
+          <a
+            href="https://admin.assessir.com/login"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            Admin Login
+          </a>
+        </MenuItem>
+        <MenuItem onClick={handleClose}>
+          <a
+            href="https://web.assessir.com/login"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            Assessor Login
+          </a>
+        </MenuItem>
+        <MenuItem onClick={handleClose}>
+          <a
+            href="https://candidate.assessir.com/login"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            Candidate Login
+          </a>
+        </MenuItem>
+      </Menu>
+    </>
+  );
+};
+
+const SectorsDropdown = () => {
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [sectors, setSectors] = useState([]);
+  const buttonRef = useRef();
+
+  useEffect(() => {
+    fetch("/sectors.json")
+      .then((res) => res.json())
+      .then((data) => setSectors(data))
+      .catch((err) => console.error("Failed to load sectors:", err));
+  }, []);
+
+  const handleOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  // Square grid size
+  const gridSize = Math.ceil(Math.sqrt(sectors.length));
+
+  return (
+    <>
+      <Button
+        color="inherit"
+        endIcon={<ArrowDropDownIcon />}
+        onClick={handleOpen}
+        ref={buttonRef}
+        sx={{ textTransform: "none", fontWeight: 500 }}
+      >
+        SAMPLE PAPERS
+      </Button>
+
+      <Menu
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "left",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "left",
+        }}
+        PaperProps={{
+          sx: {
+            width: "100vw",
+            maxWidth: "100%",
+            px: 4,
+            py: 3,
+            backgroundColor: "#f9f9f9",
+            borderRadius: 2,
+            boxShadow: 3,
+            overflowY: "auto",
+          },
+        }}
+      >
+        <Box
+          sx={{
+            display: "grid",
+            gridTemplateColumns: "repeat(5, 1fr)",
+            gap: 2,
+          }}
+        >
+          {sectors.map((sector, index) => (
+            <Box
+              key={sector.name}
+              onClick={handleClose}
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                px: 2,
+                py: 1.5,
+                borderRight:
+                  (index + 1) % gridSize !== 0 ? "1px solid #ddd" : "none",
+                "&:hover": {
+                  backgroundColor: "#e3f2fd",
+                  cursor: "pointer",
+                },
+              }}
+            >
+              {/* <Avatar
+                src={sector.image}
+                alt={sector.name}
+                sx={{ width: 30, height: 30, mr: 2 }}
+              /> */}
+              <a
+                href={sector.url}
+                download
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
+                <Typography variant="body2">{sector.name}</Typography>
+              </a>
+            </Box>
+          ))}
+        </Box>
+      </Menu>
+    </>
+  );
+};
 
 const navLinks = [
   { label: "Home", to: "hero" },
@@ -22,12 +198,23 @@ const navLinks = [
   { label: "Why Us", to: "why" },
   { label: "Solutions", to: "solutions" },
   { label: "Placement", to: "placement" },
-  // { label: "Testimonials", to: "testimonials" },
+  { label: "Sectors", to: "sectors" },
   { label: "Contact", to: "contact" },
+  { label: "Login", to: "Login" },
 ];
 
 const Navbar = ({ onNavigate = {} }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [sectors, setSectors] = useState([]);
+  const [loginOpen, setLoginOpen] = useState(false);
+  const [sectorsOpen, setSectorsOpen] = useState(false);
+
+  useEffect(() => {
+    fetch("/sectors.json")
+      .then((res) => res.json())
+      .then((data) => setSectors(data))
+      .catch((err) => console.error("Failed to load sectors:", err));
+  }, []);
 
   return (
     <AppBar
@@ -71,19 +258,26 @@ const Navbar = ({ onNavigate = {} }) => {
           </Typography>
         </Box>
 
-        {/* Desktop Nav */}
         <Box sx={{ display: { xs: "none", sm: "block" } }}>
-          {navLinks.map((item) => (
-            <ScrollLink
-              key={item.to}
-              to={item.to}
-              smooth
-              duration={500}
-              offset={-70}
-            >
-              <Button color="inherit">{item.label}</Button>
-            </ScrollLink>
-          ))}
+          {navLinks.map((item) => {
+            if (item.label === "Login") {
+              return <LoginDropdown key={item.to} />;
+            } else if (item.label === "Sectors") {
+              return <SectorsDropdown key={item.to} />;
+            } else {
+              return (
+                <ScrollLink
+                  key={item.to}
+                  to={item.to}
+                  smooth
+                  duration={500}
+                  offset={-70}
+                >
+                  <Button color="inherit">{item.label}</Button>
+                </ScrollLink>
+              );
+            }
+          })}
         </Box>
 
         {/* Hamburger Icon */}
@@ -102,20 +296,95 @@ const Navbar = ({ onNavigate = {} }) => {
         >
           <Box sx={{ width: 250 }}>
             <List>
-              {navLinks.map((item) => (
-                <ScrollLink
-                  key={item.to}
-                  to={item.to}
-                  smooth
-                  duration={500}
-                  offset={-70}
-                  onClick={() => setDrawerOpen(false)}
-                >
-                  <ListItem button>
-                    <ListItemText primary={item.label} />
-                  </ListItem>
-                </ScrollLink>
-              ))}
+              {navLinks.map((item) => {
+                if (item.label === "Login") {
+                  return (
+                    <Box key="login">
+                      <ListItemButton onClick={() => setLoginOpen(!loginOpen)}>
+                        <ListItemText primary="Login" />
+                        {loginOpen ? <ExpandLess /> : <ExpandMore />}
+                      </ListItemButton>
+                      <Collapse in={loginOpen} timeout="auto" unmountOnExit>
+                        <List component="div" disablePadding>
+                          <ListItemButton
+                            component="a"
+                            href="https://admin.assessir.com/login"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            sx={{ pl: 4 }}
+                            onClick={() => setDrawerOpen(false)}
+                          >
+                            <ListItemText primary="Admin Login" />
+                          </ListItemButton>
+                          <ListItemButton
+                            component="a"
+                            href="https://web.assessir.com/login"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            sx={{ pl: 4 }}
+                            onClick={() => setDrawerOpen(false)}
+                          >
+                            <ListItemText primary="Assessor Login" />
+                          </ListItemButton>
+                          <ListItemButton
+                            component="a"
+                            href="https://candidate.assessir.com/login"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            sx={{ pl: 4 }}
+                            onClick={() => setDrawerOpen(false)}
+                          >
+                            <ListItemText primary="Candidate Login" />
+                          </ListItemButton>
+                        </List>
+                      </Collapse>
+                    </Box>
+                  );
+                } else if (item.label === "Sectors") {
+                  return (
+                    <Box key="sectors">
+                      <ListItemButton
+                        onClick={() => setSectorsOpen(!sectorsOpen)}
+                      >
+                        <ListItemText primary="Sectors" />
+                        {sectorsOpen ? <ExpandLess /> : <ExpandMore />}
+                      </ListItemButton>
+                      <Collapse in={sectorsOpen} timeout="auto" unmountOnExit>
+                        <List component="div" disablePadding>
+                          {sectors.map((sector) => (
+                            <ListItemButton
+                              key={sector.name}
+                              
+                              component="a"
+                              href={sector.url}
+                              download
+                              sx={{ pl: 4 }}
+                              onClick={() => setDrawerOpen(false)}
+                            >
+                              <ListItemText primary={sector.name} />
+                            </ListItemButton>
+                          ))}
+                        </List>
+                      </Collapse>
+                    </Box>
+                  );
+                } else {
+                  return (
+                    <ScrollLink
+                      key={item.to}
+                      to={item.to}
+                      smooth
+                      duration={500}
+                      offset={-70}
+                      onClick={() => setDrawerOpen(false)}
+                    >
+                      <ListItemButton>
+                        <ListItemText primary={item.label} />
+                      </ListItemButton>
+                    </ScrollLink>
+                  );
+                }
+              })}
             </List>
           </Box>
         </Drawer>

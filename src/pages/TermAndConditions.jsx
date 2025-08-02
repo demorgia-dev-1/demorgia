@@ -35,14 +35,14 @@ const TermsAndConditions = () => {
           Terms & Conditions
         </Typography>
 
-        <Typography
+        {/* <Typography
           variant="subtitle2"
           textAlign="center"
           color="text.secondary"
           gutterBottom
         >
           Effective Date: [Insert Date]
-        </Typography>
+        </Typography> */}
 
         <Divider sx={{ my: 4 }} />
 
