@@ -26,6 +26,7 @@ import OurGallery from "./components/OurGallery";
 import { NavigationProvider } from "./utills/NavigationContext";
 import ChatBot from "./components/ChatBotWidget"; // Full chat window component
 import Assessors from "./components/Assessors";
+import PortalDetails from "./components/PortalDetails";
 
 const AppContent = () => {
   const location = useLocation();
@@ -71,8 +72,9 @@ const AppContent = () => {
         <Route path="/grievance" element={<Grievance />} />
         <Route path="/gallery" element={<OurGallery />} />
         <Route path="/assessors" element={<Assessors />} />
+        
       </Routes>
-
+      {/* <PortalDetails /> */}
       <Footer />
 
       {/* Chat Window (conditionally rendered) */}

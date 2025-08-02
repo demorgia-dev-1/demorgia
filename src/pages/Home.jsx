@@ -12,6 +12,7 @@ import OurStory from '../components/OurStory';
 import Facts from '../components/Facts';
 import Partners from '../components/Partners';
 import Platform from "../components/Platform";
+import PortalDetails from '../components/PortalDetails';
 
 const Home = () => {
   const location = useLocation();
@@ -44,6 +45,7 @@ const Home = () => {
       <Platform />
       <div id="placement"><PlacementSolutions /></div>
       <Facts />
+      <PortalDetails />
       <Partners />
       <div id="testimonials"><Testimonials /></div>
       <div id="contact"><ContactForm /></div>
