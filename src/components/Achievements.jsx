@@ -186,11 +186,10 @@ const Achievements = () => {
                   transition={{ duration: 0.4, delay: index * 0.1 }}
                 >
                   <Card
-                    // onMouseEnter={() => setHovered(index)}
-                    // onMouseLeave={() => setHovered(null)}
                     elevation={0}
                     sx={{
-                      minHeight: 220,
+                      width: 230,              
+                      height: 230,             
                       borderRadius: 5,
                       backdropFilter: "blur(10px)",
                       background: "rgba(255, 255, 255, 0.75)",
@@ -200,6 +199,7 @@ const Achievements = () => {
                       display: "flex",
                       flexDirection: "column",
                       alignItems: "center",
+                      justifyContent: "center", 
                       textAlign: "center",
                       position: "relative",
                       transition: "transform 0.3s ease, box-shadow 0.3s ease",
@@ -209,6 +209,7 @@ const Achievements = () => {
                       },
                     }}
                   >
+
                     <Box
                       sx={{
                         position: "absolute",
