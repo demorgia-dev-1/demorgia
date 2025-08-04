@@ -67,9 +67,23 @@ const HeroSection = () => {
             <Box mt={4}>
               <Button
                 variant="contained"
-                color="secondary"
-                sx={{ mr: 2 }}
                 onClick={handleOpen}
+                sx={{
+                  mr: 2,
+                  px: 2.5,
+                  py: 1,
+                  borderRadius: "4px", // match with Explore Solutions
+                  fontWeight: 600,
+                  fontSize: "0.875rem",
+                  textTransform: "uppercase",
+                  background: "linear-gradient(to right, #1976d2, #0d47a1)",
+                  color: "#fff",
+                  boxShadow: "none",
+                  "&:hover": {
+                    background: "linear-gradient(to right, #0d47a1, #1976d2)",
+                    boxShadow: "none",
+                  },
+                }}
               >
                 Request Demo
               </Button>

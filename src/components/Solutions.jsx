@@ -227,15 +227,15 @@ const Solutions = () => {
     <Box
       sx={{
         position: "relative",
-        py: { xs: 6, md: 10 },
-        px: { xs: 2, md: 6 },
-        background: `linear-gradient(135deg,rgb(200, 214, 251) 0%,rgb(248, 246, 202) 100%)`,
+        pt: { xs: 10, md: 14 },
+    pb: { xs: 6, md: 10 },
+        background: `linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%)`,
         overflow: "hidden",
       }}
     >
       {/* Top Wave */}
 
-      <Box
+      {/* <Box
         component="svg"
         sx={{
           position: "absolute",
@@ -254,7 +254,28 @@ const Solutions = () => {
           fill="rgb(10, 72, 158)"
           d="M0,32L60,48C120,64,240,96,360,96C480,96,600,64,720,48C840,32,960,32,1080,32C1200,32,1320,32,1380,32L1440,32V100H1380C1320,100,1200,100,1080,100C960,100,840,100,720,100C600,100,480,100,360,100C240,100,120,100,60,100H0Z"
         />
-      </Box>
+      </Box> */}
+      <Box
+  component="svg"
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 1440 320"
+  preserveAspectRatio="none"
+  sx={{
+    width: "100%",
+    height: "240px",
+    display: "block",
+    position: "absolute",
+    top: 0,
+    left: 0,
+    zIndex: 0,
+  }}
+>
+  <path
+  fill="rgb(10, 72, 158)"
+  d="M0,160 C300,240 600,80 900,160 C1200,240 1440,80 1440,80 L1440,0 L0,0 Z"
+/>
+</Box>
+
 
       {/* Bottom Wave */}
       <Box
@@ -272,7 +293,7 @@ const Solutions = () => {
         preserveAspectRatio="none"
       >
         <path
-          fill="rgb(135, 125, 6)"
+          fill="#1976D2"
           d="M0,32L60,48C120,64,240,96,360,96C480,96,600,64,720,48C840,32,960,32,1080,32C1200,32,1320,32,1380,32L1440,32V100H1380C1320,100,1200,100,1080,100C960,100,840,100,720,100C600,100,480,100,360,100C240,100,120,100,60,100H0Z"
         />
       </Box>
@@ -294,7 +315,7 @@ const Solutions = () => {
             transition={{ duration: 0.7, ease: "easeOut" }}
             style={{ display: "inline-block" }}
           >
-            <Typography
+            {/* <Typography
               variant="h4"
               fontWeight="bold"
               component="h2"
@@ -324,7 +345,38 @@ const Solutions = () => {
               <Box component="span" sx={{ color: "white" }}>
                 Solutions
               </Box>
-            </Typography>
+            </Typography> */}
+            <Typography
+  variant="h4"
+  fontWeight="bold"
+  component="h2"
+  sx={{
+    display: "inline-block",
+    position: "relative",
+    px: 1,
+    "&::after": {
+      content: '""',
+      position: "absolute",
+      left: 0,
+      bottom: -6,
+      height: 4,
+      width: "100%",
+      backgroundColor: theme.palette.primary.main,
+      borderRadius: 2,
+      transform: "scaleX(0)",
+      transformOrigin: "left",
+      transition: "transform 0.4s ease-in-out",
+    },
+    "&:hover::after": {
+      transform: "scaleX(1)",
+    },
+  }}
+>
+  Assessment{" "}
+  <Box component="span" sx={{ color: theme.palette.primary.main }}>
+    Solutions
+  </Box>
+</Typography>
           </motion.div>
         </Box>
 
