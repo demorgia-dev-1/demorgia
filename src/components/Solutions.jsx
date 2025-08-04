@@ -279,24 +279,24 @@ const Solutions = () => {
 
       {/* Bottom Wave */}
       <Box
-        component="svg"
-        sx={{
-          position: "absolute",
-          bottom: 0,
-          left: 0,
-          width: "100%",
-          height: 200,
-          zIndex: 0,
-        }}
-        viewBox="0 0 1440 100"
-        xmlns="http://www.w3.org/2000/svg"
-        preserveAspectRatio="none"
-      >
-        <path
-          fill="#1976D2"
-          d="M0,32L60,48C120,64,240,96,360,96C480,96,600,64,720,48C840,32,960,32,1080,32C1200,32,1320,32,1380,32L1440,32V100H1380C1320,100,1200,100,1080,100C960,100,840,100,720,100C600,100,480,100,360,100C240,100,120,100,60,100H0Z"
-        />
-      </Box>
+  component="svg"
+  sx={{
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    width: "100%",
+    height: 160,
+    zIndex: 0,
+  }}
+  viewBox="0 0 1440 160"
+  xmlns="http://www.w3.org/2000/svg"
+  preserveAspectRatio="none"
+>
+  <path
+    fill="#1976D2"
+    d="M0,64 C360,160 1080,0 1440,96 L1440,160 L0,160 Z"
+  />
+</Box>
 
       {/* Main content */}
       <Box sx={{ position: "relative", zIndex: 1 }}>

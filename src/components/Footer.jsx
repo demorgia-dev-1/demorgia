@@ -251,16 +251,20 @@ const Footer = () => (
       }}
     />
     <Button
-      variant="contained"
-      color="secondary"
-      sx={{
-        color: "white",
-        borderRadius: "0 4px 4px 0",
-        px: 3,
-      }}
-    >
-      SUBSCRIBE
-    </Button>
+  variant="contained"
+  sx={{
+    color: "white",
+    borderRadius: "0 4px 4px 0",
+    px: 3,
+    background: "linear-gradient(to right, #1565c0, #0d47a1)",
+    "&:hover": {
+      background: "linear-gradient(to right, #0d47a1, #1565c0)",
+    },
+  }}
+>
+  SUBSCRIBE
+</Button>
+
   </Box>
 
   <Box mt={2}>

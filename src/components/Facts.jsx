@@ -153,14 +153,14 @@ import {
   Assignment,
 } from "@mui/icons-material";
 
-// Facts data
+// Facts data (icon as component, no color here)
 const facts = [
-  { label: "SSC Empanelled", value: 25, icon: <Verified fontSize="large" color="success" /> },
-  { label: "Job Roles Assessed", value: 900, icon: <Work fontSize="large" color="primary" /> },
-  { label: "Assessed Candidates", value: 1001303, icon: <People fontSize="large" color="primary" /> },
-  { label: "SME Engaged", value: 200, icon: <Star fontSize="large" color="warning" /> },
-  { label: "Assessor/Proctor", value: 1000, icon: <Assessment fontSize="large" color="secondary" /> },
-  { label: "Projects", value: 100, icon: <Assignment fontSize="large" color="action" /> },
+  { label: "SSC Empanelled", value: 25, icon: Verified },
+  { label: "Job Roles Assessed", value: 900, icon: Work },
+  { label: "Assessed Candidates", value: 1001303, icon: People },
+  { label: "SME Engaged", value: 200, icon: Star },
+  { label: "Assessor/Proctor", value: 1000, icon: Assessment },
+  { label: "Projects", value: 100, icon: Assignment },
 ];
 
 const Facts = () => {
@@ -236,53 +236,67 @@ const Facts = () => {
         </motion.div>
 
         <Grid container spacing={3} justifyContent="center" ref={ref}>
-          {facts.map((fact, idx) => (
-            <Grid item xs={12} sm={6} md={2} sx={{ display: "flex", justifyContent: "center" }}>
-              <motion.div
-                initial={{ opacity: 0, y: idx % 2 === 0 ? 20 : -20 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: idx * 0.15 }}
+          {facts.map((fact, idx) => {
+            const IconComponent = fact.icon;
+            const iconColor = idx % 2 === 0 ? "#4CAF50" : "#1976D2";
+
+            return (
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                md={2}
+                key={idx}
+                sx={{ display: "flex", justifyContent: "center" }}
               >
-                <Paper
-                  elevation={3}
-                  sx={{
-                    width: 170, // increased from 150
-                    height: 170, // increased from 150
-                    p: 2,
-                    textAlign: "center",
-                    borderRadius: 4,
-                    background: "white",
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    transition: "transform 0.3s ease-in-out",
-                    "&:hover": {
-                      transform: "scale(1.05)",
-                      boxShadow: 6,
-                    },
-                  }}
+                <motion.div
+                  initial={{ opacity: 0, y: idx % 2 === 0 ? 20 : -20 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.5, delay: idx * 0.15 }}
                 >
-                  <Box sx={{ mb: 1 }}>{fact.icon}</Box>
-                  <Typography
-                    fontSize="1.4rem"
-                    fontWeight={700}
-                    color={theme.palette.primary.main}
+                  <Paper
+                    elevation={3}
+                    sx={{
+                      width: 170,
+                      height: 170,
+                      p: 2,
+                      textAlign: "center",
+                      borderRadius: 4,
+                      background: "white",
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      transition: "transform 0.3s ease-in-out",
+                      "&:hover": {
+                        transform: "scale(1.05)",
+                        boxShadow: 6,
+                      },
+                    }}
                   >
-                    <CountUp
-                      end={inView ? fact.value : 0}
-                      duration={1.8}
-                      separator=","
-                    />
-                    <span style={{ color: "#43a047", fontWeight: 600 }}>+</span>
-                  </Typography>
-                  <Typography variant="body2" mt={1} color="text.secondary">
-                    {fact.label}
-                  </Typography>
-                </Paper>
-              </motion.div>
-            </Grid>
-          ))}
+                    <Box sx={{ mb: 1 }}>
+                      <IconComponent fontSize="large" sx={{ color: iconColor }} />
+                    </Box>
+                    <Typography
+                      fontSize="1.4rem"
+                      fontWeight={700}
+                      color={theme.palette.primary.main}
+                    >
+                      <CountUp
+                        end={inView ? fact.value : 0}
+                        duration={1.8}
+                        separator=","
+                      />
+                      <span style={{ color: "#43a047", fontWeight: 600 }}>+</span>
+                    </Typography>
+                    <Typography variant="body2" mt={1} color="text.secondary">
+                      {fact.label}
+                    </Typography>
+                  </Paper>
+                </motion.div>
+              </Grid>
+            );
+          })}
         </Grid>
       </Box>
     </Box>
