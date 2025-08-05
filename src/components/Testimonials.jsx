@@ -92,7 +92,7 @@ const Testimonials = () => {
       sx={{
         py: 10,
         px: { xs: 3, md: 10 },
-        background: "linear-gradient(to bottom, #f0f4f8, #ffffff)",
+        background: "#ffffff",
       }}
     >
       {/* Animated Heading */}

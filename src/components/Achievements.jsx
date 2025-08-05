@@ -522,7 +522,7 @@ const Achievements = () => {
       </Box>
 
       {/* Bottom Beam SVG (Now outside maxWidth container) */}
-      <Box
+      {/* <Box
         component="svg"
         sx={{
           position: "relative",
@@ -543,7 +543,7 @@ const Achievements = () => {
           fill="rgb(10, 72, 158)"
           d="M0,32L60,48C120,64,240,96,360,96C480,96,600,64,720,48C840,32,960,32,1080,32C1200,32,1320,32,1380,32L1440,32V100H1380C1320,100,1200,100,1080,100C960,100,840,100,720,100C600,100,480,100,360,100C240,100,120,100,60,100H0Z"
         />
-      </Box>
+      </Box> */}
     </Box>
   );
 };

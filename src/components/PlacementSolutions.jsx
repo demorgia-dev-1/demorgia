@@ -74,7 +74,7 @@ const PlacementSolutions = () => {
     <Box
       sx={{
         py: 10,
-        background: "linear-gradient(to bottom, #f0f4f8, #ffffff)",
+        background: "#ffffff",
       }}
     >
       <Container>

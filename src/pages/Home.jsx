@@ -42,7 +42,9 @@ const Home = () => {
       <OurStory />
       <div id="why"><WhyChooseUs /></div>
       <div id="solutions"><Solutions /></div>
-      <Platform />
+      <div style={{ backgroundColor: "#ffffff" }}>
+        <Platform />
+      </div>
       <div id="placement"><PlacementSolutions /></div>
       <Facts />
       <PortalDetails />

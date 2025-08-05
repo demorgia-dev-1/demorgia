@@ -77,11 +77,11 @@ const Platform = () => {
         px: 3,
         position: "relative",
         overflow: "hidden",
-        backgroundColor: "#f9fbfd",
+        backgroundColor: "#ffffff",
       }}
     >
       {/* Moving Blob SVG Background */}
-      <Box
+      {/* <Box
   component="svg"
   xmlns="http://www.w3.org/2000/svg"
   viewBox="0 0 1440 200"
@@ -100,7 +100,7 @@ const Platform = () => {
     fill="#1976D2"  // Same blue as Solutions section
     d="M0,96 C360,0 1080,192 1440,96 L1440,0 L0,0 Z"
   />
-</Box>
+</Box> */}
 
       <Box
         sx={{
@@ -131,7 +131,7 @@ const Platform = () => {
       >
         {/* LEFT: Content */}
         <Box flex={1}>
-          <Typography
+          {/* <Typography
             variant="h4"
             fontWeight={700}
             gutterBottom
@@ -143,7 +143,23 @@ const Platform = () => {
             }}
           >
             Online Assessment Platform
+          </Typography> */}
+          <Typography
+            variant="h4"
+            fontWeight={700}
+            gutterBottom
+            sx={{
+              borderBottom: "3px solid #0d47a1",
+              display: "inline-block",
+              mb: 3,
+            }}
+          >
+            <Box component="span" sx={{ color: "#000000" }}>Online</Box>{" "}
+            <Box component="span" sx={{ color: theme.palette.primary.main }}>
+              Assessment Platform
+            </Box>
           </Typography>
+
 
           <Typography
             variant="body1"
