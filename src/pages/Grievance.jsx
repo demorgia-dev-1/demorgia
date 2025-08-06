@@ -56,7 +56,7 @@ const Grievance = () => {
         <Typography
           variant="h6"
           fontWeight="bold"
-          color="secondary"
+          color="primary"
           sx={{ mt: 3 }}
         >
           What You Can Report
@@ -79,7 +79,7 @@ const Grievance = () => {
         <Typography
           variant="h6"
           fontWeight="bold"
-          color="secondary"
+          color="primary"
           sx={{ mt: 4 }}
         >
           How to Submit
@@ -105,7 +105,7 @@ const Grievance = () => {
         <Typography
           variant="h6"
           fontWeight="bold"
-          color="secondary"
+          color="primary"
           sx={{ mt: 4 }}
         >
           Resolution Timeline
@@ -122,7 +122,7 @@ const Grievance = () => {
         <Typography
           variant="h6"
           fontWeight="bold"
-          color="secondary"
+          color="primary"
           sx={{ mt: 4 }}
         >
           Contact Info

@@ -58,7 +58,7 @@ const SafeWorkplacePolicy = () => {
           <Typography
             variant="h6"
             fontWeight="bold"
-            color="secondary"
+            color="primary"
             gutterBottom
           >
             Our Commitment
@@ -74,7 +74,7 @@ const SafeWorkplacePolicy = () => {
           <Typography
             variant="h6"
             fontWeight="bold"
-            color="secondary"
+            color="primary"
             gutterBottom
           >
             What is Considered Harassment?
@@ -96,7 +96,7 @@ const SafeWorkplacePolicy = () => {
           <Typography
             variant="h6"
             fontWeight="bold"
-            color="secondary"
+            color="primary"
             gutterBottom
           >
             Report & Redressal
@@ -116,7 +116,7 @@ const SafeWorkplacePolicy = () => {
           <Typography
             variant="h6"
             fontWeight="bold"
-            color="secondary"
+            color="primary"
             gutterBottom
           >
             Know Your Rights

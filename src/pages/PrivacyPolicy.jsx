@@ -43,7 +43,7 @@ const PrivacyPolicy = () => {
         <Typography
           variant="h6"
           fontWeight="bold"
-          color="secondary"
+          color="primary"
           gutterBottom
         >
           Information We Collect
@@ -56,7 +56,7 @@ const PrivacyPolicy = () => {
         <Typography
           variant="h6"
           fontWeight="bold"
-          color="secondary"
+          color="primary"
           gutterBottom
         >
           How We Use It
@@ -70,7 +70,7 @@ const PrivacyPolicy = () => {
         <Typography
           variant="h6"
           fontWeight="bold"
-          color="secondary"
+          color="primary"
           gutterBottom
         >
           Data Protection
@@ -83,7 +83,7 @@ const PrivacyPolicy = () => {
         <Typography
           variant="h6"
           fontWeight="bold"
-          color="secondary"
+          color="primary"
           gutterBottom
         >
           Sharing Information
@@ -96,7 +96,7 @@ const PrivacyPolicy = () => {
         <Typography
           variant="h6"
           fontWeight="bold"
-          color="secondary"
+          color="primary"
           gutterBottom
         >
           Your Rights

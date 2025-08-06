@@ -97,7 +97,7 @@ const TermsAndConditions = () => {
           },
         ].map((section, index) => (
           <Box key={index} sx={{ mt: 4 }}>
-            <Typography variant="subtitle1" fontWeight="bold" color="secondary">
+            <Typography variant="subtitle1" fontWeight="bold" color="primary">
               {section.title}
             </Typography>
             <Typography component="ul" sx={{ pl: 3, mt: 1 }}>
