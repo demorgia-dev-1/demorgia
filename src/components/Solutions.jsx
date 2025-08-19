@@ -442,13 +442,11 @@
 // };
 
 // export default Solutions;
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Box,
   Typography,
   Paper,
-  Modal,
-  IconButton,
   useTheme,
   useMediaQuery,
 } from "@mui/material";
@@ -456,8 +454,7 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import LanguageIcon from "@mui/icons-material/Language";
 import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
 import TabletMacIcon from "@mui/icons-material/TabletMac";
-import CloseIcon from "@mui/icons-material/Close";
-import { motion, useAnimation } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 /* ---------- Images for each card ---------- */
 const imageData = {
@@ -484,7 +481,6 @@ const imageData = {
   ],
 };
 
-/* icons (no margin here; we’ll align with a fixed slot) */
 const iconSx = { color: "#1976d2", fontSize: 22 };
 const icons = {
   "Web-based Assessment Application": <LanguageIcon sx={iconSx} />,
@@ -492,75 +488,111 @@ const icons = {
   "Offline Mobile/Tablet Application": <TabletMacIcon sx={iconSx} />,
 };
 
-/* ---------- Auto-scrolling carousel (modal) ---------- */
-const SectionCarousel = ({
-  images = [],
-  width,
-  height,
-  autoDelay = 1700,
-  transitionDuration = 1.0,
-}) => {
-  const controls = useAnimation();
-  const total = images.length;
-  const duplicates = [...images, ...images];
+/* ---------- tiny hook to measure card width for arc centering ---------- */
+const useElementSize = () => {
+  const ref = useRef(null);
+  const [size, setSize] = useState({ width: 0, height: 0 });
 
   useEffect(() => {
-    if (!total) return;
-    let i = 0;
-    let alive = true;
-
-    (async () => {
-      while (alive) {
-        await new Promise((r) => setTimeout(r, autoDelay));
-        i++;
-        await controls.start({
-          x: -i * width,
-          transition: { duration: transitionDuration, ease: "easeInOut" },
-        });
-        if (i >= total) {
-          await controls.set({ x: 0 });
-          i = 0;
-        }
+    if (!ref.current) return;
+    const el = ref.current;
+    const ro = new ResizeObserver((entries) => {
+      for (const e of entries) {
+        const { width, height } = e.contentRect;
+        setSize({ width, height });
       }
-    })();
+    });
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+  return [ref, size];
+};
 
-    return () => {
-      alive = false;
-    };
-  }, [controls, total, width, autoDelay, transitionDuration]);
+/* ---------- Arc fan that reveals images one-by-one on hover ---------- */
+const ArcImageFan = ({
+  images = [],
+  show = false,
+  cardWidth = 360,
+  // tweak these to taste:
+  startDeg = -160,
+  endDeg = -20,
+  radius = 130,
+  itemWidth = 140,
+  stagger = 0.1,
+}) => {
+  // container for arc placed above the card
+  const containerHeight = radius + itemWidth * 0.4;
 
-  if (!width || !height) return null;
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: { staggerChildren: stagger },
+    },
+    exit: { opacity: 0, transition: { duration: 0.15 } },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 10, scale: 0.92 },
+    show: { opacity: 1, y: 0, scale: 1, transition: { type: "spring", stiffness: 240, damping: 22 } },
+    exit: { opacity: 0, y: 6, scale: 0.96, transition: { duration: 0.12 } },
+  };
+
+  const ang = (i) => {
+    if (images.length === 1) return (startDeg + endDeg) / 2;
+    const t = i / (images.length - 1);
+    return startDeg + t * (endDeg - startDeg);
+  };
 
   return (
-    <Box
-      sx={{
-        overflow: "hidden",
-        width,
-        height,
-        borderRadius: 3,
-        background: "#f4f4f4",
-      }}
-    >
-      <motion.div
-        animate={controls}
-        style={{ display: "flex", width: `${duplicates.length * width}px` }}
-      >
-        {duplicates.map((src, idx) => (
-          <Box
-            key={idx}
-            component="img"
-            src={src}
-            alt={`carousel-${idx}`}
-            sx={{
-              width,
-              height: "100%",
-              objectFit: "contain",
-              flexShrink: 0,
-            }}
-          />
-        ))}
-      </motion.div>
-    </Box>
+    <AnimatePresence>
+      {show && (
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="show"
+          exit="exit"
+          style={{
+            position: "absolute",
+            left: "50%",
+            bottom: "100%",
+            transform: "translateX(-50%)",
+            width: cardWidth,
+            height: containerHeight,
+            pointerEvents: "none",
+            zIndex: 20,
+          }}
+        >
+          {images.map((src, i) => {
+            const a = (Math.PI / 180) * ang(i);
+            const cx = cardWidth / 2;
+            const cy = containerHeight - 8; // drop the center slightly
+            const x = cx + radius * Math.cos(a) - itemWidth / 2;
+            const y = cy + radius * Math.sin(a) - (itemWidth * 9) / 32; // 16:9ish
+
+            return (
+              <motion.img
+                key={src + i}
+                src={src}
+                alt={`arc-${i}`}
+                variants={itemVariants}
+                style={{
+                  position: "absolute",
+                  left: x,
+                  top: y,
+                  width: itemWidth,
+                  height: "auto",
+                  borderRadius: 12,
+                  boxShadow:
+                    "0 8px 20px rgba(0,0,0,0.18), 0 2px 6px rgba(0,0,0,0.08)",
+                  background: "#f6f6f6",
+                }}
+              />
+            );
+          })}
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
 
@@ -569,10 +601,6 @@ const Solutions = () => {
   const theme = useTheme();
   const mdUp = useMediaQuery(theme.breakpoints.up("md"));
   const lgUp = useMediaQuery(theme.breakpoints.up("lg"));
-
-  // Modal size (16:9)
-  const modalWidth = lgUp ? 960 : mdUp ? 720 : 360;
-  const modalHeight = Math.round((modalWidth * 9) / 16);
 
   const cards = [
     {
@@ -598,69 +626,48 @@ const Solutions = () => {
     },
   ];
 
-  // CLICK to open modal
-  const [open, setOpen] = useState(false);
-  const [activeTitle, setActiveTitle] = useState(cards[0].title);
-
-  const handleOpen = (title) => {
-    setActiveTitle(title);
-    setOpen(true);
-  };
-
-  /* Typography + layout tuning */
   const TITLE_FS = { xs: "1.15rem", md: "1.25rem", lg: "1.35rem" };
   const BODY_FS = { xs: "0.95rem", md: "1.0rem" };
   const BULLET_ICON_FS = 18;
-
-  // Makes content start at same Y across cards
   const HEADER_MIN_H = { xs: 64, md: 88 };
-  // Fixed icon slot so all titles align (number/text start at same X)
-  const ICON_SLOT = 28; // px
+  const ICON_SLOT = 28;
+
+  // size for arc images
+  const itemWidth = lgUp ? 150 : mdUp ? 140 : 120;
+  const radius = lgUp ? 140 : mdUp ? 130 : 110;
 
   return (
     <Box sx={{ pt: { xs: 10, md: 14 }, pb: { xs: 6, md: 10 }, bgcolor: "#fff" }}>
-      {/* Page heading */}
+      {/* Heading */}
       <Box sx={{ textAlign: "center", mb: 5 }}>
-        <motion.div
-          initial={{ scaleX: 0 }}
-          whileInView={{ scaleX: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          style={{ display: "inline-block" }}
+        <Typography
+          variant="h4"
+          fontWeight="bold"
+          component="h2"
+          sx={{
+            display: "inline-block",
+            position: "relative",
+            px: 1,
+            "&::after": {
+              content: '""',
+              position: "absolute",
+              left: 0,
+              bottom: -6,
+              height: 4,
+              width: "100%",
+              backgroundColor: theme.palette.primary.main,
+              borderRadius: 2,
+            },
+          }}
         >
-          <Typography
-            variant="h4"
-            fontWeight="bold"
-            component="h2"
-            sx={{
-              display: "inline-block",
-              position: "relative",
-              px: 1,
-              "&::after": {
-                content: '""',
-                position: "absolute",
-                left: 0,
-                bottom: -6,
-                height: 4,
-                width: "100%",
-                backgroundColor: theme.palette.primary.main,
-                borderRadius: 2,
-                transform: "scaleX(0)",
-                transformOrigin: "left",
-                transition: "transform 0.4s ease-in-out",
-              },
-              "&:hover::after": { transform: "scaleX(1)" },
-            }}
-          >
-            Assessment{" "}
-            <Box component="span" sx={{ color: theme.palette.primary.main }}>
-              Solutions
-            </Box>
-          </Typography>
-        </motion.div>
+          Assessment{" "}
+          <Box component="span" sx={{ color: theme.palette.primary.main }}>
+            Solutions
+          </Box>
+        </Typography>
       </Box>
 
-      {/* Tight row of three cards */}
+      {/* Row of three cards */}
       <Box sx={{ maxWidth: 1220, mx: "auto", px: { xs: 2, md: 0 } }}>
         <Box
           sx={{
@@ -672,148 +679,155 @@ const Solutions = () => {
           }}
         >
           {cards.map((c, idx) => (
-            <Paper
+            <HoverCard
               key={c.title}
-              onClick={() => handleOpen(c.title)}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) =>
-                (e.key === "Enter" || e.key === " ") && handleOpen(c.title)
-              }
-              elevation={4}
-              sx={{
-                width: { xs: "100%", md: 360 },
-                minHeight: { xs: "auto", md: 300 },
-                p: 2.5,
-                borderRadius: 3,
-                border: `1px solid ${theme.palette.divider}`,
-                transition: "transform .2s ease, box-shadow .2s ease",
-                "&:hover": { transform: "translateY(-4px)", boxShadow: 10 },
-                cursor: "pointer",
-                display: "flex",
-                flexDirection: "column",
-              }}
-            >
-              {/* Header block with fixed height */}
-              <Box
-                sx={{
-                  minHeight: HEADER_MIN_H,
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "flex-end",
-                }}
-              >
-                <Typography
-                  variant="h6"
-                  fontWeight={800}
-                  sx={{
-                    color: theme.palette.primary.main,
-                    display: "flex",
-                    alignItems: "center",
-                    fontSize: TITLE_FS,
-                    lineHeight: 1.25,
-                    letterSpacing: 0.2,
-                  }}
-                >
-                  {/* Fixed-width icon slot ensures perfect alignment across cards */}
-                  <Box
-                    component="span"
-                    sx={{
-                      width: ICON_SLOT,
-                      display: "inline-flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      mr: 1,
-                      flex: "0 0 auto",
-                    }}
-                  >
-                    {icons[c.title]}
-                  </Box>
-
-                  <Box component="span">{`${idx + 1}. ${c.title}`}</Box>
-                </Typography>
-
-                {/* Underline under heading */}
-                <Box
-                  sx={{
-                    mt: 1,
-                    width: "100%",
-                    height: 2,
-                    bgcolor: theme.palette.primary.light,
-                    borderRadius: 1,
-                    opacity: 0.7,
-                  }}
-                />
-              </Box>
-
-              {/* Content */}
-              {c.points.map((pt, i) => (
-                <Box key={i} display="flex" alignItems="flex-start" mb={1.1} mt={i === 0 ? 1.25 : 0.75}>
-                  <CheckCircleIcon
-                    sx={{
-                      color: theme.palette.primary.main,
-                      mr: 1,
-                      mt: 0.35,
-                      fontSize: BULLET_ICON_FS,
-                    }}
-                  />
-                  <Typography
-                    variant="body2"
-                    color="text.secondary"
-                    sx={{
-                      fontSize: BODY_FS,
-                      lineHeight: 1.55,
-                      pl: 1,
-                      borderLeft: `2px solid ${theme.palette.primary.light}`,
-                    }}
-                  >
-                    {pt}
-                  </Typography>
-                </Box>
-              ))}
-            </Paper>
+              title={c.title}
+              points={c.points}
+              icon={icons[c.title]}
+              TITLE_FS={TITLE_FS}
+              BODY_FS={BODY_FS}
+              BULLET_ICON_FS={BULLET_ICON_FS}
+              HEADER_MIN_H={HEADER_MIN_H}
+              ICON_SLOT={ICON_SLOT}
+              images={imageData[c.title]}
+              itemWidth={itemWidth}
+              radius={radius}
+            />
           ))}
         </Box>
       </Box>
+    </Box>
+  );
+};
 
-      {/* Click modal with auto-playing 5-image preview */}
-      <Modal open={open} onClose={() => setOpen(false)} keepMounted>
-        <Box
+/* ---------- Single card with its own hover state + arc overlay ---------- */
+const HoverCard = ({
+  title,
+  points,
+  icon,
+  TITLE_FS,
+  BODY_FS,
+  BULLET_ICON_FS,
+  HEADER_MIN_H,
+  ICON_SLOT,
+  images,
+  itemWidth,
+  radius,
+}) => {
+  const theme = useTheme();
+  const [hovered, setHovered] = useState(false);
+  const [ref, size] = useElementSize();
+
+  return (
+    <Paper
+      ref={ref}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      onFocus={() => setHovered(true)}
+      onBlur={() => setHovered(false)}
+      elevation={4}
+      sx={{
+        position: "relative",
+        overflow: "visible", // allow the arc to render outside
+        width: { xs: "100%", md: 360 },
+        minHeight: { xs: "auto", md: 300 },
+        p: 2.5,
+        borderRadius: 3,
+        border: (t) => `1px solid ${t.palette.divider}`,
+        transition: "transform .2s ease, box-shadow .2s ease",
+        "&:hover": { transform: "translateY(-4px)", boxShadow: 10 },
+        cursor: "default",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
+      {/* Arc overlay */}
+      <ArcImageFan
+        images={images}
+        show={hovered}
+        cardWidth={size.width || 360}
+        startDeg={-160}
+        endDeg={-20}
+        radius={radius}
+        itemWidth={itemWidth}
+        stagger={0.1}
+      />
+
+      {/* Header */}
+      <Box
+        sx={{
+          minHeight: HEADER_MIN_H,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "flex-end",
+        }}
+      >
+        <Typography
+          variant="h6"
+          fontWeight={800}
           sx={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            bgcolor: "background.paper",
-            borderRadius: 3,
-            boxShadow: 24,
-            p: { xs: 2, md: 3 },
-            maxWidth: "95vw",
-            outline: "none",
+            color: theme.palette.primary.main,
+            display: "flex",
+            alignItems: "center",
+            fontSize: TITLE_FS,
+            lineHeight: 1.25,
+            letterSpacing: 0.2,
           }}
         >
-          <IconButton
-            onClick={() => setOpen(false)}
-            sx={{ position: "absolute", top: 8, right: 8 }}
-            aria-label="Close"
+          <Box
+            component="span"
+            sx={{
+              width: ICON_SLOT,
+              display: "inline-flex",
+              justifyContent: "center",
+              alignItems: "center",
+              mr: 1,
+              flex: "0 0 auto",
+            }}
           >
-            <CloseIcon />
-          </IconButton>
+            {icon}
+          </Box>
+          <Box component="span">{title}</Box>
+        </Typography>
 
-          <Typography variant="h6" sx={{ mb: 2, fontWeight: 700, pr: 5 }}>
-            {activeTitle}
-          </Typography>
+        <Box
+          sx={{
+            mt: 1,
+            width: "100%",
+            height: 2,
+            bgcolor: theme.palette.primary.light,
+            borderRadius: 1,
+            opacity: 0.7,
+          }}
+        />
+      </Box>
 
-          <SectionCarousel
-            images={imageData[activeTitle] || []}
-            width={modalWidth}
-            height={modalHeight}
-            autoDelay={1700}
-            transitionDuration={1.0}
+      {/* Bullets */}
+      {points.map((pt, i) => (
+        <Box key={i} display="flex" alignItems="flex-start" mb={1.1} mt={i === 0 ? 1.25 : 0.75}>
+          <CheckCircleIcon
+            sx={{
+              color: theme.palette.primary.main,
+              mr: 1,
+              mt: 0.35,
+              fontSize: BULLET_ICON_FS,
+            }}
           />
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            sx={{
+              fontSize: BODY_FS,
+              lineHeight: 1.55,
+              pl: 1,
+              borderLeft: `2px solid ${theme.palette.primary.light}`,
+            }}
+          >
+            {pt}
+          </Typography>
         </Box>
-      </Modal>
-    </Box>
+      ))}
+    </Paper>
   );
 };
 
