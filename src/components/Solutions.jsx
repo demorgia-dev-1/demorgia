@@ -492,14 +492,14 @@ const icons = {
   "Offline Mobile/Tablet Application": <TabletMacIcon sx={iconSx} />,
 };
 
-/* ---------- Tight, controllable arc fan (top / left / right) ---------- */
+/* ---------- Tight, controllable arc fan with optional mirroring ---------- */
 const ArcFan = ({
   images = [],
   show = false,
   mode = "top", // 'top' | 'left' | 'right'
   itemWidth = 160,
   radius = 170,
-  angles = { start: -120, end: -60 }, // default tighter spread
+  angles = { start: -120, end: -60 },
   stagger = 0.08,
 }) => {
   const containerVariants = {
@@ -524,7 +524,6 @@ const ArcFan = ({
   const startDeg = angles.start;
   const endDeg = angles.end;
 
-  // Minimal canvas to fit the arc (no extra space)
   const W = isTop ? radius * 2 + itemWidth : radius + itemWidth;
   const H = isTop ? radius + itemWidth * 0.5 : radius * 2 + itemWidth;
 
@@ -538,6 +537,8 @@ const ArcFan = ({
     return startDeg + t * (endDeg - startDeg);
   };
 
+  const isMirror = mode === "left";
+
   return (
     <AnimatePresence>
       {show && (
@@ -546,12 +547,18 @@ const ArcFan = ({
           initial="hidden"
           animate="show"
           exit="exit"
-          style={{ position: "relative", width: W, height: H, pointerEvents: "none" }}
+          style={{
+            position: "relative",
+            width: W,
+            height: H,
+            pointerEvents: "none",
+            transform: isMirror ? "scaleX(-1)" : "none",
+            transformOrigin: "center",
+          }}
         >
           {images.map((src, i) => {
-            const deg = angleAt(i) * (mode === "left" ? -1 : 1);
+            const deg = angleAt(i);
             const a = (Math.PI / 180) * deg;
-
             const x = cx + radius * Math.cos(a) - itemWidth / 2;
             const y = cy + radius * Math.sin(a) - (itemWidth * 9) / 32; // ~16:9
 
@@ -571,6 +578,8 @@ const ArcFan = ({
                   boxShadow:
                     "0 10px 24px rgba(0,0,0,0.18), 0 3px 8px rgba(0,0,0,0.10)",
                   background: "#f6f6f6",
+                  transform: isMirror ? "scaleX(-1)" : "none",
+                  transformOrigin: "center",
                 }}
               />
             );
@@ -582,7 +591,7 @@ const ArcFan = ({
 };
 
 /* ---------- Mirror of ArcFan’s sizing for parent layout (avoids whitespace) ---------- */
-const computeArcBox = ({ mode, itemWidth, radius, angles }) => {
+const computeArcBox = ({ mode, itemWidth, radius }) => {
   const isTop = mode === "top";
   const W = isTop ? radius * 2 + itemWidth : radius + itemWidth;
   const H = isTop ? radius + itemWidth * 0.5 : radius * 2 + itemWidth;
@@ -712,57 +721,50 @@ const RegularArcDialog = ({
   const lgUp = useMediaQuery(theme.breakpoints.up("lg"));
 
   const cardW = lgUp ? 380 : mdUp ? 360 : 320;
-  const cardH = 300; // approximate; matches InfoCard minHeight
+  const cardH = 300;
   const imgItemW = lgUp ? 170 : mdUp ? 160 : 150;
 
-  // Per-mode arc tuning:
-  const leftRightAngles = { start: -70, end: 70 }; // tight side arcs
-  const leftRightRadius = lgUp ? 170 : mdUp ? 160 : 150;
+  // Side arcs (left/right use the SAME spec as first card)
+  const sideAngles = { start: -70, end: 70 };
+  const sideRadius = lgUp ? 170 : mdUp ? 160 : 150;
 
-  // Middle (top) arc: give a bit more spread & radius so images aren't cramped
-  const topAngles = { start: -135, end: -45 };   // wider than before
-  const topRadius = (lgUp ? 210 : mdUp ? 195 : 185); // slightly bigger
+  // Middle (top) arc: wider spread + slightly larger radius to add gaps
+  const topAngles = { start: -150, end: -30 };
+  const topRadius = lgUp ? 220 : mdUp ? 205 : 195;
 
-  const mode = cardIndex === 0 ? "right" : cardIndex === 1 ? "top" : "left";
+  // IMPORTANT: Make third card behave exactly like the first → arc on the RIGHT
+  const mode = cardIndex === 1 ? "top" : "right";
 
-  const activeAngles = mode === "top" ? topAngles : leftRightAngles;
-  const activeRadius = mode === "top" ? topRadius : leftRightRadius;
+  const activeAngles = mode === "top" ? topAngles : sideAngles;
+  const activeRadius = mode === "top" ? topRadius : sideRadius;
 
-  // Compute arc box to size the grid exactly (no spare space)
   const arcBox = computeArcBox({
     mode,
     itemWidth: imgItemW,
     radius: activeRadius,
-    angles: activeAngles,
   });
 
-  // Uniform dialog width for all three modals (same size), but not “too” wide
-  const DIALOG_W = 980; // keep same across variants
-  const paperSx = {
-    width: { xs: "95vw", md: `${DIALOG_W}px` },
-    m: 0,
-  };
+  // Uniform dialog width
+  const DIALOG_W = 980;
+  const paperSx = { width: { xs: "95vw", md: `${DIALOG_W}px` }, m: 0 };
 
-  // Content padding kept tight to avoid excess whitespace
   const contentSx = {
     p: { xs: 2, md: 3 },
     position: "relative",
     bgcolor: "background.default",
   };
 
-  // Exact-fit grids for each layout
+  // SIDE layout: always card (left) + arc (right) — applies to cardIndex 0 and 2 now
   const gridSide = {
     display: "grid",
-    gridTemplateColumns:
-      cardIndex === 0
-        ? `${cardW}px ${arcBox.width}px`
-        : `${arcBox.width}px ${cardW}px`,
+    gridTemplateColumns: `${cardW}px ${arcBox.width}px`,
     gridTemplateRows: `${Math.max(arcBox.height, cardH)}px`,
     alignItems: "center",
     justifyContent: "center",
     columnGap: { xs: 2, md: 3 },
   };
 
+  // TOP layout for middle card
   const gridTop = {
     display: "grid",
     gridTemplateRows: `${arcBox.height}px ${cardH}px`,
@@ -771,14 +773,10 @@ const RegularArcDialog = ({
     rowGap: { xs: 2, md: 3 },
   };
 
+  const isMiddle = cardIndex === 1;
+
   return (
-    <Dialog
-      open={open}
-      onClose={onClose}
-      fullWidth={false}
-      maxWidth={false}
-      PaperProps={{ sx: paperSx }}
-    >
+    <Dialog open={open} onClose={onClose} fullWidth={false} maxWidth={false} PaperProps={{ sx: paperSx }}>
       <IconButton
         onClick={onClose}
         sx={{
@@ -796,9 +794,24 @@ const RegularArcDialog = ({
       </IconButton>
 
       <DialogContent sx={contentSx}>
-        <Box sx={mode === "top" ? gridTop : gridSide}>
-          {/* Left card → card left, fan right */}
-          {cardIndex === 0 && (
+        <Box sx={isMiddle ? gridTop : gridSide}>
+          {/* Middle card → fan top, card bottom-center */}
+          {isMiddle ? (
+            <>
+              <ArcFan
+                images={images}
+                show
+                mode="top"
+                itemWidth={imgItemW}
+                radius={activeRadius}
+                angles={activeAngles}
+              />
+              <Box sx={{ mb: { xs: 1.5, md: 3 } }}>
+                <InfoCard {...cardData} interactive={false} fixedWidth={cardW} elevation={8} />
+              </Box>
+            </>
+          ) : (
+            /* Side cards (0 and 2) → EXACT SAME as first card: card left, arc right */
             <>
               <InfoCard {...cardData} interactive={false} fixedWidth={cardW} elevation={8} />
               <ArcFan
@@ -811,36 +824,6 @@ const RegularArcDialog = ({
               />
             </>
           )}
-
-          {/* Middle card → fan top, card bottom-center */}
-          {cardIndex === 1 && (
-            <>
-              <ArcFan
-                images={images}
-                show
-                mode="top"
-                itemWidth={imgItemW}
-                radius={activeRadius}
-                angles={activeAngles}
-              />
-              <InfoCard {...cardData} interactive={false} fixedWidth={cardW} elevation={8} />
-            </>
-          )}
-
-          {/* Right card → fan left, card right */}
-          {cardIndex === 2 && (
-            <>
-              <ArcFan
-                images={images}
-                show
-                mode="left"
-                itemWidth={imgItemW}
-                radius={activeRadius}
-                angles={activeAngles}
-              />
-              <InfoCard {...cardData} interactive={false} fixedWidth={cardW} elevation={8} />
-            </>
-          )}
         </Box>
       </DialogContent>
     </Dialog>
@@ -850,8 +833,6 @@ const RegularArcDialog = ({
 /* ------------------------------ Main ------------------------------ */
 const Solutions = () => {
   const theme = useTheme();
-  const mdUp = useMediaQuery(theme.breakpoints.up("md"));
-  const lgUp = useMediaQuery(theme.breakpoints.up("lg"));
 
   const cards = [
     {
@@ -883,7 +864,6 @@ const Solutions = () => {
   const HEADER_MIN_H = { xs: 64, md: 88 };
   const ICON_SLOT = 28;
 
-  // dialog state (click only; no hover)
   const [open, setOpen] = useState(false);
   const [clickedIndex, setClickedIndex] = useState(0);
   const [cardData, setCardData] = useState(null);
@@ -905,67 +885,92 @@ const Solutions = () => {
     setOpen(true);
   };
 
+  // Section scroll-in animation
+  const sectionVariants = {
+    hidden: { opacity: 0, y: 24 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut", when: "beforeChildren", staggerChildren: 0.08 },
+    },
+  };
+
+  const childVariants = {
+    hidden: { opacity: 0, y: 16 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: "easeOut" } },
+  };
+
   return (
     <Box sx={{ pt: { xs: 10, md: 14 }, pb: { xs: 6, md: 10 }, bgcolor: "#fff" }}>
-      {/* Heading */}
-      <Box sx={{ textAlign: "center", mb: 5 }}>
-        <Typography
-          variant="h4"
-          fontWeight="bold"
-          component="h2"
-          sx={{
-            display: "inline-block",
-            position: "relative",
-            px: 1,
-            "&::after": {
-              content: '""',
-              position: "absolute",
-              left: 0,
-              bottom: -6,
-              height: 4,
-              width: "100%",
-              backgroundColor: theme.palette.primary.main,
-              borderRadius: 2,
-            },
-          }}
-        >
-          Assessment{" "}
-          <Box component="span" sx={{ color: theme.palette.primary.main }}>
-            Solutions
+      <motion.div
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.3 }}
+      >
+        {/* Heading */}
+        <motion.div variants={childVariants}>
+          <Box sx={{ textAlign: "center", mb: 5 }}>
+            <Typography
+              variant="h4"
+              fontWeight="bold"
+              component="h2"
+              sx={{
+                display: "inline-block",
+                position: "relative",
+                px: 1,
+                "&::after": {
+                  content: '""',
+                  position: "absolute",
+                  left: 0,
+                  bottom: -6,
+                  height: 4,
+                  width: "100%",
+                  backgroundColor: theme.palette.primary.main,
+                  borderRadius: 2,
+                },
+              }}
+            >
+              Assessment{" "}
+              <Box component="span" sx={{ color: theme.palette.primary.main }}>
+                Solutions
+              </Box>
+            </Typography>
           </Box>
-        </Typography>
-      </Box>
+        </motion.div>
 
-      {/* Three clickable cards (NO hover effects) */}
-      <Box sx={{ maxWidth: 1220, mx: "auto", px: { xs: 2, md: 0 } }}>
-        <Box
-          sx={{
-            display: "flex",
-            flexWrap: { xs: "wrap", md: "nowrap" },
-            justifyContent: "center",
-            alignItems: "stretch",
-            gap: { xs: 2, md: 2 },
-          }}
-        >
-          {cards.map((c, idx) => (
-            <InfoCard
-              key={c.title}
-              title={c.title}
-              points={c.points}
-              icon={icons[c.title]}
-              TITLE_FS={TITLE_FS}
-              BODY_FS={BODY_FS}
-              BULLET_ICON_FS={BULLET_ICON_FS}
-              HEADER_MIN_H={HEADER_MIN_H}
-              ICON_SLOT={ICON_SLOT}
-              onClick={() => handleCardClick(idx, c)}
-              interactive
-              fixedWidth={360}
-              elevation={4}
-            />
-          ))}
+        {/* Three clickable cards */}
+        <Box sx={{ maxWidth: 1220, mx: "auto", px: { xs: 2, md: 0 } }}>
+          <Box
+            sx={{
+              display: "flex",
+              flexWrap: { xs: "wrap", md: "nowrap" },
+              justifyContent: "center",
+              alignItems: "stretch",
+              gap: { xs: 2, md: 2 },
+            }}
+          >
+            {cards.map((c, idx) => (
+              <motion.div key={c.title} variants={childVariants}>
+                <InfoCard
+                  title={c.title}
+                  points={c.points}
+                  icon={icons[c.title]}
+                  TITLE_FS={TITLE_FS}
+                  BODY_FS={BODY_FS}
+                  BULLET_ICON_FS={BULLET_ICON_FS}
+                  HEADER_MIN_H={HEADER_MIN_H}
+                  ICON_SLOT={ICON_SLOT}
+                  onClick={() => handleCardClick(idx, c)}
+                  interactive
+                  fixedWidth={360}
+                  elevation={4}
+                />
+              </motion.div>
+            ))}
+          </Box>
         </Box>
-      </Box>
+      </motion.div>
 
       {/* Regular modal */}
       <AnimatePresence>
