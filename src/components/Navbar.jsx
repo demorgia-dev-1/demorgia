@@ -496,8 +496,6 @@ const SectorsDropdown = () => {
   const handleOpen = (event) => setAnchorEl(event.currentTarget);
   const handleClose = () => setAnchorEl(null);
 
-  const gridSize = Math.ceil(Math.sqrt(sectors.length));
-
   return (
     <>
       <Button
@@ -546,8 +544,7 @@ const SectorsDropdown = () => {
                 alignItems: "center",
                 px: 2,
                 py: 1.5,
-                borderRight:
-                  (index + 1) % gridSize !== 0 ? "1px solid #ddd" : "none",
+                borderRight: (index + 1) % 5 !== 0 ? "1px solid #ddd" : "none",
                 "&:hover": { backgroundColor: "#e3f2fd", cursor: "pointer" },
               }}
             >
@@ -572,7 +569,6 @@ const SolutionsDropdown = () => {
   const handleOpen = (e) => setAnchorEl(e.currentTarget);
   const handleClose = () => setAnchorEl(null);
 
-  // Add/adjust IDs here to match your actual section IDs
   const targets = {
     assessment: [
       "assessment-solution",
@@ -581,8 +577,6 @@ const SolutionsDropdown = () => {
       "solutions-assessment",
       "solutions",
     ],
-    job: ["job-fair-placement", "jobFairPlacement", "placement", "solutions"],
-    software: ["software-solution", "software", "softwareSolution", "solutions"],
   };
 
   const goTo = (candidates) => {
@@ -595,7 +589,7 @@ const SolutionsDropdown = () => {
     scroller.scrollTo(found, {
       smooth: true,
       duration: 600,
-      offset: -70, // adjust if your navbar height differs
+      offset: -70,
     });
   };
 
@@ -616,13 +610,24 @@ const SolutionsDropdown = () => {
         anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
         transformOrigin={{ vertical: "top", horizontal: "left" }}
       >
+        {/* Works as before */}
         <MenuItem onClick={() => goTo(targets.assessment)}>
           Assessment Solution
         </MenuItem>
-        <MenuItem onClick={() => goTo(targets.job)}>
+
+        {/* Leads nowhere: just closes the menu, no scroll */}
+        <MenuItem
+          onClick={handleClose}
+          sx={{ userSelect: "none" }}
+        >
           Job Fair &amp; Placement
         </MenuItem>
-        <MenuItem onClick={() => goTo(targets.software)}>
+
+        {/* Leads nowhere: just closes the menu, no scroll */}
+        <MenuItem
+          onClick={handleClose}
+          sx={{ userSelect: "none" }}
+        >
           Software Solution
         </MenuItem>
       </Menu>
@@ -813,6 +818,7 @@ const Navbar = ({ onNavigate = {} }) => {
                       </ListItemButton>
                       <Collapse in={solutionsOpen} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
+                          {/* Works as before */}
                           <ListItemButton
                             sx={{ pl: 4 }}
                             onClick={() => {
@@ -829,31 +835,23 @@ const Navbar = ({ onNavigate = {} }) => {
                             <ListItemText primary="Assessment Solution" />
                           </ListItemButton>
 
+                          {/* Leads nowhere: closes drawer only */}
                           <ListItemButton
                             sx={{ pl: 4 }}
                             onClick={() => {
                               setDrawerOpen(false);
-                              smartScroll([
-                                "job-fair-placement",
-                                "jobFairPlacement",
-                                "placement",
-                                "solutions",
-                              ]);
+                              // no navigation
                             }}
                           >
                             <ListItemText primary="Job Fair & Placement" />
                           </ListItemButton>
 
+                          {/* Leads nowhere: closes drawer only */}
                           <ListItemButton
                             sx={{ pl: 4 }}
                             onClick={() => {
                               setDrawerOpen(false);
-                              smartScroll([
-                                "software-solution",
-                                "software",
-                                "softwareSolution",
-                                "solutions",
-                              ]);
+                              // no navigation
                             }}
                           >
                             <ListItemText primary="Software Solution" />
