@@ -208,7 +208,7 @@ const HeroSection = () => {
           flexDirection: { xs: "column", md: "row" },
           alignItems: "stretch",
           overflow: "hidden",
-          bgcolor: "#0f2a45", // dark base so white text reads well
+          bgcolor: "#0f2a45",
         }}
       >
         {/* Left: Content */}
@@ -224,7 +224,7 @@ const HeroSection = () => {
             position: "relative",
           }}
         >
-          {/* subtle right-to-left fade so the halves blend nicely */}
+          {/* gradient overlay */}
           <Box
             sx={{
               position: "absolute",
@@ -243,7 +243,6 @@ const HeroSection = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}
             >
-              {/* Updated heading with brand green for "& Shaping Futures" */}
               <Typography variant="h3" fontWeight="bold" sx={{ lineHeight: 1.15 }}>
                 Transforming Assessment{" "}
                 <Box
@@ -290,7 +289,11 @@ const HeroSection = () => {
                 <Button
                   variant="outlined"
                   color="inherit"
-                  onClick={() => window.open("/")}
+                  onClick={() =>
+                    document
+                      .getElementById("solutions")
+                      ?.scrollIntoView({ behavior: "smooth" })
+                  }
                 >
                   Explore Solutions
                 </Button>
@@ -311,7 +314,6 @@ const HeroSection = () => {
             position: "relative",
           }}
         >
-          {/* Optional dark wash for readability parity with reference */}
           <Box
             sx={{
               position: "absolute",

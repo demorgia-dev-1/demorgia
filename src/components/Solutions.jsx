@@ -1041,7 +1041,15 @@ const icons = {
 };
 
 /* ---------- Tight, controllable arc fan ---------- */
-const ArcFan = ({ images = [], show = false, mode = "top", itemWidth = 160, radius = 170, angles = { start: -120, end: -60 }, stagger = 0.08 }) => {
+const ArcFan = ({
+  images = [],
+  show = false,
+  mode = "top",
+  itemWidth = 160,
+  radius = 170,
+  angles = { start: -120, end: -60 },
+  stagger = 0.08,
+}) => {
   const containerVariants = {
     hidden: { opacity: 0 },
     show: { opacity: 1, transition: { staggerChildren: stagger } },
@@ -1114,7 +1122,8 @@ const ArcFan = ({ images = [], show = false, mode = "top", itemWidth = 160, radi
                   width: itemWidth,
                   height: "auto",
                   borderRadius: 12,
-                  boxShadow: "0 10px 24px rgba(0,0,0,0.18), 0 3px 8px rgba(0,0,0,0.10)",
+                  boxShadow:
+                    "0 10px 24px rgba(0,0,0,0.18), 0 3px 8px rgba(0,0,0,0.10)",
                   background: "#f6f6f6",
                   transform: isMirror ? "scaleX(-1)" : "none",
                 }}
@@ -1128,7 +1137,20 @@ const ArcFan = ({ images = [], show = false, mode = "top", itemWidth = 160, radi
 };
 
 /* ---------- Reusable card ---------- */
-const InfoCard = ({ title, points, icon, TITLE_FS, BODY_FS, BULLET_ICON_FS, HEADER_MIN_H, ICON_SLOT, onClick, interactive = true, fixedWidth = 360, elevation = 4 }) => {
+const InfoCard = ({
+  title,
+  points,
+  icon,
+  TITLE_FS,
+  BODY_FS,
+  BULLET_ICON_FS,
+  HEADER_MIN_H,
+  ICON_SLOT,
+  onClick,
+  interactive = true,
+  fixedWidth = 360,
+  elevation = 4,
+}) => {
   const theme = useTheme();
   const LIGHT_BLUE = "#EAF3FF";
   const BORDER_BLUE = "rgba(10,72,158,0.18)";
@@ -1149,7 +1171,14 @@ const InfoCard = ({ title, points, icon, TITLE_FS, BODY_FS, BULLET_ICON_FS, HEAD
         bgcolor: LIGHT_BLUE,
       }}
     >
-      <Box sx={{ minHeight: HEADER_MIN_H, display: "flex", flexDirection: "column", justifyContent: "flex-end" }}>
+      <Box
+        sx={{
+          minHeight: HEADER_MIN_H,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "flex-end",
+        }}
+      >
         <Typography
           variant="h6"
           fontWeight={800}
@@ -1160,18 +1189,52 @@ const InfoCard = ({ title, points, icon, TITLE_FS, BODY_FS, BULLET_ICON_FS, HEAD
             fontSize: TITLE_FS,
           }}
         >
-          <Box component="span" sx={{ width: ICON_SLOT, display: "inline-flex", justifyContent: "center", alignItems: "center", mr: 1 }}>
+          <Box
+            component="span"
+            sx={{
+              width: ICON_SLOT,
+              display: "inline-flex",
+              justifyContent: "center",
+              alignItems: "center",
+              mr: 1,
+            }}
+          >
             {icon}
           </Box>
           <Box component="span">{title}</Box>
         </Typography>
-        <Box sx={{ mt: 1, width: "100%", height: 2, bgcolor: theme.palette.primary.main, borderRadius: 1 }} />
+        <Box
+          sx={{
+            mt: 1,
+            width: "100%",
+            height: 2,
+            bgcolor: theme.palette.primary.main,
+            borderRadius: 1,
+          }}
+        />
       </Box>
 
       {points.map((pt, i) => (
-        <Box key={i} display="flex" alignItems="flex-start" mb={1.1} mt={i === 0 ? 1.25 : 0.75}>
-          <CheckCircleIcon sx={{ color: theme.palette.primary.main, mr: 1, mt: 0.35, fontSize: BULLET_ICON_FS }} />
-          <Typography variant="body2" color="text.secondary" sx={{ fontSize: BODY_FS, lineHeight: 1.55, pl: 1 }}>
+        <Box
+          key={i}
+          display="flex"
+          alignItems="flex-start"
+          mb={1.1}
+          mt={i === 0 ? 1.25 : 0.75}
+        >
+          <CheckCircleIcon
+            sx={{
+              color: theme.palette.primary.main,
+              mr: 1,
+              mt: 0.35,
+              fontSize: BULLET_ICON_FS,
+            }}
+          />
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            sx={{ fontSize: BODY_FS, lineHeight: 1.55, pl: 1 }}
+          >
             {pt}
           </Typography>
         </Box>
@@ -1181,7 +1244,13 @@ const InfoCard = ({ title, points, icon, TITLE_FS, BODY_FS, BULLET_ICON_FS, HEAD
 };
 
 /* ---------- Dialog Responsive ---------- */
-const RegularArcDialog = ({ open, onClose, cardIndex, cardData, images = [] }) => {
+const RegularArcDialog = ({
+  open,
+  onClose,
+  cardIndex,
+  cardData,
+  images = [],
+}) => {
   const theme = useTheme();
   const smDown = useMediaQuery(theme.breakpoints.down("sm"));
   const mdUp = useMediaQuery(theme.breakpoints.up("md"));
@@ -1203,11 +1272,23 @@ const RegularArcDialog = ({ open, onClose, cardIndex, cardData, images = [] }) =
       onClose={onClose}
       fullWidth
       maxWidth="md"
-      PaperProps={{ sx: { width: { xs: "95vw", sm: "90vw", md: "80vw" }, m: 0 } }}
+      PaperProps={{
+        sx: { width: { xs: "95vw", sm: "90vw", md: "80vw" }, m: 0 },
+      }}
       TransitionComponent={Zoom}
       transitionDuration={{ enter: 500, exit: 400 }}
     >
-      <IconButton onClick={onClose} sx={{ position: "absolute", right: 8, top: 8, zIndex: 2, bgcolor: "background.paper" }} size="small">
+      <IconButton
+        onClick={onClose}
+        sx={{
+          position: "absolute",
+          right: 8,
+          top: 8,
+          zIndex: 2,
+          bgcolor: "background.paper",
+        }}
+        size="small"
+      >
         <CloseIcon fontSize="small" />
       </IconButton>
 
@@ -1215,19 +1296,53 @@ const RegularArcDialog = ({ open, onClose, cardIndex, cardData, images = [] }) =
         <Box
           sx={
             cardIndex === 1
-              ? { display: "flex", flexDirection: "column", alignItems: "center", gap: { xs: 2, md: 3 } }
-              : { display: "flex", flexDirection: { xs: "column", md: "row" }, alignItems: "center", gap: { xs: 2, md: 3 } }
+              ? {
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  gap: { xs: 2, md: 3 },
+                }
+              : {
+                  display: "flex",
+                  flexDirection: { xs: "column", md: "row" },
+                  alignItems: "center",
+                  gap: { xs: 2, md: 3 },
+                }
           }
         >
           {cardIndex === 1 ? (
             <>
-              <ArcFan images={images} show mode="top" itemWidth={imgItemW} radius={activeRadius} angles={activeAngles} />
-              <InfoCard {...cardData} interactive={false} fixedWidth={cardW} elevation={8} />
+              <ArcFan
+                images={images}
+                show
+                mode="top"
+                itemWidth={imgItemW}
+                radius={activeRadius}
+                angles={activeAngles}
+              />
+              <InfoCard
+                {...cardData}
+                interactive={false}
+                fixedWidth={cardW}
+                elevation={8}
+              />
             </>
           ) : (
             <>
-              <InfoCard {...cardData} interactive={false} fixedWidth={cardW} elevation={8} />
-              <ArcFan images={images} show mode="right" itemWidth={imgItemW} radius={activeRadius} angles={activeAngles} />
+              <InfoCard
+                {...cardData}
+                interactive={false}
+                fixedWidth={cardW}
+                elevation={8}
+              />
+              <ArcFan
+                images={images}
+                show
+                mode="right"
+                itemWidth={imgItemW}
+                radius={activeRadius}
+                angles={activeAngles}
+              />
             </>
           )}
         </Box>
@@ -1241,9 +1356,27 @@ const Solutions = () => {
   const theme = useTheme();
 
   const cards = [
-    { title: "Web-based Assessment Application", points: ["Interactive dashboards tailored for candidates, assessors, and administrators.", "Comprehensive analytics and instant reporting."] },
-    { title: "Online Mobile Application", points: ["User-friendly mobile assessments accessible anytime, anywhere.", "Real-time tracking and notifications."] },
-    { title: "Offline Mobile/Tablet Application", points: ["Conduct assessments seamlessly in remote or low-connectivity areas.", "Automated data sync upon connectivity restoration."] },
+    {
+      title: "Web-based Assessment Application",
+      points: [
+        "Interactive dashboards tailored for candidates, assessors, and administrators.",
+        "Comprehensive analytics and instant reporting.",
+      ],
+    },
+    {
+      title: "Online Mobile Application",
+      points: [
+        "User-friendly mobile assessments accessible anytime, anywhere.",
+        "Real-time tracking and notifications.",
+      ],
+    },
+    {
+      title: "Offline Mobile/Tablet Application",
+      points: [
+        "Conduct assessments seamlessly in remote or low-connectivity areas.",
+        "Automated data sync upon connectivity restoration.",
+      ],
+    },
   ];
 
   const TITLE_FS = { xs: "1.1rem", md: "1.25rem" };
@@ -1259,13 +1392,26 @@ const Solutions = () => {
 
   const handleCardClick = (idx, c) => {
     setClickedIndex(idx);
-    setCardData({ title: c.title, points: c.points, icon: icons[c.title], TITLE_FS, BODY_FS, BULLET_ICON_FS, HEADER_MIN_H, ICON_SLOT });
+    setCardData({
+      title: c.title,
+      points: c.points,
+      icon: icons[c.title],
+      TITLE_FS,
+      BODY_FS,
+      BULLET_ICON_FS,
+      HEADER_MIN_H,
+      ICON_SLOT,
+    });
     setImages(imageData[c.title] || []);
     setOpen(true);
   };
 
   return (
-    <Box sx={{ pt: { xs: 10, md: 14 }, pb: { xs: 6, md: 10 }, bgcolor: "#fff" }}>
+    <Box
+      id="solutions"
+      sx={{ pt: { xs: 10, md: 14 }, pb: { xs: 6, md: 10 }, bgcolor: "#fff" }}
+    >
+      {/* Heading with hover underline effect */}
       <Box sx={{ textAlign: "center", mb: 5 }}>
         <Typography
           variant="h4"
@@ -1275,22 +1421,71 @@ const Solutions = () => {
             display: "inline-block",
             position: "relative",
             px: 1,
-            "&::after": { content: '""', position: "absolute", left: 0, bottom: -6, height: 4, width: "100%", backgroundColor: theme.palette.primary.main, borderRadius: 2 },
+            "&::after": {
+              content: '""',
+              position: "absolute",
+              left: 0,
+              bottom: -6,
+              height: 4,
+              width: "0%",
+              backgroundColor: theme.palette.primary.main,
+              borderRadius: 2,
+              transition: "width 0.3s ease",
+            },
+            "&:hover::after": {
+              width: "100%",
+            },
           }}
         >
-          Assessment <Box component="span" sx={{ color: theme.palette.primary.main }}>Solutions</Box>
+          Assessment{" "}
+          <Box component="span" sx={{ color: theme.palette.primary.main }}>
+            Solutions
+          </Box>
         </Typography>
       </Box>
 
+      {/* Cards */}
       <Box sx={{ maxWidth: 1220, mx: "auto", px: { xs: 2, md: 0 } }}>
-        <Box sx={{ display: "flex", flexDirection: { xs: "column", md: "row" }, justifyContent: "center", alignItems: "stretch", gap: 2 }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: { xs: "column", md: "row" },
+            justifyContent: "center",
+            alignItems: "stretch",
+            gap: 2,
+          }}
+        >
           {cards.map((c, idx) => (
-            <InfoCard key={c.title} title={c.title} points={c.points} icon={icons[c.title]} TITLE_FS={TITLE_FS} BODY_FS={BODY_FS} BULLET_ICON_FS={BULLET_ICON_FS} HEADER_MIN_H={HEADER_MIN_H} ICON_SLOT={ICON_SLOT} onClick={() => handleCardClick(idx, c)} interactive fixedWidth={360} elevation={4} />
+            <InfoCard
+              key={c.title}
+              title={c.title}
+              points={c.points}
+              icon={icons[c.title]}
+              TITLE_FS={TITLE_FS}
+              BODY_FS={BODY_FS}
+              BULLET_ICON_FS={BULLET_ICON_FS}
+              HEADER_MIN_H={HEADER_MIN_H}
+              ICON_SLOT={ICON_SLOT}
+              onClick={() => handleCardClick(idx, c)}
+              interactive
+              fixedWidth={360}
+              elevation={4}
+            />
           ))}
         </Box>
       </Box>
 
-      <AnimatePresence>{open && cardData && <RegularArcDialog open={open} onClose={() => setOpen(false)} cardIndex={clickedIndex} cardData={cardData} images={images} />}</AnimatePresence>
+      <AnimatePresence>
+        {open && cardData && (
+          <RegularArcDialog
+            open={open}
+            onClose={() => setOpen(false)}
+            cardIndex={clickedIndex}
+            cardData={cardData}
+            images={images}
+          />
+        )}
+      </AnimatePresence>
     </Box>
   );
 };
