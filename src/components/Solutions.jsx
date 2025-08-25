@@ -999,7 +999,7 @@ import {
   IconButton,
   useTheme,
   useMediaQuery,
-  Zoom,                              // for smooth zoom transition
+  Zoom,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
@@ -1041,23 +1041,15 @@ const icons = {
 };
 
 /* ---------- Tight, controllable arc fan ---------- */
-const ArcFan = ({
-  images = [],
-  show = false,
-  mode = "top", // 'top' | 'left' | 'right'
-  itemWidth = 160,
-  radius = 170,
-  angles = { start: -120, end: -60 },
-  stagger = 0.08,
-}) => {
+const ArcFan = ({ images = [], show = false, mode = "top", itemWidth = 160, radius = 170, angles = { start: -120, end: -60 }, stagger = 0.08 }) => {
   const containerVariants = {
     hidden: { opacity: 0 },
     show: { opacity: 1, transition: { staggerChildren: stagger } },
-    exit: { opacity: 0, transition: { duration: 0.12} },
+    exit: { opacity: 0, transition: { duration: 0.12 } },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: mode === "top" ? 10 : 0, x: 0, scale: 0.96 },
+    hidden: { opacity: 0, y: mode === "top" ? 10 : 0, scale: 0.96 },
     show: {
       opacity: 1,
       x: 0,
@@ -1075,8 +1067,7 @@ const ArcFan = ({
   const W = isTop ? radius * 2 + itemWidth : radius + itemWidth;
   const H = isTop ? radius + itemWidth * 0.5 : radius * 2 + itemWidth;
 
-  const cx =
-    mode === "top" ? W / 2 : mode === "left" ? W - radius * 0.1 : radius * 0.1;
+  const cx = mode === "top" ? W / 2 : mode === "left" ? W - radius * 0.1 : radius * 0.1;
   const cy = isTop ? H - 6 : H / 2;
 
   const angleAt = (i) => {
@@ -1108,7 +1099,7 @@ const ArcFan = ({
             const deg = angleAt(i);
             const a = (Math.PI / 180) * deg;
             const x = cx + radius * Math.cos(a) - itemWidth / 2;
-            const y = cy + radius * Math.sin(a) - (itemWidth * 9) / 32; // ~16:9
+            const y = cy + radius * Math.sin(a) - (itemWidth * 9) / 32;
 
             return (
               <motion.img
@@ -1123,11 +1114,9 @@ const ArcFan = ({
                   width: itemWidth,
                   height: "auto",
                   borderRadius: 12,
-                  boxShadow:
-                    "0 10px 24px rgba(0,0,0,0.18), 0 3px 8px rgba(0,0,0,0.10)",
+                  boxShadow: "0 10px 24px rgba(0,0,0,0.18), 0 3px 8px rgba(0,0,0,0.10)",
                   background: "#f6f6f6",
                   transform: isMirror ? "scaleX(-1)" : "none",
-                  transformOrigin: "center",
                 }}
               />
             );
@@ -1138,29 +1127,8 @@ const ArcFan = ({
   );
 };
 
-/* ---------- Mirror of ArcFan sizing ---------- */
-const computeArcBox = ({ mode, itemWidth, radius }) => {
-  const isTop = mode === "top";
-  const W = isTop ? radius * 2 + itemWidth : radius + itemWidth;
-  const H = isTop ? radius + itemWidth * 0.5 : radius * 2 + itemWidth;
-  return { width: Math.round(W), height: Math.round(H) };
-};
-
-/* ---------- Reusable card (light blue) ---------- */
-const InfoCard = ({
-  title,
-  points,
-  icon,
-  TITLE_FS,
-  BODY_FS,
-  BULLET_ICON_FS,
-  HEADER_MIN_H,
-  ICON_SLOT,
-  onClick,
-  interactive = true,
-  fixedWidth = 360,
-  elevation = 4,
-}) => {
+/* ---------- Reusable card ---------- */
+const InfoCard = ({ title, points, icon, TITLE_FS, BODY_FS, BULLET_ICON_FS, HEADER_MIN_H, ICON_SLOT, onClick, interactive = true, fixedWidth = 360, elevation = 4 }) => {
   const theme = useTheme();
   const LIGHT_BLUE = "#EAF3FF";
   const BORDER_BLUE = "rgba(10,72,158,0.18)";
@@ -1170,31 +1138,18 @@ const InfoCard = ({
       elevation={elevation}
       onClick={onClick}
       sx={{
-        position: "relative",
-        width: { xs: "100%", md: fixedWidth },
+        width: { xs: "100%", sm: "90%", md: fixedWidth },
         minHeight: { xs: "auto", md: 300 },
         p: 2.5,
         borderRadius: 3,
         border: `1px solid ${BORDER_BLUE}`,
         transition: interactive ? "transform .2s ease, box-shadow .2s ease" : "none",
-        ...(interactive
-          ? { "&:hover": { transform: "translateY(-4px)", boxShadow: 10 }, cursor: "pointer" }
-          : { cursor: "default" }),
-        display: "flex",
-        flexDirection: "column",
-        userSelect: "none",
+        "&:hover": interactive ? { transform: "translateY(-4px)", boxShadow: 10 } : {},
+        cursor: interactive ? "pointer" : "default",
         bgcolor: LIGHT_BLUE,
       }}
     >
-      {/* Header */}
-      <Box
-        sx={{
-          minHeight: HEADER_MIN_H,
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "flex-end",
-        }}
-      >
+      <Box sx={{ minHeight: HEADER_MIN_H, display: "flex", flexDirection: "column", justifyContent: "flex-end" }}>
         <Typography
           variant="h6"
           fontWeight={800}
@@ -1203,54 +1158,20 @@ const InfoCard = ({
             display: "flex",
             alignItems: "center",
             fontSize: TITLE_FS,
-            lineHeight: 1.25,
-            letterSpacing: 0.2,
           }}
         >
-          <Box
-            component="span"
-            sx={{
-              width: ICON_SLOT,
-              display: "inline-flex",
-              justifyContent: "center",
-              alignItems: "center",
-              mr: 1,
-              flex: "0 0 auto",
-            }}
-          >
+          <Box component="span" sx={{ width: ICON_SLOT, display: "inline-flex", justifyContent: "center", alignItems: "center", mr: 1 }}>
             {icon}
           </Box>
           <Box component="span">{title}</Box>
         </Typography>
-
-        <Box
-          sx={{
-            mt: 1,
-            width: "100%",
-            height: 2,
-            bgcolor: theme.palette.primary.main,
-            borderRadius: 1,
-            opacity: 0.9,
-          }}
-        />
+        <Box sx={{ mt: 1, width: "100%", height: 2, bgcolor: theme.palette.primary.main, borderRadius: 1 }} />
       </Box>
 
-      {/* Bullets */}
       {points.map((pt, i) => (
         <Box key={i} display="flex" alignItems="flex-start" mb={1.1} mt={i === 0 ? 1.25 : 0.75}>
-          <CheckCircleIcon
-            sx={{ color: theme.palette.primary.main, mr: 1, mt: 0.35, fontSize: BULLET_ICON_FS }}
-          />
-          <Typography
-            variant="body2"
-            color="text.secondary"
-            sx={{
-              fontSize: BODY_FS,
-              lineHeight: 1.55,
-              pl: 1,
-              borderLeft: `2px solid ${theme.palette.primary.light}`,
-            }}
-          >
+          <CheckCircleIcon sx={{ color: theme.palette.primary.main, mr: 1, mt: 0.35, fontSize: BULLET_ICON_FS }} />
+          <Typography variant="body2" color="text.secondary" sx={{ fontSize: BODY_FS, lineHeight: 1.55, pl: 1 }}>
             {pt}
           </Typography>
         </Box>
@@ -1259,113 +1180,54 @@ const InfoCard = ({
   );
 };
 
-/* ---------- Dialog with slower zoom in/out ---------- */
-const RegularArcDialog = ({
-  open,
-  onClose,
-  cardIndex, // 0 left, 1 middle, 2 right
-  cardData,
-  images = [],
-}) => {
+/* ---------- Dialog Responsive ---------- */
+const RegularArcDialog = ({ open, onClose, cardIndex, cardData, images = [] }) => {
   const theme = useTheme();
+  const smDown = useMediaQuery(theme.breakpoints.down("sm"));
   const mdUp = useMediaQuery(theme.breakpoints.up("md"));
-  const lgUp = useMediaQuery(theme.breakpoints.up("lg"));
 
-  const cardW = lgUp ? 380 : mdUp ? 360 : 320;
+  const cardW = smDown ? "90vw" : mdUp ? 360 : 320;
   const cardH = 300;
-  const imgItemW = lgUp ? 170 : mdUp ? 160 : 150;
-
+  const imgItemW = smDown ? 120 : mdUp ? 160 : 140;
   const sideAngles = { start: -70, end: 70 };
-  const sideRadius = lgUp ? 170 : mdUp ? 160 : 150;
-
+  const sideRadius = smDown ? 130 : mdUp ? 160 : 150;
   const topAngles = { start: -150, end: -30 };
-  const topRadius = lgUp ? 220 : mdUp ? 205 : 195;
-
+  const topRadius = smDown ? 170 : mdUp ? 205 : 190;
   const mode = cardIndex === 1 ? "top" : "right";
   const activeAngles = mode === "top" ? topAngles : sideAngles;
   const activeRadius = mode === "top" ? topRadius : sideRadius;
-
-  const arcBox = computeArcBox({
-    mode,
-    itemWidth: imgItemW,
-    radius: activeRadius,
-  });
-
-  const DIALOG_W = 980;
 
   return (
     <Dialog
       open={open}
       onClose={onClose}
-      fullWidth={false}
-      maxWidth={false}
-      PaperProps={{ sx: { width: { xs: "95vw", md: `${DIALOG_W}px` }, m: 0 } }}
+      fullWidth
+      maxWidth="md"
+      PaperProps={{ sx: { width: { xs: "95vw", sm: "90vw", md: "80vw" }, m: 0 } }}
       TransitionComponent={Zoom}
-      transitionDuration={{ enter: 500, exit: 400 }}   // slower in, smooth out
-      keepMounted={false}
+      transitionDuration={{ enter: 500, exit: 400 }}
     >
-      <IconButton
-        onClick={onClose}
-        sx={{
-          position: "absolute",
-          right: 8,
-          top: 8,
-          zIndex: 2,
-          bgcolor: "background.paper",
-          border: (t) => `1px solid ${t.palette.divider}`,
-          "&:hover": { bgcolor: "background.paper" },
-        }}
-        size="small"
-      >
+      <IconButton onClick={onClose} sx={{ position: "absolute", right: 8, top: 8, zIndex: 2, bgcolor: "background.paper" }} size="small">
         <CloseIcon fontSize="small" />
       </IconButton>
 
-      <DialogContent sx={{ p: { xs: 2, md: 3 }, position: "relative", bgcolor: "background.default" }}>
+      <DialogContent sx={{ p: { xs: 2, md: 3 } }}>
         <Box
           sx={
             cardIndex === 1
-              ? {
-                  display: "grid",
-                  gridTemplateRows: `${arcBox.height}px ${cardH}px`,
-                  justifyItems: "center",
-                  alignItems: "center",
-                  rowGap: { xs: 2, md: 3 },
-                }
-              : {
-                  display: "grid",
-                  gridTemplateColumns: `${cardW}px ${arcBox.width}px`,
-                  gridTemplateRows: `${Math.max(arcBox.height, cardH)}px`,
-                  alignItems: "center",
-                  justifyContent: "center",
-                  columnGap: { xs: 2, md: 3 },
-                }
+              ? { display: "flex", flexDirection: "column", alignItems: "center", gap: { xs: 2, md: 3 } }
+              : { display: "flex", flexDirection: { xs: "column", md: "row" }, alignItems: "center", gap: { xs: 2, md: 3 } }
           }
         >
           {cardIndex === 1 ? (
             <>
-              <ArcFan
-                images={images}
-                show
-                mode="top"
-                itemWidth={imgItemW}
-                radius={activeRadius}
-                angles={activeAngles}
-              />
-              <Box sx={{ mb: { xs: 1.5, md: 3 } }}>
-                <InfoCard {...cardData} interactive={false} fixedWidth={cardW} elevation={8} />
-              </Box>
+              <ArcFan images={images} show mode="top" itemWidth={imgItemW} radius={activeRadius} angles={activeAngles} />
+              <InfoCard {...cardData} interactive={false} fixedWidth={cardW} elevation={8} />
             </>
           ) : (
             <>
               <InfoCard {...cardData} interactive={false} fixedWidth={cardW} elevation={8} />
-              <ArcFan
-                images={images}
-                show
-                mode="right"
-                itemWidth={imgItemW}
-                radius={activeRadius}
-                angles={activeAngles}
-              />
+              <ArcFan images={images} show mode="right" itemWidth={imgItemW} radius={activeRadius} angles={activeAngles} />
             </>
           )}
         </Box>
@@ -1374,36 +1236,18 @@ const RegularArcDialog = ({
   );
 };
 
-/* ------------------------------ Main ------------------------------ */
+/* ---------- Main ---------- */
 const Solutions = () => {
   const theme = useTheme();
 
   const cards = [
-    {
-      title: "Web-based Assessment Application",
-      points: [
-        "Interactive dashboards tailored for candidates, assessors, and administrators.",
-        "Comprehensive analytics and instant reporting.",
-      ],
-    },
-    {
-      title: "Online Mobile Application",
-      points: [
-        "User-friendly mobile assessments accessible anytime, anywhere.",
-        "Real-time tracking and notifications.",
-      ],
-    },
-    {
-      title: "Offline Mobile/Tablet Application",
-      points: [
-        "Conduct assessments seamlessly in remote or low-connectivity areas.",
-        "Automated data sync upon connectivity restoration.",
-      ],
-    },
+    { title: "Web-based Assessment Application", points: ["Interactive dashboards tailored for candidates, assessors, and administrators.", "Comprehensive analytics and instant reporting."] },
+    { title: "Online Mobile Application", points: ["User-friendly mobile assessments accessible anytime, anywhere.", "Real-time tracking and notifications."] },
+    { title: "Offline Mobile/Tablet Application", points: ["Conduct assessments seamlessly in remote or low-connectivity areas.", "Automated data sync upon connectivity restoration."] },
   ];
 
-  const TITLE_FS = { xs: "1.15rem", md: "1.25rem", lg: "1.35rem" };
-  const BODY_FS = { xs: "0.95rem", md: "1.0rem" };
+  const TITLE_FS = { xs: "1.1rem", md: "1.25rem" };
+  const BODY_FS = { xs: "0.9rem", md: "1rem" };
   const BULLET_ICON_FS = 18;
   const HEADER_MIN_H = { xs: 64, md: 88 };
   const ICON_SLOT = 28;
@@ -1415,118 +1259,38 @@ const Solutions = () => {
 
   const handleCardClick = (idx, c) => {
     setClickedIndex(idx);
-    setCardData({
-      title: c.title,
-      points: c.points,
-      icon: icons[c.title],
-      TITLE_FS,
-      BODY_FS,
-      BULLET_ICON_FS,
-      HEADER_MIN_H,
-      ICON_SLOT,
-    });
+    setCardData({ title: c.title, points: c.points, icon: icons[c.title], TITLE_FS, BODY_FS, BULLET_ICON_FS, HEADER_MIN_H, ICON_SLOT });
     setImages(imageData[c.title] || []);
     setOpen(true);
   };
 
-  const sectionVariants = {
-    hidden: { opacity: 0, y: 24 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, ease: "easeOut", when: "beforeChildren", staggerChildren: 0.08 },
-    },
-  };
-
-  const childVariants = {
-    hidden: { opacity: 0, y: 16 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: "easeOut" } },
-  };
-
   return (
     <Box sx={{ pt: { xs: 10, md: 14 }, pb: { xs: 6, md: 10 }, bgcolor: "#fff" }}>
-      <motion.div
-        variants={sectionVariants}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.3 }}
-      >
-        {/* Heading */}
-        <motion.div variants={childVariants}>
-          <Box sx={{ textAlign: "center", mb: 5 }}>
-            <Typography
-              variant="h4"
-              fontWeight="bold"
-              component="h2"
-              sx={{
-                display: "inline-block",
-                position: "relative",
-                px: 1,
-                "&::after": {
-                  content: '""',
-                  position: "absolute",
-                  left: 0,
-                  bottom: -6,
-                  height: 4,
-                  width: "100%",
-                  backgroundColor: theme.palette.primary.main,
-                  borderRadius: 2,
-                },
-              }}
-            >
-              Assessment{" "}
-              <Box component="span" sx={{ color: theme.palette.primary.main }}>
-                Solutions
-              </Box>
-            </Typography>
-          </Box>
-        </motion.div>
+      <Box sx={{ textAlign: "center", mb: 5 }}>
+        <Typography
+          variant="h4"
+          fontWeight="bold"
+          component="h2"
+          sx={{
+            display: "inline-block",
+            position: "relative",
+            px: 1,
+            "&::after": { content: '""', position: "absolute", left: 0, bottom: -6, height: 4, width: "100%", backgroundColor: theme.palette.primary.main, borderRadius: 2 },
+          }}
+        >
+          Assessment <Box component="span" sx={{ color: theme.palette.primary.main }}>Solutions</Box>
+        </Typography>
+      </Box>
 
-        {/* Cards */}
-        <Box sx={{ maxWidth: 1220, mx: "auto", px: { xs: 2, md: 0 } }}>
-          <Box
-            sx={{
-              display: "flex",
-              flexWrap: { xs: "wrap", md: "nowrap" },
-              justifyContent: "center",
-              alignItems: "stretch",
-              gap: { xs: 2, md: 2 },
-            }}
-          >
-            {cards.map((c, idx) => (
-              <motion.div key={c.title} variants={childVariants}>
-                <InfoCard
-                  title={c.title}
-                  points={c.points}
-                  icon={icons[c.title]}
-                  TITLE_FS={TITLE_FS}
-                  BODY_FS={BODY_FS}
-                  BULLET_ICON_FS={BULLET_ICON_FS}
-                  HEADER_MIN_H={HEADER_MIN_H}
-                  ICON_SLOT={ICON_SLOT}
-                  onClick={() => handleCardClick(idx, c)}
-                  interactive
-                  fixedWidth={360}
-                  elevation={4}
-                />
-              </motion.div>
-            ))}
-          </Box>
+      <Box sx={{ maxWidth: 1220, mx: "auto", px: { xs: 2, md: 0 } }}>
+        <Box sx={{ display: "flex", flexDirection: { xs: "column", md: "row" }, justifyContent: "center", alignItems: "stretch", gap: 2 }}>
+          {cards.map((c, idx) => (
+            <InfoCard key={c.title} title={c.title} points={c.points} icon={icons[c.title]} TITLE_FS={TITLE_FS} BODY_FS={BODY_FS} BULLET_ICON_FS={BULLET_ICON_FS} HEADER_MIN_H={HEADER_MIN_H} ICON_SLOT={ICON_SLOT} onClick={() => handleCardClick(idx, c)} interactive fixedWidth={360} elevation={4} />
+          ))}
         </Box>
-      </motion.div>
+      </Box>
 
-      {/* Modal */}
-      <AnimatePresence>
-        {open && cardData && (
-          <RegularArcDialog
-            open={open}
-            onClose={() => setOpen(false)}
-            cardIndex={clickedIndex}
-            cardData={cardData}
-            images={images}
-          />
-        )}
-      </AnimatePresence>
+      <AnimatePresence>{open && cardData && <RegularArcDialog open={open} onClose={() => setOpen(false)} cardIndex={clickedIndex} cardData={cardData} images={images} />}</AnimatePresence>
     </Box>
   );
 };

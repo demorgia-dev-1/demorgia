@@ -505,7 +505,7 @@ const SectorsDropdown = () => {
         ref={buttonRef}
         sx={{ textTransform: "none", fontWeight: 500 }}
       >
-        SAMPLE PAPERS
+        Sample Papers
       </Button>
 
       <Menu
