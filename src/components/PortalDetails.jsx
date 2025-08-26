@@ -398,7 +398,7 @@ const modes = [
 // SLOWER motion variants for each card (left, center, right)
 const cardVariants = {
   hidden: (i) => {
-    const rel = i - 1;                   // -1 (left), 0 (center), 1 (right)
+    const rel = i - 1; // -1 (left), 0 (center), 1 (right)
     const dir = rel === 0 ? 0 : rel * 60;
     return { x: dir, opacity: 0, scale: rel === 0 ? 0.98 : 0.96 };
   },
@@ -408,8 +408,8 @@ const cardVariants = {
     scale: 1,
     transition: {
       type: "spring",
-      stiffness: 120,      // ↓ slower / smoother than before
-      damping: 26,         // ↑ a touch more damping
+      stiffness: 120, // ↓ slower / smoother than before
+      damping: 26, // ↑ a touch more damping
       delay: 0.12 * (i + 1), // ↑ larger stagger
     },
   }),
@@ -435,8 +435,29 @@ function PortalDetails() {
 
   return (
     <Box px={3} py={6} textAlign="center">
-      {/* Section heading */}
-      <Typography variant="h4" fontWeight="bold" sx={{ mb: 4 }}>
+      {/* Section heading with hover underline effect */}
+      <Typography
+        variant="h4"
+        fontWeight="bold"
+        sx={{
+          mb: 4,
+          display: "inline-block",
+          position: "relative",
+          color: "text.primary",
+          "&::after": {
+            content: '""',
+            position: "absolute",
+            left: 0,
+            bottom: -6,
+            height: 4,
+            width: "0%",
+            bgcolor: theme.palette.primary.main,
+            borderRadius: 2,
+            transition: "width 0.3s ease",
+          },
+          "&:hover::after": { width: "100%" },
+        }}
+      >
         Proctor, Evaluate and Conduct Exams, All{" "}
         <Box component="span" sx={{ color: theme.palette.primary.main }}>
           on One Integrated Platform
@@ -474,7 +495,12 @@ function PortalDetails() {
           exit="exit"
           style={{ width: "100%" }}
         >
-          <Grid container spacing={4} justifyContent="center" alignItems="stretch">
+          <Grid
+            container
+            spacing={4}
+            justifyContent="center"
+            alignItems="stretch"
+          >
             {data[selectedMode].map((step, idx) => {
               const isCenter = idx === 1; // middle card lifted by default
 
