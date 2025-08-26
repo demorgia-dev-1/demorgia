@@ -1002,7 +1002,6 @@ import {
   Zoom,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import LanguageIcon from "@mui/icons-material/Language";
 import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
 import TabletMacIcon from "@mui/icons-material/TabletMac";
@@ -1045,7 +1044,7 @@ const icons = {
   ),
 };
 
-/* ---------- ArcFan from FIRST CODE ---------- */
+/* ---------- ArcFan ---------- */
 const ArcFan = ({
   images = [],
   show = false,
@@ -1129,7 +1128,7 @@ const ArcFan = ({
                   height: "auto",
                   borderRadius: 12,
                   boxShadow:
-                    "0 10px 24px rgba(0,0,0,0.18), 0 3px 8px rgba(0,0,0,0.10)",
+                    "0 10px 24px rgba(0,0,0,0.20), 0 6px 12px rgba(0,0,0,0.14)",
                   background: "#f6f6f6",
                   transform: isMirror ? "scaleX(-1)" : "none",
                 }}
@@ -1142,7 +1141,7 @@ const ArcFan = ({
   );
 };
 
-/* ---------- Cards from SECOND CODE ---------- */
+/* ---------- Cards ---------- */
 const InfoCard = ({ title, points, icon, onClick, interactive = true }) => {
   return (
     <Paper
@@ -1158,10 +1157,12 @@ const InfoCard = ({ title, points, icon, onClick, interactive = true }) => {
         flexDirection: "column",
         justifyContent: "space-between",
         transition: "transform 0.3s ease, box-shadow 0.3s ease",
+        boxShadow: "0 6px 18px rgba(0,0,0,0.18)", // 🔹 Stronger always-on shadow
         "&:hover": interactive
           ? {
               transform: "translateY(-8px)",
-              boxShadow: "0 10px 28px rgba(0,0,0,0.15)",
+              boxShadow:
+                "0 12px 32px rgba(0,0,0,0.25), 0 8px 16px rgba(0,0,0,0.15)", // 🔹 Stronger hover shadow
             }
           : {},
         cursor: interactive ? "pointer" : "default",
@@ -1192,6 +1193,7 @@ const InfoCard = ({ title, points, icon, onClick, interactive = true }) => {
           display: "inline-block",
           transition: "transform 0.3s ease",
           "&:hover": { transform: "translateY(-5px)" },
+          boxShadow: "0 3px 8px rgba(0,0,0,0.20)", // 🔹 Stronger title box shadow
         }}
       >
         <Typography variant="h6" fontWeight={700} color="text.primary">
@@ -1202,14 +1204,18 @@ const InfoCard = ({ title, points, icon, onClick, interactive = true }) => {
   );
 };
 
-/* ---------- Dialog from FIRST CODE ---------- */
-const RegularArcDialog = ({ open, onClose, cardIndex, cardData, images = [] }) => {
+/* ---------- Dialog ---------- */
+const RegularArcDialog = ({
+  open,
+  onClose,
+  cardIndex,
+  cardData,
+  images = [],
+}) => {
   const theme = useTheme();
   const smDown = useMediaQuery(theme.breakpoints.down("sm"));
   const mdUp = useMediaQuery(theme.breakpoints.up("md"));
 
-  const cardW = smDown ? "90vw" : mdUp ? 360 : 320;
-  const cardH = 300;
   const imgItemW = smDown ? 120 : mdUp ? 160 : 140;
 
   const sideAngles = { start: -70, end: 70 };
