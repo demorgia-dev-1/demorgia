@@ -13,6 +13,7 @@ import Facts from '../components/Facts';
 import Partners from '../components/Partners';
 import Platform from "../components/Platform";
 import PortalDetails from '../components/PortalDetails';
+import PracticalAssessments from "../components/PracticalAssessments";
 
 const Home = () => {
   const location = useLocation();
@@ -44,6 +45,7 @@ const Home = () => {
       <div id="solutions"><Solutions /></div>
       <div style={{ backgroundColor: "#ffffff" }}>
         <Platform />
+        <PracticalAssessments />
       </div>
       <div id="placement"><PlacementSolutions /></div>
       <Facts />
