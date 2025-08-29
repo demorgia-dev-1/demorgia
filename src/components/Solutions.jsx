@@ -1152,19 +1152,13 @@ const InfoCard = ({ title, points, icon, onClick, interactive = true }) => {
         minHeight: 320,
         borderRadius: 3,
         p: 3,
-        bgcolor: "#f4f9ff",
+        bgcolor: "#eaf3ff", // 🔹 one shade darker background
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        transition: "transform 0.3s ease, box-shadow 0.3s ease",
-        boxShadow: "0 6px 18px rgba(0,0,0,0.18)", // 🔹 Stronger always-on shadow
-        "&:hover": interactive
-          ? {
-              transform: "translateY(-8px)",
-              boxShadow:
-                "0 12px 32px rgba(0,0,0,0.25), 0 8px 16px rgba(0,0,0,0.15)", // 🔹 Stronger hover shadow
-            }
-          : {},
+        boxShadow:
+          "0 10px 28px rgba(0,0,0,0.28), 0 6px 12px rgba(0,0,0,0.18)", // 🔹 darker permanent shadow
+        transition: "none", // 🔹 no hover animation on the card
         cursor: interactive ? "pointer" : "default",
       }}
     >
@@ -1182,7 +1176,7 @@ const InfoCard = ({ title, points, icon, onClick, interactive = true }) => {
         ))}
       </Box>
 
-      {/* Title inside white box */}
+      {/* Title inside white box (still hoverable) */}
       <Box
         sx={{
           bgcolor: "white",
@@ -1193,7 +1187,7 @@ const InfoCard = ({ title, points, icon, onClick, interactive = true }) => {
           display: "inline-block",
           transition: "transform 0.3s ease",
           "&:hover": { transform: "translateY(-5px)" },
-          boxShadow: "0 3px 8px rgba(0,0,0,0.20)", // 🔹 Stronger title box shadow
+          boxShadow: "0 3px 8px rgba(0,0,0,0.20)",
         }}
       >
         <Typography variant="h6" fontWeight={700} color="text.primary">
