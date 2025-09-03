@@ -578,7 +578,7 @@ const Achievements = () => {
           }}
         >
           <Typography
-            variant="h5"
+            variant="h4"
             fontWeight="bold"
             component="h2"
             sx={{ fontSize: { xs: "1.4rem", sm: "1.7rem", md: "2rem" } }}
