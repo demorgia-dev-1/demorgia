@@ -262,12 +262,19 @@ const HeroSection = () => {
                 by CSDCI.
               </Typography>
 
-              <Box mt={4}>
+              {/* Buttons with desktop + mobile gap fix */}
+              <Box
+                mt={4}
+                sx={{
+                  display: "flex",
+                  flexWrap: "wrap", // ✅ allows wrapping in mobile
+                  gap: 2,           // ✅ consistent gap (16px) in all views
+                }}
+              >
                 <Button
                   variant="contained"
                   onClick={handleOpen}
                   sx={{
-                    mr: 2,
                     px: 2.5,
                     py: 1,
                     borderRadius: "4px",
@@ -278,8 +285,7 @@ const HeroSection = () => {
                     color: "#fff",
                     boxShadow: "none",
                     "&:hover": {
-                      background:
-                        "linear-gradient(to right, #0d47a1, #1976d2)",
+                      background: "linear-gradient(to right, #0d47a1, #1976d2)",
                       boxShadow: "none",
                     },
                   }}

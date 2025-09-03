@@ -251,7 +251,7 @@ const data = [
     icon: <PublicIcon sx={{ fontSize: 40, color: "#1976d2" }} />,
     list1: "Extensive network ensuring seamless assessments nationwide.",
     list2:
-      "Localized operations with multilingual support to effectively serve\n diverse regions and communities.", // forced line break
+      "Localized operations with multilingual support to effectively serve diverse regions and communities.",
   },
 ];
 
@@ -336,84 +336,92 @@ const WhyChooseUs = () => {
           </Grid>
         </Grid>
 
-        {/* Cards */}
-        <Grid
-          container
-          spacing={3}
-          justifyContent="center"
-          alignItems="stretch" // ensures equal height
+        {/* Cards with Inline Flexbox CSS */}
+        <Box
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: 3,
+            justifyContent: "center",
+          }}
         >
           {data.map((item, index) => (
-            <Grid item xs={12} sm={12} md={6} key={index} display="flex">
-              <motion.div
-                style={{ flex: 1, display: "flex" }}
-                whileHover={{ scale: 1.04 }}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{
-                  duration: 0.6,
-                  delay: index * 0.1,
-                  type: "spring",
-                  stiffness: 100,
+            <motion.div
+              key={index}
+              whileHover={{ scale: 1.04 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.6,
+                delay: index * 0.1,
+                type: "spring",
+                stiffness: 100,
+              }}
+              style={{
+                flex: "1 1 calc(50% - 24px)", // ✅ 2 cards per row
+                minWidth: "280px", // ✅ responsive for small screens
+                display: "flex",
+              }}
+            >
+              <Card
+                elevation={4}
+                sx={{
+                  flex: 1,
+                  minHeight: 260, // ✅ equal height for all cards
+                  background: "linear-gradient(135deg, #f0f8ff, #ffffff)",
+                  borderRadius: 3,
+                  p: 3,
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
                 }}
               >
-                <Card
-                  elevation={4}
-                  sx={{
-                    flex: 1,
-                    height: "100%",
-                    minHeight: 260, // equal card height
-                    background: "linear-gradient(135deg, #f0f8ff, #ffffff)",
-                    borderRadius: 3,
-                    p: 3,
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  <CardContent sx={{ flex: 1 }}>
-                    <Box mb={2} display="flex" alignItems="center">
-                      {item.icon}
+                <CardContent sx={{ flex: 1 }}>
+                  <Box mb={2} display="flex" alignItems="center">
+                    {item.icon}
+                    <Typography
+                      variant="subtitle1"
+                      fontWeight="bold"
+                      sx={{ color: theme.palette.primary.main, ml: 2 }}
+                    >
+                      {item.title}
+                    </Typography>
+                  </Box>
+
+                  {[item.list1, item.list2].map((point, idx) => (
+                    <Box
+                      key={idx}
+                      display="flex"
+                      alignItems="flex-start"
+                      mb={1.5}
+                    >
+                      <CheckCircleIcon
+                        fontSize="small"
+                        sx={{
+                          color: theme.palette.primary.main,
+                          mr: 1,
+                          mt: "2px",
+                        }}
+                      />
                       <Typography
-                        variant="subtitle1"
-                        fontWeight="bold"
-                        sx={{ color: theme.palette.primary.main, ml: 2 }}
+                        variant="body2"
+                        color="text.secondary"
+                        sx={{
+                          whiteSpace: "normal",
+                          wordBreak: "break-word",
+                          lineHeight: 1.4,
+                        }}
                       >
-                        {item.title}
+                        {point}
                       </Typography>
                     </Box>
-
-                    {[item.list1, item.list2].map((point, idx) => (
-                      <Box
-                        key={idx}
-                        display="flex"
-                        alignItems="flex-start"
-                        mb={1.5}
-                      >
-                        <CheckCircleIcon
-                          fontSize="small"
-                          sx={{
-                            color: theme.palette.primary.main,
-                            mr: 1,
-                            mt: "2px",
-                          }}
-                        />
-                        <Typography
-                          variant="body2"
-                          color="text.secondary"
-                          sx={{ whiteSpace: "pre-line" }} // allow line breaks
-                        >
-                          {point}
-                        </Typography>
-                      </Box>
-                    ))}
-                  </CardContent>
-                </Card>
-              </motion.div>
-            </Grid>
+                  ))}
+                </CardContent>
+              </Card>
+            </motion.div>
           ))}
-        </Grid>
+        </Box>
       </Container>
       <Achievements />
     </>

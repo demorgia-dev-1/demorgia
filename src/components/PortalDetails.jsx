@@ -395,10 +395,10 @@ const modes = [
   { key: "paperbased", label: "Paper Based Exams", icon: <ReceiptIcon /> },
 ];
 
-// SLOWER motion variants for each card (left, center, right)
+// motion variants for each card
 const cardVariants = {
   hidden: (i) => {
-    const rel = i - 1; // -1 (left), 0 (center), 1 (right)
+    const rel = i - 1;
     const dir = rel === 0 ? 0 : rel * 60;
     return { x: dir, opacity: 0, scale: rel === 0 ? 0.98 : 0.96 };
   },
@@ -408,19 +408,19 @@ const cardVariants = {
     scale: 1,
     transition: {
       type: "spring",
-      stiffness: 120, // ↓ slower / smoother than before
-      damping: 26, // ↑ a touch more damping
-      delay: 0.12 * (i + 1), // ↑ larger stagger
+      stiffness: 120,
+      damping: 26,
+      delay: 0.12 * (i + 1),
     },
   }),
   exit: (i) => {
     const rel = i - 1;
-    const dir = rel === 0 ? 0 : rel * -60; // slide out opposite direction
+    const dir = rel === 0 ? 0 : rel * -60;
     return {
       x: dir,
       opacity: 0,
       scale: rel === 0 ? 0.98 : 0.96,
-      transition: { duration: 0.4, ease: "easeInOut" }, // ↑ slower exit
+      transition: { duration: 0.4, ease: "easeInOut" },
     };
   },
 };
@@ -468,11 +468,25 @@ function PortalDetails() {
       <Tabs
         value={selectedMode}
         onChange={(_, v) => setSelectedMode(v)}
-        variant={isMobile ? "scrollable" : "standard"}
+        variant={isMobile ? "fullWidth" : "standard"}
         centered={!isMobile}
+        orientation={isMobile ? "vertical" : "horizontal"} // 👈 vertical on mobile
         textColor="primary"
         indicatorColor="primary"
-        sx={{ mb: 5 }}
+        sx={{
+          mb: 5,
+          ...(isMobile && {
+            "& .MuiTabs-flexContainer": {
+              flexDirection: "column",
+              alignItems: "stretch",
+            },
+            "& .MuiTab-root": {
+              justifyContent: "flex-start",
+              textAlign: "left",
+              width: "100%",
+            },
+          }),
+        }}
       >
         {modes.map((m) => (
           <Tab
@@ -486,7 +500,7 @@ function PortalDetails() {
         ))}
       </Tabs>
 
-      {/* Cards with slower section transition */}
+      {/* Cards */}
       <AnimatePresence mode="wait">
         <motion.div
           key={selectedMode}
@@ -502,28 +516,31 @@ function PortalDetails() {
             alignItems="stretch"
           >
             {data[selectedMode].map((step, idx) => {
-              const isCenter = idx === 1; // middle card lifted by default
+              const isCenter = idx === 1;
 
               return (
-                <Grid item key={idx}>
+                <Grid item key={idx} xs={12} sm={6} md={4}>
+                  {/* 👆 xs=12 makes cards full width on mobile */}
                   <motion.div
                     custom={idx}
                     variants={cardVariants}
-                    style={{ display: "inline-block" }}
+                    style={{ display: "inline-block", width: "100%" }}
                   >
                     <Paper
                       elevation={0}
                       sx={{
-                        width: CARD_WIDTH,
-                        height: CARD_HEIGHT, // equal height
+                        width: "100%",
+                        maxWidth: CARD_WIDTH,
+                        height: CARD_HEIGHT,
                         borderRadius: 3,
                         overflow: "hidden",
                         display: "flex",
                         flexDirection: "column",
-                        backgroundColor: WAVE_BLUE, // whole card wave blue
+                        backgroundColor: WAVE_BLUE,
                         border: "1px solid #c8d8ea",
-                        // LIFT effect (default for middle, on hover for all)
-                        transform: isCenter ? "translateY(-12px)" : "translateY(0)",
+                        transform: isCenter
+                          ? "translateY(-12px)"
+                          : "translateY(0)",
                         boxShadow: isCenter
                           ? "0 22px 50px rgba(0,0,0,0.28)"
                           : "0 10px 26px rgba(0,0,0,0.18)",
@@ -533,9 +550,10 @@ function PortalDetails() {
                           transform: "translateY(-12px)",
                           boxShadow: "0 22px 50px rgba(0,0,0,0.28)",
                         },
+                        mx: "auto",
                       }}
                     >
-                      {/* Image area — full image visible */}
+                      {/* Image */}
                       <Box
                         sx={{
                           height: IMG_HEIGHT,
@@ -552,7 +570,7 @@ function PortalDetails() {
                           sx={{
                             width: "100%",
                             height: "100%",
-                            objectFit: "contain", // show whole screenshot
+                            objectFit: "contain",
                             borderRadius: 1,
                             display: "block",
                           }}
@@ -564,7 +582,7 @@ function PortalDetails() {
                         sx={{
                           flex: 1,
                           p: 3,
-                          pt: 2, // a bit closer to image
+                          pt: 2,
                           display: "flex",
                           flexDirection: "column",
                           justifyContent: "center",
@@ -572,7 +590,6 @@ function PortalDetails() {
                           color: BODY_TEXT,
                         }}
                       >
-                        {/* Card title with underline */}
                         <Box sx={{ textAlign: "center", mb: 1.5 }}>
                           <Typography
                             variant="h6"
