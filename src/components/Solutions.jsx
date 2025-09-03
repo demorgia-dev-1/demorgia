@@ -1152,17 +1152,15 @@ const InfoCard = ({ title, points, icon, onClick, interactive = true }) => {
         minHeight: 320,
         borderRadius: 3,
         p: 3,
-        bgcolor: "#eaf3ff", // 🔹 one shade darker background
+        bgcolor: "#eaf3ff",
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
         boxShadow:
-          "0 10px 28px rgba(0,0,0,0.28), 0 6px 12px rgba(0,0,0,0.18)", // 🔹 darker permanent shadow
-        transition: "none", // 🔹 no hover animation on the card
+          "0 10px 28px rgba(0,0,0,0.28), 0 6px 12px rgba(0,0,0,0.18)",
         cursor: interactive ? "pointer" : "default",
       }}
     >
-      {/* Icon + Points */}
       <Box>
         {icon}
         {points.map((pt, i) => (
@@ -1176,7 +1174,6 @@ const InfoCard = ({ title, points, icon, onClick, interactive = true }) => {
         ))}
       </Box>
 
-      {/* Title inside white box (still hoverable) */}
       <Box
         sx={{
           bgcolor: "white",
@@ -1185,8 +1182,6 @@ const InfoCard = ({ title, points, icon, onClick, interactive = true }) => {
           py: 1,
           mt: 2,
           display: "inline-block",
-          transition: "transform 0.3s ease",
-          "&:hover": { transform: "translateY(-5px)" },
           boxShadow: "0 3px 8px rgba(0,0,0,0.20)",
         }}
       >
@@ -1198,27 +1193,23 @@ const InfoCard = ({ title, points, icon, onClick, interactive = true }) => {
   );
 };
 
-/* ---------- Dialog ---------- */
-const RegularArcDialog = ({
-  open,
-  onClose,
-  cardIndex,
-  cardData,
-  images = [],
-}) => {
+/* ---------- Dialog (Responsive for all cards) ---------- */
+const RegularArcDialog = ({ open, onClose, cardIndex, cardData, images }) => {
   const theme = useTheme();
   const smDown = useMediaQuery(theme.breakpoints.down("sm"));
   const mdUp = useMediaQuery(theme.breakpoints.up("md"));
 
-  const imgItemW = smDown ? 120 : mdUp ? 160 : 140;
+  const imgItemW = smDown ? 100 : mdUp ? 160 : 130;
 
   const sideAngles = { start: -70, end: 70 };
-  const sideRadius = smDown ? 130 : mdUp ? 160 : 150;
+  const sideRadius = smDown ? 110 : mdUp ? 160 : 140;
 
   const topAngles = { start: -150, end: -30 };
-  const topRadius = smDown ? 170 : mdUp ? 205 : 190;
+  const topRadius = smDown ? 150 : mdUp ? 205 : 180;
 
-  const mode = cardIndex === 1 ? "top" : "right";
+  // 🔹 On small screens -> always "top"
+  // 🔹 On larger screens -> middle card is "top", others are "right"
+  const mode = smDown ? "top" : cardIndex === 1 ? "top" : "right";
   const activeAngles = mode === "top" ? topAngles : sideAngles;
   const activeRadius = mode === "top" ? topRadius : sideRadius;
 
@@ -1229,10 +1220,13 @@ const RegularArcDialog = ({
       fullWidth
       maxWidth="md"
       PaperProps={{
-        sx: { width: { xs: "95vw", sm: "90vw", md: "80vw" }, m: 0 },
+        sx: {
+          width: { xs: "95vw", sm: "90vw", md: "80vw" },
+          m: 0,
+          borderRadius: 3,
+        },
       }}
       TransitionComponent={Zoom}
-      transitionDuration={{ enter: 500, exit: 400 }}
     >
       <IconButton
         onClick={onClose}
@@ -1248,25 +1242,30 @@ const RegularArcDialog = ({
         <CloseIcon fontSize="small" />
       </IconButton>
 
-      <DialogContent sx={{ p: { xs: 2, md: 3 } }}>
+      <DialogContent
+        sx={{
+          p: { xs: 2, md: 3 },
+          maxHeight: smDown ? "80vh" : "none",
+          overflowY: smDown ? "auto" : "hidden",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
         <Box
-          sx={
-            cardIndex === 1
-              ? {
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  gap: { xs: 2, md: 3 },
-                }
-              : {
-                  display: "flex",
-                  flexDirection: { xs: "column", md: "row" },
-                  alignItems: "center",
-                  gap: { xs: 2, md: 3 },
-                }
-          }
+          sx={{
+            width: "100%",
+            display: "flex",
+            flexDirection:
+              mode === "top"
+                ? "column"
+                : { xs: "column", sm: "column", md: "row" },
+            alignItems: "center",
+            justifyContent: "center",
+            gap: { xs: 2, md: 4 },
+            transform: mode === "top" && cardIndex === 1 ? "translateY(-20px)" : "none",
+          }}
         >
-          {cardIndex === 1 ? (
+          {mode === "top" ? (
             <>
               <ArcFan
                 images={images}
@@ -1276,19 +1275,30 @@ const RegularArcDialog = ({
                 radius={activeRadius}
                 angles={activeAngles}
               />
-              <InfoCard {...cardData} interactive={false} />
+              <Box sx={{ width: { xs: "100%", sm: "90%", md: "50%" } }}>
+                <InfoCard {...cardData} interactive={false} />
+              </Box>
             </>
           ) : (
             <>
-              <InfoCard {...cardData} interactive={false} />
-              <ArcFan
-                images={images}
-                show
-                mode="right"
-                itemWidth={imgItemW}
-                radius={activeRadius}
-                angles={activeAngles}
-              />
+              <Box sx={{ width: { xs: "100%", sm: "90%", md: "50%" } }}>
+                <InfoCard {...cardData} interactive={false} />
+              </Box>
+              <Box
+                sx={{
+                  maxWidth: { xs: "100%", sm: "90%", md: "50%" },
+                  overflow: "hidden",
+                }}
+              >
+                <ArcFan
+                  images={images}
+                  show
+                  mode="right"
+                  itemWidth={imgItemW}
+                  radius={activeRadius}
+                  angles={activeAngles}
+                />
+              </Box>
             </>
           )}
         </Box>
@@ -1395,7 +1405,6 @@ const Solutions = () => {
             points={c.points}
             icon={icons[c.title]}
             onClick={() => handleCardClick(idx, c)}
-            interactive
           />
         ))}
       </Box>
