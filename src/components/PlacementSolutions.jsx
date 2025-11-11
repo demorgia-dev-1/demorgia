@@ -8,7 +8,6 @@ import {
 import {
   BusinessCenter as BusinessCenterIcon,
   TrackChanges as TrackChangesIcon,
-  CheckCircle as CheckCircleIcon,
 } from "@mui/icons-material";
 import { motion } from "framer-motion";
 import SchoolIcon from "@mui/icons-material/School";
@@ -16,6 +15,11 @@ import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import EngineeringIcon from "@mui/icons-material/Engineering";
 import AssessmentIcon from "@mui/icons-material/Assessment";
 import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
+
+const BG = "#0f2a45";
+const GREEN = "#00A859";
+const WHITE = "#ffffff";
+const MUTED = "rgba(255,255,255,0.85)";
 
 const cardData = [
   {
@@ -39,7 +43,7 @@ const cardData = [
         icon: <EngineeringIcon fontSize="small" />,
       },
     ],
-    color: "#2196f3",
+    color: GREEN,
   },
   {
     title: "End-to-End Candidate Placement Tracking",
@@ -62,7 +66,7 @@ const cardData = [
         icon: <TrackChangesIcon fontSize="small" />,
       },
     ],
-    color: "#43cea2",
+    color: "#2da6ff",
   },
 ];
 
@@ -71,12 +75,7 @@ const PlacementSolutions = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   return (
-    <Box
-      sx={{
-        py: 10,
-        background: "#ffffff",
-      }}
-    >
+    <Box sx={{ py: 10, bgcolor: BG, color: WHITE }}>
       <Container>
         {/* Section Heading */}
         <motion.div
@@ -102,14 +101,15 @@ const PlacementSolutions = () => {
                   display: "inline-block",
                   position: "relative",
                   px: 1,
+                  color: WHITE,
                   "&::after": {
                     content: '""',
                     position: "absolute",
                     left: 0,
-                    bottom: -6,
+                    bottom: -8,
                     height: 4,
                     width: "100%",
-                    backgroundColor: theme.palette.primary.main,
+                    backgroundColor: GREEN,
                     borderRadius: 2,
                     transform: "scaleX(0)",
                     transformOrigin: "left",
@@ -121,21 +121,24 @@ const PlacementSolutions = () => {
                 }}
               >
                 Placement &{" "}
-                <Box
-                  component="span"
-                  sx={{ color: theme.palette.primary.main }}
-                >
+                <Box component="span" sx={{ color: GREEN }}>
                   Tracking
                 </Box>
               </Typography>
             </motion.div>
           </Box>
+
+          {/* Subtext */}
           <Typography
             align="center"
             maxWidth="md"
             mx="auto"
-            color="text.secondary"
-            mb={6}
+            sx={{
+              color: MUTED,
+              mb: 6,
+              fontSize: { xs: "0.95rem", md: "1rem" },
+              fontWeight: 400,
+            }}
           >
             We bridge the gap between skilled talent and industry through job
             fairs, real-time tracking, and strategic employer connections.
@@ -151,7 +154,7 @@ const PlacementSolutions = () => {
               bottom: 0,
               left: "calc(50% - 1px)",
               width: 2,
-              backgroundColor: "#e0e0e0",
+              backgroundColor: "rgba(255,255,255,0.1)",
               display: { xs: "none", md: "block" },
               zIndex: 0,
             }}
@@ -178,13 +181,15 @@ const PlacementSolutions = () => {
                   alignItems: "flex-start",
                   gap: 3,
                   width: { xs: "100%", md: "45%" },
-                  p: 2,
+                  p: 2.5,
                   borderRadius: 2,
+                  background: "rgba(255,255,255,0.03)",
+                  border: "1px solid rgba(255,255,255,0.05)",
                   transition: "all 0.3s ease",
                   "&:hover": {
-                    backgroundColor: "#fff",
-                    boxShadow: 2,
-                    transform: "translateY(-4px)",
+                    transform: "translateY(-5px)",
+                    boxShadow: `0 10px 30px ${card.color}33`,
+                    background: "rgba(255,255,255,0.05)",
                   },
                 }}
               >
@@ -202,19 +207,18 @@ const PlacementSolutions = () => {
                     sx={{
                       bgcolor: card.color,
                       color: "#fff",
-                      width: 48,
-                      height: 48,
+                      width: 50,
+                      height: 50,
                       borderRadius: "50%",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      boxShadow: 3,
+                      boxShadow: `0 6px 16px ${card.color}55`,
                       flexShrink: 0,
                       mt: 1,
                       transition: "transform 0.3s",
                       "&:hover": {
-                        transform: "scale(1.1)",
-                        boxShadow: 6,
+                        transform: "scale(1.08)",
                       },
                     }}
                   >
@@ -224,7 +228,12 @@ const PlacementSolutions = () => {
 
                 {/* Content Section */}
                 <Box>
-                  <Typography variant="h6" fontWeight="bold" gutterBottom>
+                  <Typography
+                    variant="h6"
+                    fontWeight="bold"
+                    gutterBottom
+                    sx={{ color: WHITE }}
+                  >
                     {card.title}
                   </Typography>
 
@@ -239,11 +248,11 @@ const PlacementSolutions = () => {
                       borderRadius: 2,
                       objectFit: "cover",
                       mb: 2,
-                      boxShadow: 2,
+                      boxShadow: `0 10px 25px rgba(0,0,0,0.4)`,
                     }}
                   />
 
-                  {/* Staggered Bullet Points with Icons */}
+                  {/* Bullet Points */}
                   <motion.div
                     variants={{
                       hidden: {},
@@ -267,15 +276,19 @@ const PlacementSolutions = () => {
                         <Box
                           display="flex"
                           alignItems="flex-start"
-                          gap={1}
-                          mb={1}
+                          gap={1.2}
+                          mb={1.3}
                         >
                           <Box sx={{ mt: "3px", color: card.color }}>
                             {pt.icon}
                           </Box>
                           <Typography
                             variant="body2"
-                            sx={{ color: "text.secondary" }}
+                            sx={{
+                              color: MUTED,
+                              fontSize: { xs: 14, md: 15 },
+                              lineHeight: 1.6,
+                            }}
                           >
                             {pt.text}
                           </Typography>

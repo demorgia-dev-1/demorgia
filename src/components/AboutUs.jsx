@@ -21,8 +21,8 @@ import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
 import StarRateIcon from "@mui/icons-material/StarRate";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import LightbulbIcon from "@mui/icons-material/Lightbulb";
-import { motion } from "framer-motion";
 import InfoIcon from "@mui/icons-material/Info";
+import { motion } from "framer-motion";
 
 const sections = [
   {
@@ -73,119 +73,162 @@ const AboutUs = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <Container sx={{ py: 5 }}>
-      <Box display="flex" alignItems="center" justifyContent="center" mb={2}>
-        <Divider sx={{ flexGrow: 1, mr: 1 }} />
-        <InfoIcon color="primary" />
-        <Divider sx={{ flexGrow: 1, ml: 1 }} />
-      </Box>
-
-      {/* Animated Heading */}
-      <Box sx={{ textAlign: "center", mb: 4 }}>
-        <motion.div
-          initial={{ scaleX: 0 }}
-          whileInView={{ scaleX: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          style={{ display: "inline-block" }}
-        >
-          <Typography
-            variant="h4"
-            fontWeight="bold"
-            component="h2"
+    <Box
+      sx={{
+        backgroundColor: "#0f2a45", 
+        color: "white",
+        py: 6,
+      }}
+    >
+      <Container>
+        <Box display="flex" alignItems="center" justifyContent="center" mb={2}>
+          <Divider
             sx={{
-              display: "inline-block",
-              position: "relative",
-              px: 1,
-              "&::after": {
-                content: '""',
-                position: "absolute",
-                left: 0,
-                bottom: -6,
-                height: 4,
-                width: "100%",
-                backgroundColor: theme.palette.primary.main,
-                borderRadius: 2,
-                transform: "scaleX(0)",
-                transformOrigin: "left",
-                transition: "transform 0.4s ease-in-out",
-              },
-              "&:hover::after": {
-                transform: "scaleX(1)",
+              flexGrow: 1,
+              mr: 1,
+              borderColor: "rgba(255,255,255,0.3)",
+            }}
+          />
+          <InfoIcon sx={{ color: "#00A859" }} /> 
+          <Divider
+            sx={{
+              flexGrow: 1,
+              ml: 1,
+              borderColor: "rgba(255,255,255,0.3)",
+            }}
+          />
+        </Box>
+
+        {/* Animated Heading */}
+        <Box sx={{ textAlign: "center", mb: 4 }}>
+          <motion.div
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            style={{ display: "inline-block" }}
+          >
+            <Typography
+              variant="h4"
+              fontWeight="bold"
+              component="h2"
+              sx={{
+                display: "inline-block",
+                position: "relative",
+                px: 1,
+                "&::after": {
+                  content: '""',
+                  position: "absolute",
+                  left: 0,
+                  bottom: -6,
+                  height: 4,
+                  width: "100%",
+                  backgroundColor: "#00A859", 
+                  borderRadius: 2,
+                  transform: "scaleX(0)",
+                  transformOrigin: "left",
+                  transition: "transform 0.4s ease-in-out",
+                },
+                "&:hover::after": {
+                  transform: "scaleX(1)",
+                },
+              }}
+            >
+              About <Box component="span" sx={{ color: "#00A859" }}>Us</Box>
+            </Typography>
+          </motion.div>
+        </Box>
+
+        <Typography
+          variant="body1"
+          sx={{
+            textAlign: "center",
+            fontSize: "1.1rem",
+            color: "white",
+            lineHeight: 1.8,
+            opacity: 0.9,
+          }}
+        >
+          Demorgia Consulting Services Pvt. Ltd. is a premier, nationally
+          recognized skill assessment and manpower consulting firm, trusted by
+          government bodies, industry leaders, and organizations across India. We
+          deliver high-quality, technology-driven assessment solutions and have
+          served more than 1 million candidates through a robust network and
+          AI-powered platform.
+        </Typography>
+
+        <Box mt={4} textAlign="center">
+          <Button
+            variant="contained"
+            onClick={() => setShowMore((prev) => !prev)}
+            sx={{
+              backgroundColor: "#00A859",
+              color: "#fff",
+              fontWeight: "bold",
+              "&:hover": {
+                backgroundColor: "#00C46B",
               },
             }}
           >
-            About{" "}
-            <Box component="span" sx={{ color: theme.palette.primary.main }}>
-              Us
-            </Box>
-          </Typography>
-        </motion.div>
-      </Box>
-
-      <Typography
-        variant="body1"
-        sx={{
-          textAlign: "center",
-          fontSize: "1.1rem",
-          color: "text.secondary",
-          lineHeight: 1.8,
-        }}
-      >
-        Demorgia Consulting Services Pvt. Ltd. is a premier, nationally
-        recognized skill assessment and manpower consulting firm, trusted by
-        government bodies, industry leaders, and organizations across India. We
-        deliver high-quality, technology-driven assessment solutions and have
-        served more than 1 million candidates through a robust network and
-        AI-powered platform.
-      </Typography>
-
-      <Box mt={4} textAlign="center">
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => setShowMore((prev) => !prev)}
-        >
-          {showMore ? "Hide Details" : "Read More"}
-        </Button>
-      </Box>
-
-      {showMore && (
-        <Box mt={2}>
-          {sections.map((section, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: idx * 0.1 }}
-            >
-              <Accordion sx={{ mb: 1 }}>
-                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                  <Grid container alignItems="center" spacing={1}>
-                    <Grid item>
-                      {React.cloneElement(section.icon, {
-                        color: idx % 2 === 0 ? "primary" : "success",
-                      })}
-                    </Grid>
-                    <Grid item xs>
-                      <Typography variant="subtitle1" fontWeight={600}>
-                        {section.title}
-                      </Typography>
-                    </Grid>
-                  </Grid>
-                </AccordionSummary>
-                <AccordionDetails>
-                  <Typography variant="body1" whiteSpace="pre-line">
-                    {section.content}
-                  </Typography>
-                </AccordionDetails>
-              </Accordion>
-            </motion.div>
-          ))}
+            {showMore ? "Hide Details" : "Read More"}
+          </Button>
         </Box>
-      )}
-    </Container>
+
+        {showMore && (
+          <Box mt={3}>
+            {sections.map((section, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: idx * 0.1 }}
+              >
+                <Accordion
+                  sx={{
+                    mb: 1,
+                    backgroundColor: "rgba(255, 255, 255, 0.05)",
+                    color: "white",
+                    border: "1px solid rgba(255,255,255,0.1)",
+                    "&:before": { display: "none" },
+                  }}
+                >
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon sx={{ color: "#00A859" }} />}
+                  >
+                    <Grid container alignItems="center" spacing={1}>
+                      <Grid item>
+                        {React.cloneElement(section.icon, {
+                          sx: { color: "#00A859" },
+                        })}
+                      </Grid>
+                      <Grid item xs>
+                        <Typography
+                          variant="subtitle1"
+                          fontWeight={600}
+                          sx={{ color: "#00FFB0" }}
+                        >
+                          {section.title}
+                        </Typography>
+                      </Grid>
+                    </Grid>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Typography
+                      variant="body1"
+                      whiteSpace="pre-line"
+                      sx={{ color: "white", opacity: 0.9 }}
+                    >
+                      {section.content}
+                    </Typography>
+                  </AccordionDetails>
+                </Accordion>
+              </motion.div>
+            ))}
+          </Box>
+        )}
+      </Container>
+    </Box>
   );
 };
 

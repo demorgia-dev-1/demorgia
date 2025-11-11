@@ -36,12 +36,18 @@ const socialLinks = [
   { Icon: FaLinkedin, href: "https://www.linkedin.com/", label: "LinkedIn" },
 ];
 
+const BG = "#0f2a45"; 
+const GREEN = "#00A859";
+const MUTED_WHITE = "rgba(255,255,255,0.85)";
+const MUTED_WHITE_FAINT = "rgba(255,255,255,0.72)";
+
 const Footer = () => (
   <Box
     sx={{
-      background: "linear-gradient( #ffffff 20%, #0d47a1 80%)",
-      color: "#111",
+      background: `linear-gradient(180deg, ${BG} 0%, ${BG} 100%)`,
+      color: MUTED_WHITE,
       py: 6,
+      borderTop: `4px solid rgba(0,0,0,0.12)`,
     }}
   >
     <Container maxWidth="lg">
@@ -60,18 +66,18 @@ const Footer = () => (
               component="img"
               src="/logo.png"
               alt="Demorgia"
-              sx={{ height: 50 }}
+              sx={{ height: 100 }}
             />
 
             <Typography
               variant="h6"
               sx={{
                 fontWeight: 600,
-                color: "#0d47a1",
+                color: GREEN,
                 animation: "pulse 2s infinite",
                 "@keyframes pulse": {
                   "0%": { opacity: 1 },
-                  "50%": { opacity: 0.7 },
+                  "50%": { opacity: 0.8 },
                   "100%": { opacity: 1 },
                 },
               }}
@@ -80,19 +86,19 @@ const Footer = () => (
             </Typography>
           </Box>
 
-          <Typography variant="body2">
+          <Typography variant="body2" sx={{ color: MUTED_WHITE_FAINT }}>
             Empowering Individuals and Industries through Accurate Assessments,
             Strategic Consultancy, and Innovative Solutions.
-            <strong> Unlocking Potential, Driving Growth.</strong>
+            <strong style={{ color: MUTED_WHITE }}> Unlocking Potential, Driving Growth.</strong>
           </Typography>
         </Grid>
 
         {/* Useful Links */}
         <Grid item xs={12} md={3}>
-          <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
+          <Typography variant="h6" gutterBottom sx={{ fontWeight: 600, color: "#fff" }}>
             USEFUL LINKS
           </Typography>
-          <Divider sx={{ width: 40, bgcolor: "#00ff7f", mb: 1 }} />
+          <Divider sx={{ width: 40, bgcolor: GREEN, mb: 1 }} />
           {footerLinks.map(({ label, path }, i) => (
             <a
               key={i}
@@ -103,7 +109,7 @@ const Footer = () => (
                 display: "block",
                 marginBottom: "8px",
                 textDecoration: "none",
-                color: "inherit",
+                color: MUTED_WHITE_FAINT,
               }}
             >
               › {label}
@@ -113,11 +119,11 @@ const Footer = () => (
 
         {/* Contact */}
         <Grid item xs={12} md={3}>
-          <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
+          <Typography variant="h6" gutterBottom sx={{ fontWeight: 600, color: "#fff" }}>
             CONTACT US
           </Typography>
-          <Divider sx={{ width: 40, bgcolor: "#00ff7f", mb: 1 }} />
-          <Typography variant="body2">
+          <Divider sx={{ width: 40, bgcolor: GREEN, mb: 1 }} />
+          <Typography variant="body2" sx={{ color: MUTED_WHITE_FAINT }}>
             Unit 14, Tower A, 9th Floor
             <br />
             Logix Cyber Park
@@ -125,22 +131,22 @@ const Footer = () => (
             Noida 62, UP 201309, India
             <br />
             <br />
-            <strong>Phone:</strong> +91-120-3229282
+            <strong style={{ color: MUTED_WHITE }}>Phone:</strong> <a href="tel:+911203229282" style={{ color: GREEN, textDecoration: "none" }}>+91-120-3229282</a>
             <br />
-            <strong>Phone:</strong> +91-120-3116273
+            <strong style={{ color: MUTED_WHITE }}>Phone:</strong> <a href="tel:+911203116273" style={{ color: GREEN, textDecoration: "none" }}>+91-120-3116273</a>
             <br />
-            <strong>Email:</strong> hrd@demorgia.com
+            <strong style={{ color: MUTED_WHITE }}>Email:</strong> <a href="mailto:hrd@demorgia.com" style={{ color: GREEN, textDecoration: "none" }}>hrd@demorgia.com</a>
           </Typography>
         </Grid>
 
         {/* Group Company and Newsletter */}
         <Grid item xs={12} md={3}>
-          <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
+          <Typography variant="h6" gutterBottom sx={{ fontWeight: 600, color: "#fff" }}>
             GROUP COMPANY
           </Typography>
-          <Divider sx={{ width: 40, bgcolor: "#00ff7f", mb: 1 }} />
-          <Typography variant="body2" mb={2}>
-            <strong>"Vikram Aviation Pvt Ltd"</strong> <br />
+          <Divider sx={{ width: 40, bgcolor: GREEN, mb: 1 }} />
+          <Typography variant="body2" mb={2} sx={{ color: MUTED_WHITE_FAINT }}>
+            <strong style={{ color: MUTED_WHITE }}>"Vikram Aviation Pvt Ltd"</strong> <br />
             Trusted Partner for Precision Calibration, Expert Repairs, Composite
             Maintenance, and Consumable Solutions.
           </Typography>
@@ -154,22 +160,31 @@ const Footer = () => (
               fullWidth
               InputProps={{
                 sx: {
-                  bgcolor: "#fff",
+                  bgcolor: "rgba(255,255,255,0.06)",
                   borderRadius: "4px 0 0 4px",
-                  color: "#000",
+                  color: MUTED_WHITE,
                   fontWeight: 500,
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "rgba(255,255,255,0.06)",
+                  },
+                  "&:hover .MuiOutlinedInput-notchedOutline": {
+                    borderColor: GREEN,
+                  },
                 },
+              }}
+              sx={{
+                "& .MuiInputBase-input": { color: MUTED_WHITE },
               }}
             />
             <Button
               variant="contained"
               sx={{
-                color: "white",
+                color: "#fff",
                 borderRadius: "0 4px 4px 0",
                 px: 3,
-                background: "linear-gradient(to right, #1565c0, #0d47a1)",
+                background: `linear-gradient(to right, ${GREEN}, #00c973)`,
                 "&:hover": {
-                  background: "linear-gradient(to right, #0d47a1, #1565c0)",
+                  background: `linear-gradient(to right, #00a64a, ${GREEN})`,
                 },
               }}
             >
@@ -189,7 +204,7 @@ const Footer = () => (
                 aria-label={label}
                 title={label}
                 sx={{
-                  color: "white",
+                  color: MUTED_WHITE,
                   "&:hover": {
                     color:
                       label === "Facebook"
@@ -197,10 +212,10 @@ const Footer = () => (
                         : label === "Twitter"
                         ? "#1DA1F2"
                         : label === "Instagram"
-                        ? "#1DA1F2"
+                        ? "#E1306C"
                         : label === "LinkedIn"
                         ? "#0A66C2"
-                        : "#1DA1F2",
+                        : GREEN,
                   },
                 }}
               >
@@ -213,9 +228,9 @@ const Footer = () => (
 
       {/* Bottom Bar */}
       <Box mt={6} textAlign="center">
-        <Divider sx={{ bgcolor: "#ffffff", mb: 2 }} />
-        <Typography variant="body2" sx={{ color: "#fff" }} mt={2}>
-          © 2025 <strong>Demorgia Consulting Services Pvt Ltd</strong>. All
+        <Divider sx={{ bgcolor: "rgba(255,255,255,0.06)", mb: 2 }} />
+        <Typography variant="body2" sx={{ color: MUTED_WHITE }} mt={2}>
+          © 2025 <strong style={{ color: GREEN }}>Demorgia Consulting Services Pvt Ltd</strong>. All
           rights reserved.
         </Typography>
       </Box>

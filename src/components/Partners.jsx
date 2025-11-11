@@ -11,14 +11,7 @@ import {
   CardContent,
 } from "@mui/material";
 import Marquee from "react-fast-marquee";
-import { keyframes } from "@emotion/react";
 import { motion } from "framer-motion";
-
-const gradientAnimation = keyframes`
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-`;
 
 const images = [
   { src: "/portfolio/ncvet1.jpg", title: "NCVET Recognition" },
@@ -70,6 +63,11 @@ const partners = [
   { name: "SVN", img: "svn.png" },
 ];
 
+const BG = "#0f2a45";
+const GREEN = "#00A859";
+const WHITE = "#ffffff";
+const MUTED_TEXT = "rgba(255,255,255,0.85)";
+
 const Partners = () => {
   const theme = useTheme();
   return (
@@ -78,9 +76,8 @@ const Partners = () => {
         id="clients"
         sx={{
           py: { xs: 6, md: 10 },
-          background: "white",
-          backgroundSize: "400% 400%",
-          animation: `${gradientAnimation} 20s ease infinite`,
+          background: BG,
+          color: WHITE,
         }}
       >
         <Container>
@@ -100,6 +97,7 @@ const Partners = () => {
                   display: "inline-block",
                   position: "relative",
                   px: 1,
+                  color: WHITE,
                   "&::after": {
                     content: '""',
                     position: "absolute",
@@ -107,7 +105,7 @@ const Partners = () => {
                     bottom: -6,
                     height: 4,
                     width: "100%",
-                    backgroundColor: theme.palette.primary.main,
+                    backgroundColor: GREEN,
                     borderRadius: 2,
                     transform: "scaleX(0)",
                     transformOrigin: "left",
@@ -119,27 +117,25 @@ const Partners = () => {
                 }}
               >
                 Customers who know{" "}
-                <Box
-                  component="span"
-                  sx={{ color: theme.palette.primary.main }}
-                >
+                <Box component="span" sx={{ color: GREEN }}>
                   and trust
                 </Box>
               </Typography>
             </motion.div>
           </Box>
+
           <Typography
             align="center"
             sx={{
               mb: 6,
-              color: "#1e293b",
+              color: MUTED_TEXT,
             }}
           >
             More than{" "}
             <Box
               component="span"
               sx={{
-                background: "linear-gradient(90deg, #007CF0, #00DFD8)",
+                background: `linear-gradient(90deg, ${GREEN}, #00DFD8)`,
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 fontWeight: "bold",
@@ -166,7 +162,8 @@ const Partners = () => {
                     transition: "all 0.3s ease",
                     "&:hover": {
                       filter: "grayscale(0%)",
-                      transform: "scale(1.1)",
+                      transform: "scale(1.06)",
+                      boxShadow: `0 12px 30px ${GREEN}33`,
                     },
                   }}
                 />
@@ -174,26 +171,27 @@ const Partners = () => {
             ))}
           </Marquee>
         </Container>
-        <Box sx={{ backgroundColor: "white", pt: 10 }}>
+
+        <Box sx={{ backgroundColor: BG, pt: 10 }}>
           <Container maxWidth="lg" sx={{ px: { xs: 2, sm: 3, md: 4 } }}>
-            {/* Header */}
             <Box
               sx={{
                 display: "flex",
-                flexDirection: "row",
+                flexDirection: { xs: "column", sm: "row" },
                 justifyContent: "space-between",
                 alignItems: { xs: "flex-start", sm: "center" },
                 mb: 4,
+                gap: 2,
               }}
             >
               <Box>
-                <Typography variant="h4" fontWeight="bold" gutterBottom>
+                <Typography variant="h4" fontWeight="bold" gutterBottom sx={{ color: WHITE }}>
                   Our{" "}
-                  <span style={{ color: theme.palette.primary.main }}>
+                  <Box component="span" sx={{ color: GREEN, display: "inline" }}>
                     Gallery
-                  </span>
+                  </Box>
                 </Typography>
-                <Typography variant="body1" color="text.secondary">
+                <Typography variant="body1" sx={{ color: MUTED_TEXT }}>
                   Explore some snapshots of our proudest moments, events, and
                   creations.
                 </Typography>
@@ -208,6 +206,12 @@ const Partners = () => {
                   py: { xs: 1, sm: 1.5 },
                   fontSize: { xs: "0.75rem", sm: "0.875rem" },
                   whiteSpace: "nowrap",
+                  background: `linear-gradient(90deg, ${GREEN}, #00C17A)`,
+                  boxShadow: `0 8px 28px ${GREEN}33`,
+                  "&:hover": {
+                    filter: "brightness(0.95)",
+                    boxShadow: `0 14px 40px ${GREEN}44`,
+                  },
                 }}
                 onClick={() => window.open("/gallery", "_blank")}
               >
@@ -215,7 +219,6 @@ const Partners = () => {
               </Button>
             </Box>
 
-            {/* Responsive Flex Gallery */}
             <Box
               sx={{
                 display: "flex",
@@ -227,9 +230,9 @@ const Partners = () => {
               {images.map((item, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, scale: 0.95 }}
+                  initial={{ opacity: 0, scale: 0.96 }}
                   whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3, delay: index * 0.05 }}
+                  transition={{ duration: 0.35, delay: index * 0.05 }}
                   viewport={{ once: true }}
                   style={{
                     flex: "1 1 calc(25% - 24px)",
@@ -238,13 +241,18 @@ const Partners = () => {
                   }}
                 >
                   <Card
-                    elevation={3}
+                    elevation={0}
                     sx={{
                       borderRadius: 2,
                       overflow: "hidden",
                       cursor: "pointer",
+                      background: "rgba(255,255,255,0.02)",
+                      border: `1px solid rgba(255,255,255,0.04)`,
                       "&:hover img": {
                         transform: "scale(1.05)",
+                      },
+                      "&:hover": {
+                        boxShadow: `0 18px 50px ${GREEN}22`,
                       },
                     }}
                   >
@@ -256,10 +264,10 @@ const Partners = () => {
                         width: "100%",
                         height: 180,
                         objectFit: "cover",
-                        transition: "transform 0.3s ease-in-out",
+                        transition: "transform 0.35s ease-in-out",
                       }}
                     />
-                    <CardContent sx={{ textAlign: "center", py: 1.5 }}>
+                    <CardContent sx={{ textAlign: "center", py: 1.5, background: "transparent" }}>
                       <Typography
                         variant="subtitle1"
                         fontWeight={600}
@@ -267,7 +275,7 @@ const Partners = () => {
                           fontSize: "1rem",
                           position: "relative",
                           display: "inline-block",
-                          color: theme.palette.text.primary,
+                          color: WHITE,
                           "&::after": {
                             content: '""',
                             position: "absolute",
@@ -275,7 +283,7 @@ const Partners = () => {
                             bottom: -4,
                             width: "100%",
                             height: "3px",
-                            backgroundColor: theme.palette.primary.main,
+                            backgroundColor: GREEN,
                             borderRadius: 2,
                           },
                         }}

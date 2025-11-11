@@ -1,309 +1,21 @@
-// import { useState } from "react";
-// import {
-//   Box,
-//   Typography,
-//   Grid,
-//   Paper,
-//   Tabs,
-//   Tab,
-//   useTheme,
-//   useMediaQuery,
-// } from "@mui/material";
-// import LaptopMacIcon from "@mui/icons-material/LaptopMac";
-// import BlockIcon from "@mui/icons-material/Block";
-// import ReceiptIcon from "@mui/icons-material/Receipt";
-// import { AnimatePresence, motion } from "framer-motion";
-
-// const data = {
-//   online: [
-//     {
-//       title: "Pre-Assessment",
-//       image: "/assets/exam.png",
-//       points: [
-//         "Generate and schedule exams.",
-//         "Enable anti-cheating features.",
-//         "Set evaluation guidelines.",
-//       ],
-//     },
-//     {
-//       title: "During Assessment",
-//       image: "/assets/exam.png",
-//       points: [
-//         "Advanced online exam.",
-//         "Monitor with seamless technology.",
-//         "Build up student reports.",
-//       ],
-//     },
-//     {
-//       title: "Post Assessments",
-//       image: "/assets/exam.png",
-//       points: [
-//         "Allotting answer sheets to the assessor.",
-//         "Oversee and control the evaluation.",
-//         "Place out results online.",
-//       ],
-//     },
-//   ],
-//   offline: [
-//     {
-//       title: "Pre-Assessment",
-//       image: "/assets/exam.png",
-//       points: [
-//         "Prepare question papers manually.",
-//         "Distribute to exam centers.",
-//         "Set physical evaluation rules.",
-//       ],
-//     },
-//     {
-//       title: "During Assessment",
-//       image: "/assets/exam.png",
-//       points: [
-//         "Manual invigilation.",
-//         "Paper-based writing.",
-//         "Attendance and records.",
-//       ],
-//     },
-//     {
-//       title: "Post Assessments",
-//       image: "/assets/exam.png",
-//       points: [
-//         "Manual collection and evaluation.",
-//         "Result compilation.",
-//         "Offline result distribution.",
-//       ],
-//     },
-//   ],
-//   paperbased: [
-//     {
-//       title: "Pre-Assessment",
-//       image: "/assets/exam.png",
-//       points: [
-//         "Print exam papers.",
-//         "Distribute to invigilators.",
-//         "Prepare marking scheme.",
-//       ],
-//     },
-//     {
-//       title: "During Assessment",
-//       image: "/assets/exam.png",
-//       points: [
-//         "Monitor students manually.",
-//         "Paper-based tests.",
-//         "Maintain integrity on-site.",
-//       ],
-//     },
-//     {
-//       title: "Post Assessments",
-//       image: "/assets/exam.png",
-//       points: [
-//         "Collect physical sheets.",
-//         "Distribute to evaluators.",
-//         "Publish results offline or online.",
-//       ],
-//     },
-//   ],
-// };
-
-// const modes = [
-//   { key: "online", label: "Online Exams", icon: <LaptopMacIcon /> },
-//   { key: "offline", label: "Offline Exams", icon: <BlockIcon /> },
-//   { key: "paperbased", label: "Paper Based Exams", icon: <ReceiptIcon /> },
-// ];
-
-// const PortalDetails = () => {
-//   const theme = useTheme();
-//   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-//   const [selectedMode, setSelectedMode] = useState("paperbased");
-
-//   const handleTabChange = (_, newValue) => {
-//     setSelectedMode(newValue);
-//   };
-
-//   const borderColorsByMode = {
-//     online: theme.palette.primary.main,
-//     offline: theme.palette.primary.main,
-//     paperbased: theme.palette.primary.main,
-//   };
-
-//   const borderColor = borderColorsByMode[selectedMode];
-
-//   return (
-//     <Box px={3} py={6} textAlign="center">
-//       {/* Header */}
-//       <Box sx={{ textAlign: "center", mb: 4 }}>
-//         <motion.div
-//           initial={{ scaleX: 0 }}
-//           whileInView={{ scaleX: 1 }}
-//           viewport={{ once: true }}
-//           transition={{ duration: 0.7, ease: "easeOut" }}
-//           style={{ display: "inline-block" }}
-//         >
-//           <Typography
-//             variant="h4"
-//             fontWeight="bold"
-//             component="h2"
-//             sx={{
-//               display: "inline-block",
-//               position: "relative",
-//               px: 1,
-//               "&::after": {
-//                 content: '""',
-//                 position: "absolute",
-//                 left: 0,
-//                 bottom: -6,
-//                 height: 4,
-//                 width: "100%",
-//                 backgroundColor: theme.palette.primary.main,
-//                 borderRadius: 2,
-//                 transform: "scaleX(0)",
-//                 transformOrigin: "left",
-//                 transition: "transform 0.4s ease-in-out",
-//               },
-//               "&:hover::after": {
-//                 transform: "scaleX(1)",
-//               },
-//             }}
-//           >
-//             Proctor, Evaluate and Conduct Exams, All{" "}
-//             <Box component="span" sx={{ color: theme.palette.primary.main }}>
-//               on One Integrated Platform
-//             </Box>
-//           </Typography>
-//         </motion.div>
-//       </Box>
-
-//       {/* Tabs */}
-//       <Tabs
-//         value={selectedMode}
-//         onChange={handleTabChange}
-//         variant={isMobile ? "scrollable" : "standard"}
-//         scrollButtons={isMobile ? "auto" : false}
-//         centered={!isMobile}
-//         textColor="primary"
-//         indicatorColor="primary"
-//         sx={{ mb: 5 }}
-//       >
-//         {modes.map((mode) => (
-//           <Tab
-//             key={mode.key}
-//             label={mode.label}
-//             icon={mode.icon}
-//             iconPosition="start"
-//             value={mode.key}
-//             sx={{
-//               fontWeight: "bold",
-//               textTransform: "uppercase",
-//               borderRadius: 2,
-//             }}
-//           />
-//         ))}
-//       </Tabs>
-
-//       {/* Sliding Cards */}
-//       <AnimatePresence mode="wait">
-//         <motion.div
-//           key={selectedMode}
-//           initial={{ x: 80, opacity: 0 }}
-//           animate={{ x: 0, opacity: 1 }}
-//           exit={{ x: -80, opacity: 0 }}
-//           transition={{ duration: 0.5 }}
-//         >
-//           <Grid container spacing={4} justifyContent="center">
-//             {data[selectedMode].map((step, index) => (
-//               <Grid item xs={12} sm={6} md={4} key={index}>
-//                 <Paper
-//                   elevation={0}
-//                   sx={{
-//                     p: 3,
-//                     textAlign: "left",
-//                     borderRadius: 3,
-//                     height: "100%",
-//                     backgroundColor: "#f5faff", // ✅ always light blue
-//                     borderLeft: `6px solid ${borderColor}`,
-//                     transition: "transform 0.3s",
-//                     "&:hover": {
-//                       transform: "translateY(-6px)",
-//                       boxShadow: 4,
-//                     },
-//                   }}
-//                 >
-//                   <Box
-//                     component="img"
-//                     src={step.image}
-//                     alt={step.title}
-//                     sx={{
-//                       width: "100%",
-//                       height: 160,
-//                       objectFit: "cover",
-//                       borderRadius: 2,
-//                       mb: 2,
-//                       border: "1px solid #e0e0e0",
-//                     }}
-//                   />
-//                   <Typography
-//                     variant="h6"
-//                     fontWeight="bold"
-//                     gutterBottom
-//                     sx={{ color: theme.palette.primary.main }} // ✅ always blue
-//                   >
-//                     {step.title}
-//                   </Typography>
-//                   <ul style={{ paddingLeft: 16 }}>
-//                     {step.points.map((point, idx) => (
-//                       <li key={idx}>
-//                         <Typography variant="body2" color="text.secondary">
-//                           {point}
-//                         </Typography>
-//                       </li>
-//                     ))}
-//                   </ul>
-//                 </Paper>
-//               </Grid>
-//             ))}
-//           </Grid>
-//         </motion.div>
-//       </AnimatePresence>
-//     </Box>
-//   );
-// };
-
-// export default PortalDetails;
-// src/components/PortalDetails.jsx
-// src/components/PortalDetails.jsx
-// src/components/PortalDetails.jsx
-// src/components/PortalDetails.jsx
-// src/components/PortalDetails.jsx
-// src/components/PortalDetails.jsx
-// src/components/PortalDetails.jsx
-// src/components/PortalDetails.jsx
 import { useState } from "react";
 import {
   Box,
   Typography,
-  Grid,
-  Paper,
   Tabs,
   Tab,
-  useTheme,
   useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import LaptopMacIcon from "@mui/icons-material/LaptopMac";
 import BlockIcon from "@mui/icons-material/Block";
 import ReceiptIcon from "@mui/icons-material/Receipt";
-import { AnimatePresence, motion } from "framer-motion";
-
-// Fixed, equal card dimensions
-const CARD_WIDTH = 320;
-const CARD_HEIGHT = 420;
-const IMG_HEIGHT = 200;
-
-const WAVE_BLUE = "#d8e5f4";
+import { motion, AnimatePresence } from "framer-motion";
 
 const data = {
   online: [
     {
       title: "Pre-Assessment",
-      image: "/assets/exam.png",
       points: [
         "Generate and schedule exams.",
         "Enable anti-cheating features.",
@@ -312,7 +24,6 @@ const data = {
     },
     {
       title: "During Assessment",
-      image: "/assets/exam.png",
       points: [
         "Advanced online exam.",
         "Monitor with seamless technology.",
@@ -321,7 +32,6 @@ const data = {
     },
     {
       title: "Post Assessments",
-      image: "/assets/exam.png",
       points: [
         "Allotting answer sheets to the assessor.",
         "Oversee and control the evaluation.",
@@ -332,7 +42,6 @@ const data = {
   offline: [
     {
       title: "Pre-Assessment",
-      image: "/assets/exam.png",
       points: [
         "Prepare question papers manually.",
         "Distribute to exam centers.",
@@ -341,7 +50,6 @@ const data = {
     },
     {
       title: "During Assessment",
-      image: "/assets/exam.png",
       points: [
         "Manual invigilation.",
         "Paper-based writing.",
@@ -350,7 +58,6 @@ const data = {
     },
     {
       title: "Post Assessments",
-      image: "/assets/exam.png",
       points: [
         "Manual collection and evaluation.",
         "Result compilation.",
@@ -361,7 +68,6 @@ const data = {
   paperbased: [
     {
       title: "Pre-Assessment",
-      image: "/assets/exam.png",
       points: [
         "Print exam papers.",
         "Distribute to invigilators.",
@@ -370,7 +76,6 @@ const data = {
     },
     {
       title: "During Assessment",
-      image: "/assets/exam.png",
       points: [
         "Monitor students manually.",
         "Paper-based tests.",
@@ -379,7 +84,6 @@ const data = {
     },
     {
       title: "Post Assessments",
-      image: "/assets/exam.png",
       points: [
         "Collect physical sheets.",
         "Distribute to evaluators.",
@@ -395,47 +99,26 @@ const modes = [
   { key: "paperbased", label: "Paper Based Exams", icon: <ReceiptIcon /> },
 ];
 
-// motion variants for each card
-const cardVariants = {
-  hidden: (i) => {
-    const rel = i - 1;
-    const dir = rel === 0 ? 0 : rel * 60;
-    return { x: dir, opacity: 0, scale: rel === 0 ? 0.98 : 0.96 };
-  },
-  show: (i) => ({
-    x: 0,
-    opacity: 1,
-    scale: 1,
-    transition: {
-      type: "spring",
-      stiffness: 120,
-      damping: 26,
-      delay: 0.12 * (i + 1),
-    },
-  }),
-  exit: (i) => {
-    const rel = i - 1;
-    const dir = rel === 0 ? 0 : rel * -60;
-    return {
-      x: dir,
-      opacity: 0,
-      scale: rel === 0 ? 0.98 : 0.96,
-      transition: { duration: 0.4, ease: "easeInOut" },
-    };
-  },
-};
+const BG = "#0f2a45";
+const GREEN = "#00A859";
+const WHITE = "#ffffff";
+const MUTED = "rgba(255,255,255,0.82)";
+const CARD_BG = "rgba(255,255,255,0.03)";
+const CONNECTOR = "rgba(255,255,255,0.06)";
 
-function PortalDetails() {
+export default function PortalDetails() {
+  const [selectedMode, setSelectedMode] = useState("online");
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  const [selectedMode, setSelectedMode] = useState("online");
-
-  const HEADING_BLUE = theme.palette.primary.main;
-  const BODY_TEXT = "#2b3440";
 
   return (
-    <Box px={3} py={6} textAlign="center">
-      {/* Section heading with hover underline effect */}
+    <Box
+      px={3}
+      py={6}
+      textAlign="center"
+      sx={{ backgroundColor: BG, color: WHITE }}
+    >
+      {/* Heading */}
       <Typography
         variant="h4"
         fontWeight="bold"
@@ -443,25 +126,26 @@ function PortalDetails() {
           mb: 4,
           display: "inline-block",
           position: "relative",
-          color: "text.primary",
+          color: WHITE,
+          fontSize: { xs: "1.5rem", sm: "1.9rem" },
           "&::after": {
             content: '""',
             position: "absolute",
             left: 0,
-            bottom: -6,
+            bottom: -10,
             height: 4,
-            width: "0%",
-            bgcolor: theme.palette.primary.main,
-            borderRadius: 2,
-            transition: "width 0.3s ease",
+            width: "100%",
+            backgroundColor: GREEN,
+            borderRadius: 3,
+            transform: "scaleX(0)",
+            transformOrigin: "left",
+            transition: "transform .45s ease",
           },
-          "&:hover::after": { width: "100%" },
+          "&:hover::after": { transform: "scaleX(1)" },
+          "& span": { color: GREEN },
         }}
       >
-        Proctor, Evaluate and Conduct Exams, All{" "}
-        <Box component="span" sx={{ color: theme.palette.primary.main }}>
-          on One Integrated Platform
-        </Box>
+        Proctor, Evaluate and Conduct Exams, All <span>on One Integrated Platform</span>
       </Typography>
 
       {/* Tabs */}
@@ -470,22 +154,19 @@ function PortalDetails() {
         onChange={(_, v) => setSelectedMode(v)}
         variant={isMobile ? "fullWidth" : "standard"}
         centered={!isMobile}
-        orientation={isMobile ? "vertical" : "horizontal"} // 👈 vertical on mobile
-        textColor="primary"
-        indicatorColor="primary"
         sx={{
           mb: 5,
-          ...(isMobile && {
-            "& .MuiTabs-flexContainer": {
-              flexDirection: "column",
-              alignItems: "stretch",
-            },
-            "& .MuiTab-root": {
-              justifyContent: "flex-start",
-              textAlign: "left",
-              width: "100%",
-            },
-          }),
+          mt: 4,
+          "& .MuiTabs-indicator": { backgroundColor: GREEN, height: 4, borderRadius: 2 },
+          "& .MuiTab-root": {
+            fontWeight: 700,
+            color: MUTED,
+            minHeight: 44,
+            "&.Mui-selected": { color: WHITE },
+          },
+          "& .MuiButtonBase-root": {
+            textTransform: "none",
+          },
         }}
       >
         {modes.map((m) => (
@@ -495,140 +176,114 @@ function PortalDetails() {
             icon={m.icon}
             iconPosition="start"
             label={m.label}
-            sx={{ fontWeight: 700 }}
+            sx={{
+              "& .MuiTab-iconWrapper": { color: GREEN, mr: 1 },
+            }}
           />
         ))}
       </Tabs>
 
-      {/* Cards */}
       <AnimatePresence mode="wait">
         <motion.div
           key={selectedMode}
-          initial="hidden"
-          animate="show"
-          exit="exit"
-          style={{ width: "100%" }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.45 }}
         >
-          <Grid
-            container
-            spacing={4}
-            justifyContent="center"
-            alignItems="stretch"
+          <Box
+            sx={{
+              maxWidth: 1200,
+              mx: "auto",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "flex-start",
+              gap: isMobile ? 2 : 4,
+              flexWrap: "wrap",
+              px: 2,
+            }}
           >
-            {data[selectedMode].map((step, idx) => {
-              const isCenter = idx === 1;
+            {data[selectedMode].map((step, i) => (
+              <Box
+                key={i}
+                sx={{
+                  flex: "1 1 30%",
+                  minWidth: isMobile ? "100%" : 260,
+                  boxSizing: "border-box",
+                  textAlign: "center",
+                  px: isMobile ? 0 : 2,
+                  py: 2,
+                  position: "relative",
+                }}
+              >
+                {!isMobile && i !== data[selectedMode].length - 1 && (
+                  <Box
+                    aria-hidden
+                    sx={{
+                      position: "absolute",
+                      right: -22,
+                      top: "8%",
+                      height: "84%",
+                      width: "2px",
+                      backgroundColor: CONNECTOR,
+                      opacity: 0.95,
+                    }}
+                  />
+                )}
 
-              return (
-                <Grid item key={idx} xs={12} sm={6} md={4}>
-                  {/* 👆 xs=12 makes cards full width on mobile */}
-                  <motion.div
-                    custom={idx}
-                    variants={cardVariants}
-                    style={{ display: "inline-block", width: "100%" }}
+                <Box sx={{ width: "100%", px: 1 }}>
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      fontWeight: 700,
+                      color: GREEN,
+                      mb: 1.5,
+                      display: "inline-block",
+                      pb: 0.5,
+                      position: "relative",
+                    }}
                   >
-                    <Paper
-                      elevation={0}
+                    {step.title}
+                    <Box
                       sx={{
-                        width: "100%",
-                        maxWidth: CARD_WIDTH,
-                        height: CARD_HEIGHT,
-                        borderRadius: 3,
-                        overflow: "hidden",
-                        display: "flex",
-                        flexDirection: "column",
-                        backgroundColor: WAVE_BLUE,
-                        border: "1px solid #c8d8ea",
-                        transform: isCenter
-                          ? "translateY(-12px)"
-                          : "translateY(0)",
-                        boxShadow: isCenter
-                          ? "0 22px 50px rgba(0,0,0,0.28)"
-                          : "0 10px 26px rgba(0,0,0,0.18)",
-                        transition:
-                          "transform .28s cubic-bezier(.2,.8,.2,1), box-shadow .28s ease",
-                        "&:hover": {
-                          transform: "translateY(-12px)",
-                          boxShadow: "0 22px 50px rgba(0,0,0,0.28)",
-                        },
-                        mx: "auto",
+                        height: 3,
+                        width: 56,
+                        background: GREEN,
+                        borderRadius: 2,
+                        position: "absolute",
+                        bottom: -8,
+                        left: "50%",
+                        transform: "translateX(-50%)",
                       }}
-                    >
-                      {/* Image */}
-                      <Box
+                    />
+                  </Typography>
+
+                  <Box sx={{ mt: 2 }}>
+                    {step.points.map((p, idx) => (
+                      <Typography
+                        key={idx}
+                        variant="body2"
                         sx={{
-                          height: IMG_HEIGHT,
-                          width: "100%",
-                          backgroundColor: "#ffffff",
-                          p: 1,
-                          boxSizing: "border-box",
+                          color: MUTED,
+                          lineHeight: 1.8,
+                          fontSize: "0.98rem",
+                          mb: idx === step.points.length - 1 ? 0 : 0.5,
+                          px: { xs: 1.5, md: 0 },
+                          background: CARD_BG,
+                          borderRadius: 1.5,
+                          py: 1,
                         }}
                       >
-                        <Box
-                          component="img"
-                          src={step.image}
-                          alt={step.title}
-                          sx={{
-                            width: "100%",
-                            height: "100%",
-                            objectFit: "contain",
-                            borderRadius: 1,
-                            display: "block",
-                          }}
-                        />
-                      </Box>
-
-                      {/* Content */}
-                      <Box
-                        sx={{
-                          flex: 1,
-                          p: 3,
-                          pt: 2,
-                          display: "flex",
-                          flexDirection: "column",
-                          justifyContent: "center",
-                          backgroundColor: WAVE_BLUE,
-                          color: BODY_TEXT,
-                        }}
-                      >
-                        <Box sx={{ textAlign: "center", mb: 1.5 }}>
-                          <Typography
-                            variant="h6"
-                            sx={{
-                              fontWeight: "bold",
-                              color: HEADING_BLUE,
-                              display: "inline-block",
-                              paddingBottom: "4px",
-                              borderBottom: `2px solid ${HEADING_BLUE}`,
-                              marginTop: "4px",
-                            }}
-                          >
-                            {step.title}
-                          </Typography>
-                        </Box>
-
-                        {step.points.map((p, i) => (
-                          <Typography
-                            key={i}
-                            variant="body2"
-                            sx={{
-                              mb: i === step.points.length - 1 ? 0 : 0.5,
-                              lineHeight: 1.5,
-                            }}
-                          >
-                            • {p}
-                          </Typography>
-                        ))}
-                      </Box>
-                    </Paper>
-                  </motion.div>
-                </Grid>
-              );
-            })}
-          </Grid>
+                        • {p}
+                      </Typography>
+                    ))}
+                  </Box>
+                </Box>
+              </Box>
+            ))}
+          </Box>
         </motion.div>
       </AnimatePresence>
     </Box>
   );
 }
-
-export default PortalDetails;

@@ -22,7 +22,7 @@ import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import Collapse from "@mui/material/Collapse";
 
-/* ------------------- Login Dropdown ------------------- */
+/*Login Dropdown*/
 const LoginDropdown = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const buttonRef = useRef();
@@ -49,7 +49,7 @@ const LoginDropdown = () => {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose} sx={{ textDecoration: "none" }}>
+        <MenuItem onClick={handleClose}>
           <a
             href="https://admin.assessir.com/login"
             target="_blank"
@@ -84,7 +84,6 @@ const LoginDropdown = () => {
   );
 };
 
-/* ------------------- Sectors Dropdown ------------------- */
 const SectorsDropdown = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [sectors, setSectors] = useState([]);
@@ -167,7 +166,7 @@ const SectorsDropdown = () => {
   );
 };
 
-/* ------------------- Solutions Dropdown (with smart scroll) ------------------- */
+/*Solutions Dropdown*/
 const SolutionsDropdown = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const handleOpen = (e) => setAnchorEl(e.currentTarget);
@@ -189,7 +188,6 @@ const SolutionsDropdown = () => {
       candidates.find(
         (id) => typeof document !== "undefined" && document.getElementById(id)
       ) || candidates[candidates.length - 1];
-
     scroller.scrollTo(found, {
       smooth: true,
       duration: 600,
@@ -213,68 +211,98 @@ const SolutionsDropdown = () => {
         onClose={handleClose}
         anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
         transformOrigin={{ vertical: "top", horizontal: "left" }}
+        PaperProps={{
+          elevation: 10,
+          sx: {
+            mt: 1,
+            minWidth: { xs: 220, sm: 280 },
+            borderRadius: 2,
+            overflow: "hidden",
+            background: "linear-gradient(180deg, #284e87ff)",
+            color: "white",
+            boxShadow: "0 10px 25px rgba(7,40,80,0.25)",
+          },
+        }}
       >
-        {/* Smooth scroll section */}
-        <MenuItem onClick={() => goTo(targets.assessment)}>
-          Assessment Solution
-        </MenuItem>
-
-        {/* Opens in new tab - Assessir Platform */}
-        <MenuItem onClick={handleClose}>
+        <MenuItem
+          onClick={handleClose}
+          sx={{
+            px: 3,
+            py: 1.25,
+            "&:hover": { background: "rgba(255,255,255,0.1)" },
+          }}
+        >
           <a
             href="https://assessir.com/"
             target="_blank"
             rel="noopener noreferrer"
             style={{ textDecoration: "none", color: "inherit" }}
           >
-            Assessir Platform
+            Managed Assessment
           </a>
         </MenuItem>
 
-        {/* Opens in new tab - DCS Exam */}
-        <MenuItem onClick={handleClose}>
+        <MenuItem
+          onClick={handleClose}
+          sx={{
+            px: 3,
+            py: 1.25,
+            "&:hover": { background: "rgba(255,255,255,0.1)" },
+          }}
+        >
           <a
             href="https://dcsexam.com/"
             target="_blank"
             rel="noopener noreferrer"
             style={{ textDecoration: "none", color: "inherit" }}
           >
-            DCS Exam
+            Self Serve Exam
           </a>
         </MenuItem>
 
-        {/* Other static items */}
-        <MenuItem onClick={handleClose} sx={{ userSelect: "none" }}>
-          Job Fair & Placement
+        <MenuItem
+          onClick={handleClose}
+          sx={{
+            px: 3,
+            py: 1.25,
+            userSelect: "none",
+            "&:hover": { background: "rgba(255,255,255,0.1)" },
+          }}
+        >
+          Placement Consulting
         </MenuItem>
-        <MenuItem onClick={handleClose} sx={{ userSelect: "none" }}>
-          Software Solution
+        <MenuItem
+          onClick={handleClose}
+          sx={{
+            px: 3,
+            py: 1.25,
+            userSelect: "none",
+            "&:hover": { background: "rgba(255,255,255,0.1)" },
+          }}
+        >
+          IT Services & Consulting
         </MenuItem>
       </Menu>
-
     </>
   );
 };
 
-/* ------------------- Nav Links ------------------- */
+/*Nav Links*/
 const navLinks = [
   { label: "Home", to: "hero" },
   { label: "About", to: "about" },
   { label: "Why Us", to: "why" },
-  { label: "Solutions", to: "solutions" }, // desktop shows dropdown instead
+  { label: "Solutions", to: "solutions" },
   { label: "Placement", to: "placement" },
   { label: "Sectors", to: "sectors" },
   { label: "Contact", to: "contact" },
-  //{ label: "Login", to: "Login" },
 ];
 
-/* ------------------- Navbar ------------------- */
 const Navbar = ({ onNavigate = {} }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [sectors, setSectors] = useState([]);
-  const [loginOpen, setLoginOpen] = useState(false);
   const [sectorsOpen, setSectorsOpen] = useState(false);
-  const [solutionsOpen, setSolutionsOpen] = useState(false); // for Drawer
+  const [solutionsOpen, setSolutionsOpen] = useState(false);
 
   useEffect(() => {
     fetch("/sectors.json")
@@ -294,11 +322,12 @@ const Navbar = ({ onNavigate = {} }) => {
     <AppBar
       position="sticky"
       sx={{
-        background: "linear-gradient(to right, #ffffff 20%, #0d47a1 80%)",
+        background:
+         // "linear-gradient(90deg, #ffffff 0%, #ffffff 18%, #0d47a1 55%, #007f5f 100%)",
+          "linear-gradient(90deg, #ffffff 0%, #244567ff 65%)",
       }}
     >
       <Toolbar sx={{ justifyContent: "space-between" }}>
-        {/* Logo + Brand */}
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <motion.img
             src={logo}
@@ -333,10 +362,8 @@ const Navbar = ({ onNavigate = {} }) => {
           </Typography>
         </Box>
 
-        {/* Desktop Links */}
         <Box sx={{ display: { xs: "none", sm: "block" } }}>
           {navLinks.map((item) => {
-           // if (item.label === "Login") return <LoginDropdown key={item.to} />;
             if (item.label === "Sectors") return <SectorsDropdown key={item.to} />;
             if (item.label === "Solutions") return <SolutionsDropdown key={item.to} />;
             return (
@@ -349,7 +376,6 @@ const Navbar = ({ onNavigate = {} }) => {
           })}
         </Box>
 
-        {/* Hamburger Icon */}
         <IconButton
           sx={{ display: { sm: "none" }, color: "white" }}
           onClick={() => setDrawerOpen(true)}
@@ -357,55 +383,10 @@ const Navbar = ({ onNavigate = {} }) => {
           <MenuIcon />
         </IconButton>
 
-        {/* Drawer Menu (Mobile) */}
         <Drawer anchor="right" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
           <Box sx={{ width: 270 }}>
             <List>
               {navLinks.map((item) => {
-                // if (item.label === "Login") {
-                //   return (
-                //     <Box key="login">
-                //       <ListItemButton onClick={() => setLoginOpen(!loginOpen)}>
-                //         <ListItemText primary="Login" />
-                //         {loginOpen ? <ExpandLess /> : <ExpandMore />}
-                //       </ListItemButton>
-                //       <Collapse in={loginOpen} timeout="auto" unmountOnExit>
-                //         <List component="div" disablePadding>
-                //           <ListItemButton
-                //             component="a"
-                //             href="https://admin.assessir.com/login"
-                //             target="_blank"
-                //             rel="noopener noreferrer"
-                //             sx={{ pl: 4 }}
-                //             onClick={() => setDrawerOpen(false)}
-                //           >
-                //             <ListItemText primary="Admin Login" />
-                //           </ListItemButton>
-                //           <ListItemButton
-                //             component="a"
-                //             href="https://web.assessir.com/login"
-                //             target="_blank"
-                //             rel="noopener noreferrer"
-                //             sx={{ pl: 4 }}
-                //             onClick={() => setDrawerOpen(false)}
-                //           >
-                //             <ListItemText primary="Assessor Login" />
-                //           </ListItemButton>
-                //           <ListItemButton
-                //             component="a"
-                //             href="https://candidate.assessir.com/login"
-                //             target="_blank"
-                //             rel="noopener noreferrer"
-                //             sx={{ pl: 4 }}
-                //             onClick={() => setDrawerOpen(false)}
-                //           >
-                //             <ListItemText primary="Candidate Login" />
-                //           </ListItemButton>
-                //         </List>
-                //       </Collapse>
-                //     </Box>
-                //   );
-                // } else 
                 if (item.label === "Sectors") {
                   return (
                     <Box key="sectors">
@@ -440,7 +421,6 @@ const Navbar = ({ onNavigate = {} }) => {
                       </ListItemButton>
                       <Collapse in={solutionsOpen} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
-                          {/* Works as before */}
                           <ListItemButton
                             sx={{ pl: 4 }}
                             onClick={() => {
@@ -456,26 +436,10 @@ const Navbar = ({ onNavigate = {} }) => {
                           >
                             <ListItemText primary="Assessment Solution" />
                           </ListItemButton>
-
-                          {/* Leads nowhere: closes drawer only */}
-                          <ListItemButton
-                            sx={{ pl: 4 }}
-                            onClick={() => {
-                              setDrawerOpen(false);
-                              // no navigation
-                            }}
-                          >
+                          <ListItemButton sx={{ pl: 4 }} onClick={() => setDrawerOpen(false)}>
                             <ListItemText primary="Job Fair & Placement" />
                           </ListItemButton>
-
-                          {/* Leads nowhere: closes drawer only */}
-                          <ListItemButton
-                            sx={{ pl: 4 }}
-                            onClick={() => {
-                              setDrawerOpen(false);
-                              // no navigation
-                            }}
-                          >
+                          <ListItemButton sx={{ pl: 4 }} onClick={() => setDrawerOpen(false)}>
                             <ListItemText primary="Software Solution" />
                           </ListItemButton>
                         </List>

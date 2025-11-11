@@ -18,6 +18,12 @@ import { motion } from "framer-motion";
 import "swiper/css";
 import "swiper/css/pagination";
 
+const GREEN = "#00A859";
+const BG = "#0f2a45";
+const CARD_BG = "rgba(255,255,255,0.03)";
+const WAVE_FILL = "#0b5e3f";
+const MUTED_TEXT = "rgba(255,255,255,0.88)";
+
 const testimonials = [
   {
     name: "Ajay Bhusan",
@@ -92,7 +98,7 @@ const Testimonials = () => {
       sx={{
         py: 10,
         px: { xs: 3, md: 10 },
-        background: "#ffffff",
+        background: BG,
       }}
     >
       {/* Animated Heading */}
@@ -112,6 +118,7 @@ const Testimonials = () => {
               display: "inline-block",
               position: "relative",
               px: 1,
+              color: MUTED_TEXT,
               "&::after": {
                 content: '""',
                 position: "absolute",
@@ -119,7 +126,7 @@ const Testimonials = () => {
                 bottom: -6,
                 height: 4,
                 width: "100%",
-                backgroundColor: theme.palette.primary.main,
+                backgroundColor: GREEN,
                 borderRadius: 2,
                 transform: "scaleX(0)",
                 transformOrigin: "left",
@@ -131,13 +138,14 @@ const Testimonials = () => {
             }}
           >
             What Our{" "}
-            <Box component="span" sx={{ color: theme.palette.primary.main }}>
+            <Box component="span" sx={{ color: GREEN }}>
               Clients Say
             </Box>
           </Typography>
         </motion.div>
       </Box>
 
+      {/* Swiper Section */}
       <Swiper
         modules={[Autoplay, Pagination]}
         slidesPerView={isMobile ? 1 : 3}
@@ -145,7 +153,12 @@ const Testimonials = () => {
         loop
         autoplay={{ delay: 5000 }}
         pagination={{ clickable: true }}
-        style={{ paddingBottom: 40 }}
+        style={{
+          paddingBottom: 40,
+          "--swiper-pagination-color": "#00A859", // ✅ green active bullet
+          "--swiper-pagination-bullet-inactive-color": "rgba(0,168,89,0.4)", // ✅ green inactive
+          "--swiper-pagination-bullet-inactive-opacity": "1",
+        }}
       >
         {testimonials.map((t, index) => (
           <SwiperSlide key={index} style={{ height: "100%" }}>
@@ -166,16 +179,16 @@ const Testimonials = () => {
                   px: 4,
                   py: 5,
                   borderRadius: "20px",
-                  background: "#ffffff",
-                  boxShadow: "0 10px 30px rgba(0,0,0,0.06)",
+                  background: CARD_BG,
+                  boxShadow: `0 18px 40px ${GREEN}15, 0 8px 20px rgba(0,0,0,0.25)`,
                   textAlign: "center",
                   overflow: "hidden",
                   transition: "all 0.3s ease-in-out",
                   border: "2px solid transparent",
                   "&:hover": {
                     transform: "translateY(-8px)",
-                    borderColor: "#1976d2",
-                    boxShadow: "0 16px 40px rgba(0,0,0,0.08)",
+                    borderColor: GREEN,
+                    boxShadow: `0 24px 60px ${GREEN}22, 0 10px 30px rgba(0,0,0,0.28)`,
                   },
                 }}
               >
@@ -188,8 +201,9 @@ const Testimonials = () => {
                     width: "100%",
                     height: "100%",
                     zIndex: 0,
-                    opacity: 0.15,
+                    opacity: 1,
                     overflow: "hidden",
+                    pointerEvents: "none",
                   }}
                 >
                   <svg
@@ -199,7 +213,7 @@ const Testimonials = () => {
                   >
                     <path
                       d="M0.00,49.98 C150.00,150.00 349.91,-49.98 500.00,49.98 L500.00,150.00 L0.00,150.00 Z"
-                      style={{ stroke: "none", fill: "#0d47a1" }}
+                      style={{ stroke: "none", fill: WAVE_FILL, opacity: 0.14 }}
                     ></path>
                   </svg>
                 </Box>
@@ -211,8 +225,8 @@ const Testimonials = () => {
                     top: 16,
                     left: 20,
                     fontSize: 90,
-                    color: "#1976d2",
-                    opacity: 0.05,
+                    color: GREEN,
+                    opacity: 0.08,
                     zIndex: 1,
                   }}
                 />
@@ -227,7 +241,7 @@ const Testimonials = () => {
                       height: 80,
                       mb: 2,
                       mx: "auto",
-                      border: "3px solid #1976d2",
+                      border: `3px solid ${GREEN}`,
                       transition: "0.3s ease-in-out",
                     }}
                   />
@@ -238,7 +252,7 @@ const Testimonials = () => {
                   variant="body1"
                   sx={{
                     fontStyle: "italic",
-                    color: "#333",
+                    color: MUTED_TEXT,
                     fontSize: "0.95rem",
                     lineHeight: 1.7,
                     mb: 3,
@@ -258,7 +272,7 @@ const Testimonials = () => {
                 <Typography
                   variant="h6"
                   fontWeight="bold"
-                  sx={{ color: "#1976d2", zIndex: 2, position: "relative" }}
+                  sx={{ color: GREEN, zIndex: 2, position: "relative" }}
                 >
                   {t.name}
                 </Typography>
@@ -271,6 +285,7 @@ const Testimonials = () => {
                     mt: 0.5,
                     zIndex: 2,
                     position: "relative",
+                    color: "rgba(255,255,255,0.78)",
                   }}
                 >
                   {t.role}
@@ -285,115 +300,3 @@ const Testimonials = () => {
 };
 
 export default Testimonials;
-
-// import React from "react";
-// import { Box, Typography, Grid, Paper } from "@mui/material";
-
-// const Testimonials = () => {
-//   return (
-//     <Box
-//       sx={{
-//         mt: 14,
-//         maxWidth: "1536px",
-//         mx: "auto",
-//         p: { xs: 3, lg: 10 },
-//         backgroundImage: 'url(/Vector 7293.png)',
-//         // backgroundColor: "#1976d2",
-
-//         backgroundPosition: "center bottom",
-//         backgroundRepeat: "no-repeat",
-//         backgroundSize: "cover",
-//       }}
-//     >
-//       {/* Top Section */}
-//       <Grid
-//         container
-//         spacing={{ xs: 5, md: 2 }}
-//         alignItems="center"
-//         wrap="wrap"
-//         sx={{ mb: { xs: 8, lg: 0 } }}
-//       >
-//         {/* Left Text */}
-//         <Grid item xs={12} md={7}>
-//           <Typography
-//             variant="h5"
-//             sx={{
-//               fontSize: { xs: "1.25rem", md: "2rem" },
-//               fontWeight: 600,
-//               mb: 2,
-//               color: "white",
-//             }}
-//           >
-//             Secure, easy-to-conduct online exams with seamless evaluation and
-//             governance solution
-//           </Typography>
-//           <Typography
-//             variant="body2"
-//             sx={{ fontSize: { xs: "0.75rem", md: "0.875rem" }, color: "white" }}
-//           >
-//             As a leading educational platform provider, we help academic
-//             institutions create custom applications tailored to their unique
-//             needs, ensuring seamless integration and functionality that meets
-//             their vision.
-//           </Typography>
-//         </Grid>
-
-//         {/* Right Image */}
-//         <Grid item xs={12} md={5}>
-//           <Box
-//             component="img"
-//             src="/assets/elearning-solution.png"
-//             alt="elearning-solution"
-//             loading="lazy"
-//             sx={{
-//               width: "100%",
-//               maxWidth: 400,
-//               mx: "auto",
-//               display: "block",
-//               color: "transparent",
-//             }}
-//           />
-//         </Grid>
-//       </Grid>
-
-//       {/* Bottom Box */}
-//       <Paper
-//         elevation={2}
-//         sx={{
-//           mt: 5,
-//           display: "flex",
-//           alignItems: "center",
-//           maxWidth: "1024px",
-//           mx: "auto",
-//           p: { xs: 2, md: 4 },
-//         }}
-//       >
-//         <Box
-//           component="img"
-//           src="/icons/Border.png"
-//           alt="Border Icon"
-//           loading="lazy"
-//           sx={{
-//             width: 40,
-//             height: 40,
-//             mx: 2,
-//             color: "transparent",
-//           }}
-//         />
-//         <Typography
-//           variant="body2"
-//           sx={{
-//             fontSize: { xs: "0.75rem", md: "0.875rem" },
-//             px: { xs: 1, md: 3 },
-//           }}
-//         >
-//           Experience the online skill development platform, committed to
-//           delivering accessible, high-quality education and empowering learners
-//           to enhance their skills for career growth.
-//         </Typography>
-//       </Paper>
-//     </Box>
-//   );
-// };
-
-// export default Testimonials;

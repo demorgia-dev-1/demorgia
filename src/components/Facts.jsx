@@ -1,138 +1,3 @@
-// import React from "react";
-// import { Box, Typography, Grid, Paper, useTheme } from "@mui/material";
-// import CountUp from "react-countup";
-// import { useInView } from "react-intersection-observer";
-// import { motion } from "framer-motion";
-
-// const facts = [
-//   { label: "SSC Empanelled", value: 25 },
-//   { label: "Job Roles Assessed", value: 900 },
-//   { label: "Assessed Candidates", value: 1001303 },
-//   { label: "SME Engaged", value: 200 },
-//   { label: "Assessor/Proctor", value: 1000 },
-//   { label: "Projects", value: 100 },
-// ];
-
-// const Facts = () => {
-//   const theme = useTheme();
-//   const { ref, inView } = useInView({ triggerOnce: true });
-
-//   return (
-//     <Box
-//       id="facts"
-//       sx={{
-//         py: 10,
-//         background: "white",
-//         overflow: "hidden",
-//       }}
-//     >
-//       <Box sx={{ maxWidth: "lg", mx: "auto", px: 2 }}>
-//         <motion.div
-//           initial={{ opacity: 0, y: 20 }}
-//           whileInView={{ opacity: 1, y: 0 }}
-//           viewport={{ once: true }}
-//           transition={{ duration: 0.6 }}
-//         >
-//           <Box sx={{ textAlign: "center", mb: 4 }}>
-//             <motion.div
-//               initial={{ scaleX: 0 }}
-//               whileInView={{ scaleX: 1 }}
-//               viewport={{ once: true }}
-//               transition={{ duration: 0.7, ease: "easeOut" }}
-//               style={{ display: "inline-block" }}
-//             >
-//               <Typography
-//                 variant="h4"
-//                 fontWeight="bold"
-//                 component="h2"
-//                 sx={{
-//                   display: "inline-block",
-//                   position: "relative",
-//                   px: 1,
-//                   "&::after": {
-//                     content: '""',
-//                     position: "absolute",
-//                     left: 0,
-//                     bottom: -6,
-//                     height: 4,
-//                     width: "100%",
-//                     backgroundColor: theme.palette.primary.main,
-//                     borderRadius: 2,
-//                     transform: "scaleX(0)",
-//                     transformOrigin: "left",
-//                     transition: "transform 0.4s ease-in-out",
-//                   },
-//                   "&:hover::after": {
-//                     transform: "scaleX(1)",
-//                   },
-//                 }}
-//               >
-//                 Fac
-//                 <Box
-//                   component="span"
-//                   sx={{ color: theme.palette.primary.main }}
-//                 >
-//                   ts
-//                 </Box>
-//               </Typography>
-//             </motion.div>
-//           </Box>
-//           <Typography
-//             align="center"
-//             sx={{ maxWidth: 800, mx: "auto", mb: 6, color: "text.secondary" }}
-//           >
-//             Our team's expertise spans various domains, including assessment
-//             excellence, strategic business consultancy, digital marketing
-//             proficiency, and talent acquisition. We help individuals unlock
-//             their potential and organizations achieve their goals.
-//           </Typography>
-//         </motion.div>
-
-//         <Grid container spacing={3} justifyContent="center" ref={ref}>
-//           {facts.map((fact, idx) => (
-//             <Grid item xs={6} sm={4} md={2} key={idx}>
-//               <motion.div
-//                 initial={{ opacity: 0, scale: 0.8 }}
-//                 animate={inView ? { opacity: 1, scale: 1 } : {}}
-//                 transition={{ duration: 0.4, delay: idx * 0.15 }}
-//               >
-//                 <Paper
-//                   elevation={4}
-//                   sx={{
-//                     p: 3,
-//                     textAlign: "center",
-//                     borderRadius: 4,
-//                     background: "white",
-//                     minHeight: { xs: 50 },
-//                     width: { xs: 140, md: "auto" },
-//                   }}
-//                 >
-//                   <Typography
-//                     variant="h5"
-//                     fontWeight="bold"
-//                     color={theme.palette.primary.main}
-//                   >
-//                     <CountUp
-//                       end={inView ? fact.value : 0}
-//                       duration={1.8}
-//                       separator=","
-//                     />
-//                     <span style={{ color: "#43a047", fontWeight: 600 }}>+</span>
-//                   </Typography>
-//                   <Typography variant="body2" mt={1} color="text.secondary">
-//                     {fact.label}
-//                   </Typography>
-//                 </Paper>
-//               </motion.div>
-//             </Grid>
-//           ))}
-//         </Grid>
-//       </Box>
-//     </Box>
-//   );
-// };
-
-// export default Facts;
 import React from "react";
 import {
   Box,
@@ -153,7 +18,11 @@ import {
   Assignment,
 } from "@mui/icons-material";
 
-// Facts data (icon as component, no color here)
+const BG = "#0f2a45";
+const GREEN = "#00A859";
+const WHITE = "#ffffff";
+const MUTED = "rgba(255,255,255,0.78)";
+
 const facts = [
   { label: "SSC Empanelled", value: 25, icon: Verified },
   { label: "Job Roles Assessed", value: 900, icon: Work },
@@ -172,11 +41,13 @@ const Facts = () => {
       id="facts"
       sx={{
         py: 10,
-        background: "white",
+        background: BG,
+        color: WHITE,
         overflow: "hidden",
       }}
     >
       <Box sx={{ maxWidth: "lg", mx: "auto", px: 2 }}>
+        {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -199,14 +70,15 @@ const Facts = () => {
                   display: "inline-block",
                   position: "relative",
                   px: 1,
+                  color: WHITE,
                   "&::after": {
                     content: '""',
                     position: "absolute",
                     left: 0,
-                    bottom: -6,
+                    bottom: -8,
                     height: 4,
                     width: "100%",
-                    backgroundColor: theme.palette.primary.main,
+                    backgroundColor: GREEN,
                     borderRadius: 2,
                     transform: "scaleX(0)",
                     transformOrigin: "left",
@@ -218,15 +90,22 @@ const Facts = () => {
                 }}
               >
                 Fac
-                <Box component="span" sx={{ color: theme.palette.primary.main }}>
+                <Box component="span" sx={{ color: GREEN }}>
                   ts
                 </Box>
               </Typography>
             </motion.div>
           </Box>
+
           <Typography
             align="center"
-            sx={{ maxWidth: 800, mx: "auto", mb: 6, color: "text.secondary" }}
+            sx={{
+              maxWidth: 800,
+              mx: "auto",
+              mb: 6,
+              color: MUTED,
+              fontSize: { xs: "0.95rem", md: "1rem" },
+            }}
           >
             Our team's expertise spans various domains, including assessment
             excellence, strategic business consultancy, digital marketing
@@ -235,10 +114,10 @@ const Facts = () => {
           </Typography>
         </motion.div>
 
+        {/* Facts Grid */}
         <Grid container spacing={3} justifyContent="center" ref={ref}>
           {facts.map((fact, idx) => {
             const IconComponent = fact.icon;
-            const iconColor = idx % 2 === 0 ? "#4CAF50" : "#1976D2";
 
             return (
               <Grid
@@ -255,41 +134,59 @@ const Facts = () => {
                   transition={{ duration: 0.5, delay: idx * 0.15 }}
                 >
                   <Paper
-                    elevation={3}
+                    elevation={0}
                     sx={{
                       width: 170,
                       height: 170,
                       p: 2,
                       textAlign: "center",
                       borderRadius: 4,
-                      background: "white",
+                      background: "rgba(255,255,255,0.03)",
                       display: "flex",
                       flexDirection: "column",
                       alignItems: "center",
                       justifyContent: "center",
-                      transition: "transform 0.3s ease-in-out",
+                      border: "1px solid rgba(255,255,255,0.05)",
+                      transition: "transform 0.3s ease-in-out, box-shadow .3s",
                       "&:hover": {
-                        transform: "scale(1.05)",
-                        boxShadow: 6,
+                        transform: "translateY(-6px)",
+                        boxShadow: `0 18px 40px ${GREEN}44`,
                       },
                     }}
                   >
-                    <Box sx={{ mb: 1 }}>
-                      <IconComponent fontSize="large" sx={{ color: iconColor }} />
+                    {/* Icon */}
+                    <Box sx={{ mb: 1, display: "grid", placeItems: "center" }}>
+                      <IconComponent
+                        fontSize="large"
+                        sx={{ color: GREEN }}
+                      />
                     </Box>
+
+                    {/* Count */}
                     <Typography
                       fontSize="1.4rem"
                       fontWeight={700}
-                      color={theme.palette.primary.main}
+                      sx={{ color: WHITE, lineHeight: 1 }}
                     >
                       <CountUp
                         end={inView ? fact.value : 0}
                         duration={1.8}
                         separator=","
                       />
-                      <span style={{ color: "#43a047", fontWeight: 600 }}>+</span>
+                      <Box
+                        component="span"
+                        sx={{ color: GREEN, fontWeight: 600, ml: 0.5 }}
+                      >
+                        +
+                      </Box>
                     </Typography>
-                    <Typography variant="body2" mt={1} color="text.secondary">
+
+                    {/* Label */}
+                    <Typography
+                      variant="body2"
+                      mt={1}
+                      sx={{ color: MUTED, textTransform: "capitalize" }}
+                    >
                       {fact.label}
                     </Typography>
                   </Paper>

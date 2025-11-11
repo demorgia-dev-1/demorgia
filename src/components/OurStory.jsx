@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
-import { Box, Typography, IconButton, Container, useTheme } from "@mui/material";
+import { Box, Typography, IconButton, Container } from "@mui/material";
 import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
-import { motion} from "framer-motion";
+import { motion } from "framer-motion";
 
 const milestones = [
   {
@@ -48,7 +48,6 @@ const milestones = [
 ];
 
 const OurStory = () => {
-  const theme = useTheme();
   const scrollRef = useRef(null);
 
   const scroll = (direction) => {
@@ -61,57 +60,54 @@ const OurStory = () => {
   };
 
   return (
-    <Box sx={{ py: 10, bgcolor: "white" }}>
+    <Box sx={{ py: 10, bgcolor: "#0f2a45", color: "white" }}>
       <Container maxWidth="lg">
         {/* Section Header */}
         <Box sx={{ textAlign: "center", mb: 4 }}>
-        <motion.div
-          initial={{ scaleX: 0 }}
-          whileInView={{ scaleX: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          style={{ display: "inline-block" }}
-        >
-          <Typography
-            variant="h4"
-            fontWeight="bold"
-            component="h2"
-            sx={{
-              display: "inline-block",
-              position: "relative",
-              px: 1,
-              "&::after": {
-                content: '""',
-                position: "absolute",
-                left: 0,
-                bottom: -6,
-                height: 4,
-                width: "100%",
-                backgroundColor: theme.palette.primary.main,
-                borderRadius: 2,
-                transform: "scaleX(0)",
-                transformOrigin: "left",
-                transition: "transform 0.4s ease-in-out",
-              },
-              "&:hover::after": {
-                transform: "scaleX(1)",
-              },
-            }}
+          <motion.div
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            style={{ display: "inline-block" }}
           >
-            Our{" "}
-            <Box component="span" sx={{ color: theme.palette.primary.main }}>
-              Story
-            </Box>
-          </Typography>
-        </motion.div>
-      </Box>
+            <Typography
+              variant="h4"
+              fontWeight="bold"
+              component="h2"
+              sx={{
+                display: "inline-block",
+                position: "relative",
+                px: 1,
+                "&::after": {
+                  content: '""',
+                  position: "absolute",
+                  left: 0,
+                  bottom: -6,
+                  height: 4,
+                  width: "100%",
+                  backgroundColor: "#00A859", 
+                  borderRadius: 2,
+                  transform: "scaleX(0)",
+                  transformOrigin: "left",
+                  transition: "transform 0.4s ease-in-out",
+                },
+                "&:hover::after": {
+                  transform: "scaleX(1)",
+                },
+              }}
+            >
+              Our <Box component="span" sx={{ color: "#00A859" }}>Story</Box>
+            </Typography>
+          </motion.div>
+        </Box>
 
         {/* Intro Paragraph */}
         <Typography
           variant="body1"
-          color="text.secondary"
           textAlign="center"
           mb={6}
+          sx={{ color: "rgba(255,255,255,0.85)" }}
         >
           Demorgia Consulting Services Pvt. Ltd. has consistently contributed to
           the national mission of skill development since its inception. Here’s
@@ -129,6 +125,9 @@ const OurStory = () => {
               zIndex: 10,
               transform: "translateY(-50%)",
               display: { xs: "none", sm: "flex" },
+              color: "#00A859",
+              bgcolor: "rgba(255,255,255,0.1)",
+              "&:hover": { bgcolor: "rgba(255,255,255,0.25)" },
             }}
           >
             <MdArrowBackIos />
@@ -142,6 +141,9 @@ const OurStory = () => {
               zIndex: 10,
               transform: "translateY(-50%)",
               display: { xs: "none", sm: "flex" },
+              color: "#00A859",
+              bgcolor: "rgba(255,255,255,0.1)",
+              "&:hover": { bgcolor: "rgba(255,255,255,0.25)" },
             }}
           >
             <MdArrowForwardIos />
@@ -169,30 +171,38 @@ const OurStory = () => {
                   minWidth: { xs: "100%", sm: 300 },
                   maxWidth: { xs: "100%", sm: 300 },
                   flexShrink: 0,
-                  borderLeft: "6px solid",
-                  borderColor: "primary.main",
+                  borderLeft: "6px solid #00A859",
                   borderRadius: 3,
                   p: 3,
-                  boxShadow: 3,
+                  backgroundColor: "rgba(255,255,255,0.05)",
+                  boxShadow: "0px 4px 10px rgba(0,0,0,0.4)",
                   transition: "0.3s",
                   ":hover": {
                     transform: { sm: "translateY(-5px)" },
-                    boxShadow: 6,
+                    boxShadow: "0px 6px 15px rgba(0,0,0,0.6)",
                   },
                 }}
               >
                 <Typography
                   variant="h6"
-                  color="primary"
                   fontWeight="bold"
                   gutterBottom
+                  sx={{ color: "#00A859" }}
                 >
                   {item.year}
                 </Typography>
-                <Typography variant="subtitle1" fontWeight="bold" gutterBottom>
+                <Typography
+                  variant="subtitle1"
+                  fontWeight="bold"
+                  gutterBottom
+                  sx={{ color: "white" }}
+                >
                   {item.title}
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
+                <Typography
+                  variant="body2"
+                  sx={{ color: "rgba(255,255,255,0.85)" }}
+                >
                   {item.description}
                 </Typography>
               </Box>
@@ -200,7 +210,6 @@ const OurStory = () => {
           </Box>
         </Box>
       </Container>
-
     </Box>
   );
 };

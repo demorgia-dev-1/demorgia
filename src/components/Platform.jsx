@@ -1,9 +1,9 @@
 import React from "react";
-import { Typography, Box, useTheme, useMediaQuery, Link } from "@mui/material";
+import { Box, Container, Typography, Link, useTheme, useMediaQuery } from "@mui/material";
 import { motion } from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
 
-/* original list (unchanged) */
+/* original list */
 const features = [
   "AI-Enabled Online & Offline Assessment Modes",
   "Multilingual Support with Google Translator Integration",
@@ -15,220 +15,217 @@ const features = [
   "Speech-to-Text & Text-to-Speech for Divyangjan (Coming Soon)",
 ];
 
-/* only the LAST FOUR points */
-const steps = features.slice(-4); // features[4..7]
+const steps = features.slice(-4); 
+
+const BG = "#0f2a45";
+const GREEN = "#00A859";
+const WHITE = "#FFFFFF";
+const MUTED_2 = "rgba(255,255,255,0.72)";
 
 const Platform = () => {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-
-  const blue = theme.palette.primary.main;
-  const green = theme.palette.success.main || "#2e7d32";
-
-  const pillHeight = 78;
-  const pillGap = 18;
-  const totalStackHeight =
-    steps.length * pillHeight + (steps.length - 1) * pillGap;
+  const isSm = useMediaQuery(theme.breakpoints.down("md"));
 
   return (
-    <Box sx={{ py: 10, px: 3, position: "relative", bgcolor: "#fff", overflow: "hidden" }}>
-      {/* faint page bg */}
-      <Box
-        sx={{
-          position: "absolute",
-          inset: 0,
-          zIndex: 0,
-          backgroundImage:
-            "url('https://www.svgbackgrounds.com/wp-content/uploads/2021/03/blob-haikei.svg')",
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          opacity: 0.05,
-        }}
-      />
+    <Box sx={{ bgcolor: BG, color: WHITE, py: { xs: 8, md: 12 } }}>
+      <Container maxWidth="lg">
+       
+        <Box sx={{ textAlign: "center", mb: { xs: 3, md: 4 }, position: "relative" }}>
+          <motion.div
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            style={{ display: "inline-block" }}
+          >
+            <Typography
+              variant="h4"
+              component="h2"
+              fontWeight={800}
+              sx={{
+                display: "inline-block",
+                px: 1,
+                fontSize: { xs: "1.8rem", md: "2.25rem" },
+                color: WHITE,
+                position: "relative",
+                "&::after": {
+                  content: '""',
+                  position: "absolute",
+                  left: 0,
+                  bottom: -8,
+                  height: 4,
+                  width: "100%",
+                  backgroundColor: GREEN,
+                  borderRadius: 2,
+                  transform: "scaleX(0)",
+                  transformOrigin: "left",
+                  transition: "transform 0.45s ease-in-out",
+                },
+                "&:hover::after": {
+                  transform: "scaleX(1)",
+                },
+              }}
+            >
+              Online <Box component="span" sx={{ color: GREEN }}>Assessment</Box> Platform
+            </Typography>
+          </motion.div>
+        </Box>
 
-      <Box
-        maxWidth="lg"
-        mx="auto"
-        display="grid"
-        gridTemplateColumns={isMobile ? "1fr" : "420px 1fr"}
-        alignItems="center"
-        gap={isMobile ? 5 : 8}
-        sx={{ position: "relative" }}
-      >
-        {/* LEFT: blue circle (NO shadow/glow) */}
-        <Box sx={{ display: "grid", placeItems: "center", minHeight: 420, position: "relative", zIndex: 0 }}>
-          <Box
+        
+        <Box sx={{ textAlign: "center", mb: { xs: 2.5, md: 3 } }}>
+          <Typography
+            variant="body1"
             sx={{
-              width: 320,
-              height: 320,
-              borderRadius: "50%",
-              background: "#eaf3ff", // light blue fill; change to blue if you want darker: blue
-              border: "none",
-              outline: "none",
-              boxShadow: "none",   // remove any rim
-              filter: "none",      // remove blue shadow/glow
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-              p: 4,
-              textAlign: "center",
+              color: MUTED_2,
+              fontWeight: 600,
+              fontSize: { xs: "0.95rem", md: "1rem" },
+              minHeight: 28,
             }}
           >
-            <Typography variant="h4" fontWeight={700} sx={{ mb: 1, lineHeight: 1.22 }}>
-              <Box component="span" sx={{ color: "#000" }}>Online</Box>{" "}
-              <Box component="span" sx={{ color: blue }}>Assessment</Box>{" "}
-              <Box component="span" sx={{ color: green }}>Platform</Box>
-            </Typography>
-
-            <Typography variant="body1" color="text.secondary" sx={{ maxWidth: 240, fontSize: 16 }}>
-              <span style={{ fontWeight: 500 }}>
-                <Typewriter
-                  words={[
-                    "AI-powered and secure assessment system...",
-                    "Supporting multilingual proctoring...",
-                    "Built for inclusive and remote evaluations...",
-                  ]}
-                  loop
-                  cursor
-                  cursorStyle="|"
-                  typeSpeed={50}
-                  deleteSpeed={30}
-                  delaySpeed={2000}
-                />
-              </span>
-            </Typography>
-          </Box>
-
-          {/* link below the circle */}
-          {/* <Typography variant="body2" sx={{ mt: 2, color: "text.secondary" }}>
-            <Link
-              href="https://assessir.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              underline="hover"
-              sx={{ color: blue, fontWeight: 600 }}
-            >
-              Click here
-            </Link>{" "}
-            for more information
-          </Typography> */}
-          {/* Explore more (two external links) */}
-          {/* <Box sx={{ mt: 2, textAlign: "center" }}> */}
-
-            <Box sx={{ display: "inline-flex", gap: 1 }}>
-              <Link
-                href="https://assessir.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                underline="hover"
-                sx={{
-                  color: blue,
-                  fontWeight: 600,
-                  px: 1.5,
-                  py: 0.5,
-                  borderRadius: 1,
-                }}
-              >
-                Assessir Platform
-              </Link>
-
-              <Typography variant="body2" sx={{ alignSelf: "center", px: -0.5 }}>
-                |
-              </Typography>
-
-              <Link
-                href="https://dcsexam.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                underline="hover"
-                sx={{
-                  color: green,
-                  fontWeight: 600,
-                  px: 1.5,
-                  py: 0.5,
-                  borderRadius: 1,
-                }}
-              >
-                DCS Exam
-              </Link>
-            </Box>
-          {/* </Box> */}
-
+            <Typewriter
+              words={[
+                "AI-powered and secure assessment system...",
+                "Supporting multilingual proctoring...",
+                "Built for inclusive and remote evaluations...",
+              ]}
+              loop
+              cursor
+              cursorStyle="▌"
+              typeSpeed={50}
+              deleteSpeed={30}
+              delaySpeed={1800}
+            />
+          </Typography>
         </Box>
 
-        {/* RIGHT: 4-step pills (01–04, ensure above circle) */}
-        <Box sx={{ position: "relative", minHeight: totalStackHeight, zIndex: 2 }}>
-          <Box display="flex" flexDirection="column" gap={`${pillGap}px`}>
-            {steps.map((text, idx) => {
-              const accent = idx % 2 === 0 ? blue : green;
-              const numberLabel = String(idx + 1).padStart(2, "0"); // 01..04
-              return (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, x: 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.45, delay: idx * 0.08 }}
+       
+        <Box sx={{ textAlign: "center", mb: { xs: 4, md: 6 } }}>
+          <Link
+            href="https://assessir.com/"
+            target="_blank"
+            rel="noreferrer"
+            underline="hover"
+            sx={{ color: GREEN, fontWeight: 700, mr: 2 }}
+          >
+            Assessir Platform
+          </Link>
+          <Link
+            href="https://dcsexam.com/"
+            target="_blank"
+            rel="noreferrer"
+            underline="hover"
+            sx={{ color: MUTED_2, fontWeight: 600 }}
+          >
+            DCS Exam
+          </Link>
+        </Box>
+
+        
+        <Box sx={{ display: "flex", justifyContent: "center", px: 2 }}>
+          <Box
+            component="ul"
+            sx={{
+              listStyle: "none",
+              p: 0,
+              m: 0,
+              width: { xs: "100%", sm: 760, md: 820 },
+            }}
+          >
+            {steps.map((text, idx) => (
+              <motion.li
+                key={idx}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.08 }}
+                style={{ marginBottom: 22 }}
+              >
+                <Box
+                  sx={{
+                    display: "flex",
+                    gap: 2,
+                    alignItems: "flex-start",
+                    justifyContent: "center",
+                  }}
                 >
+                  
                   <Box
                     sx={{
+                      width: 64,
+                      minWidth: 64,
                       display: "flex",
+                      flexDirection: "column",
                       alignItems: "center",
-                      height: `${pillHeight}px`,
+                      position: "relative",
+                      mt: 0.5,
                     }}
                   >
-                    {/* number badge */}
                     <Box
                       sx={{
-                        mr: -2,
-                        minWidth: 54,
+                        width: 54,
                         height: 54,
                         borderRadius: "50%",
-                        bgcolor: accent,
-                        color: "#fff",
+                        background: GREEN,
                         display: "grid",
                         placeItems: "center",
-                        fontWeight: 800,
-                        boxShadow: `0 8px 18px ${accent}55`,
-                        flexShrink: 0,
-                        position: "relative",
-                        zIndex: 3,
+                        boxShadow: `0 10px 24px ${GREEN}33`,
                       }}
                     >
-                      {numberLabel}
+                      <Typography sx={{ color: WHITE, fontWeight: 800 }}>
+                        {String(idx + 1).padStart(2, "0")}
+                      </Typography>
                     </Box>
 
-                    {/* pill card */}
-                    <Box
+                   
+                    {idx !== steps.length - 1 && (
+                      <Box
+                        sx={{
+                          width: 2,
+                          flex: 1,
+                          bgcolor: "rgba(255,255,255,0.08)",
+                          mt: 1.5,
+                          borderRadius: 1,
+                          minHeight: 24,
+                        }}
+                      />
+                    )}
+                  </Box>
+
+                  <Box
+                    sx={{
+                      flex: 1,
+                      background: "rgba(255,255,255,0.03)",
+                      borderRadius: 2,
+                      px: { xs: 2, md: 3 },
+                      py: 1.8,
+                      border: `1px solid rgba(255,255,255,0.05)`,
+                      transition: "transform .22s ease, box-shadow .22s ease, background .22s ease",
+                      "&:hover": {
+                        transform: "translateY(-6px)",
+                        boxShadow: `0 18px 40px ${GREEN}22`,
+                        background: "rgba(255,255,255,0.05)",
+                      },
+                      textAlign: "center",
+                    }}
+                  >
+                    <Typography
+                      variant="subtitle1"
                       sx={{
-                        flex: 1,
-                        bgcolor: "#fff",
-                        borderRadius: 999,
-                        px: 3,
-                        py: 2,
-                        boxShadow: "0 8px 20px rgba(0,0,0,0.08)",
-                        border: `1.5px solid ${accent}33`,
-                        position: "relative",
-                        zIndex: 2,
+                        fontWeight: 700,
+                        color: WHITE,
+                        mb: 0.35,
+                        fontSize: { xs: "0.98rem", md: "1.05rem" },
                       }}
                     >
-                      <Typography
-                        variant="body1"
-                        sx={{ fontSize: 15, fontWeight: 600, color: "#0d0d0d" }}
-                      >
-                        {text}
-                      </Typography>
-                      <Box sx={{ mt: 0.7, width: 72, height: 3, borderRadius: 3, bgcolor: `${accent}` }} />
-                    </Box>
+                      {text}
+                    </Typography>
                   </Box>
-                </motion.div>
-              );
-            })}
+                </Box>
+              </motion.li>
+            ))}
           </Box>
         </Box>
-      </Box>
+      </Container>
     </Box>
   );
 };

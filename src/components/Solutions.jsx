@@ -1,994 +1,3 @@
-// // import React, { useEffect } from "react";
-// // import { Box, Typography, Grid, useTheme } from "@mui/material";
-// // import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-// // import LanguageIcon from "@mui/icons-material/Language";
-// // import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
-// // import TabletMacIcon from "@mui/icons-material/TabletMac";
-// // import WebIcon from "@mui/icons-material/Web";
-// // import CodeIcon from "@mui/icons-material/Code";
-// // import { motion, useAnimation } from "framer-motion";
-
-// // const imageData = {
-// //   "Web-based Assessment Application": [
-// //     "/assets/web-login.png",
-// //     "/assets/web-dash.png",
-// //     "/assets/web-evidence.png",
-// //     "/assets/exam-evidance.png",
-// //     "/assets/exam.png",
-// //   ],
-// //   "Online Mobile Application": [
-// //     "/assets/web-login.png",
-// //     "/assets/web-dash.png",
-// //     "/assets/web-evidence.png",
-// //     "/assets/exam-evidance.png",
-// //     "/assets/exam.png",
-// //   ],
-// //   "Offline Mobile/Tablet Application": [
-// //     "/assets/web-login.png",
-// //     "/assets/web-dash.png",
-// //     "/assets/web-evidence.png",
-// //     "/assets/exam-evidance.png",
-// //     "/assets/exam.png",
-// //   ],
-// //   // "Assessir Platform": [
-// //   //   "/assets/web-login.png",
-// //   //   "/assets/web-dash.png",
-// //   //   "/assets/web-evidence.png",
-// //   //   "/assets/exam-evidance.png",
-// //   //   "/assets/exam.png",
-// //   // ],
-
-// //   // "General CBT Platform": [
-// //   //   "/assets/web-login.png",
-// //   //   "/assets/web-dash.png",
-// //   //   "/assets/web-evidence.png",
-// //   //   "/assets/exam-evidance.png",
-// //   //   "/assets/exam.png",
-// //   // ],
-// // };
-
-// // const icons = {
-// //   "Web-based Assessment Application": (
-// //     <LanguageIcon sx={{ color: "#1976d2", mr: 1 }} />
-// //   ),
-// //   "Online Mobile Application": (
-// //     <PhoneIphoneIcon sx={{ color: "#1976d2", mr: 1 }} />
-// //   ),
-// //   "Offline Mobile/Tablet Application": (
-// //     <TabletMacIcon sx={{ color: "#1976d2", mr: 1 }} />
-// //   ),
-// //   // "Assessir Platform": <WebIcon sx={{ color: "#1976d2", mr: 1 }} />,
-// //   // "General CBT Platform": <CodeIcon sx={{ color: "#1976d2", mr: 1 }} />,
-// // };
-
-// // const SectionCarousel = ({ images = [] }) => {
-// //   const controls = useAnimation();
-// //   const imageWidth = 320;
-// //   const totalImages = images.length;
-
-// //   const duplicatedImages = [...images, ...images];
-
-// //   useEffect(() => {
-// //     if (totalImages === 0) return;
-
-// //     let currentIndex = 0;
-// //     let isCancelled = false;
-
-// //     const animateSlide = async () => {
-// //       while (!isCancelled) {
-// //         await new Promise((resolve) => setTimeout(resolve, 2000));
-
-// //         currentIndex++;
-// //         await controls.start({
-// //           x: -currentIndex * imageWidth,
-// //           transition: { duration: 1.2, ease: "easeInOut" },
-// //         });
-
-// //         if (currentIndex >= totalImages) {
-// //           await controls.set({ x: 0 });
-// //           currentIndex = 0;
-// //         }
-// //       }
-// //     };
-
-// //     animateSlide();
-
-// //     return () => {
-// //       isCancelled = true;
-// //     };
-// //   }, [controls, totalImages, imageWidth]);
-
-// //   return (
-// //     <Box
-// //       sx={{
-// //         overflow: "hidden",
-// //         width: imageWidth,
-// //         height: 220,
-// //         mx: "auto",
-// //         borderRadius: 3,
-// //         background: "#f4f4f4",
-// //         position: "relative",
-// //       }}
-// //     >
-// //       <motion.div
-// //         animate={controls}
-// //         style={{
-// //           display: "flex",
-// //           width: `${duplicatedImages.length * imageWidth}px`,
-// //         }}
-// //       >
-// //         {duplicatedImages.map((img, i) => (
-// //           <Box
-// //             key={i}
-// //             component="img"
-// //             src={img}
-// //             alt={`carousel-img-${i}`}
-// //             sx={{
-// //               width: `${imageWidth}px`,
-// //               height: "100%",
-// //               objectFit: "contain",
-// //               flexShrink: 0,
-// //             }}
-// //             onError={() => console.warn("Image load error:", img)}
-// //           />
-// //         ))}
-// //       </motion.div>
-// //     </Box>
-// //   );
-// // };
-
-// // const Solutions = () => {
-// //   const theme = useTheme();
-
-// //   const renderSection = (item, index) => {
-// //     const images = imageData[item.title] || [];
-
-// //     return (
-// //       <Box
-// //         key={index}
-// //         sx={{
-// //           backgroundSize: "cover",
-// //           borderRadius: 3,
-// //           py: { xs: 4, md: 6 },
-// //           px: { xs: 2, md: 15 },
-// //           mb: 6,
-// //         }}
-// //       >
-// //         <Grid
-// //           container
-// //           spacing={4}
-// //           alignItems="center"
-// //           justifyContent="space-between"
-// //           direction={index % 2 === 0 ? "row" : "row-reverse"}
-// //         >
-// //           <Grid item xs={12} md={5}>
-// //             <motion.div
-// //               initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40 }}
-// //               whileInView={{ opacity: 1, x: 0 }}
-// //               viewport={{ once: true }}
-// //               transition={{ duration: 0.7 }}
-// //             >
-// //               <SectionCarousel images={images} />
-// //             </motion.div>
-// //           </Grid>
-
-// //           <Grid item xs={12} md={6}>
-// //             <motion.div
-// //               initial={{ opacity: 0, y: 20 }}
-// //               whileInView={{ opacity: 1, y: 0 }}
-// //               viewport={{ once: true }}
-// //               transition={{ duration: 0.7 }}
-// //             >
-// //               <Typography
-// //                 variant="h6"
-// //                 fontWeight="bold"
-// //                 sx={{
-// //                   color: theme.palette.primary.main,
-// //                   mb: 2,
-// //                   display: "flex",
-// //                   alignItems: "center",
-// //                   fontSize: "2rem",
-// //                 }}
-// //               >
-// //                 {icons[item.title]}
-// //                 {`${index + 1}. ${item.title}`}
-// //               </Typography>
-// //               {item.points.map((pt, i) => (
-// //                 <Box key={i} display="flex" alignItems="flex-start" mb={1.5}>
-// //                   <CheckCircleIcon
-// //                     sx={{
-// //                       color: theme.palette.primary.main,
-// //                       mr: 1,
-// //                       mt: 0.3,
-// //                     }}
-// //                     fontSize="small"
-// //                   />
-// //                   <Typography
-// //                     variant="body2"
-// //                     color="text.secondary"
-// //                     fontSize="1.2rem"
-// //                     sx={{
-// //                       pl: 1,
-// //                       borderLeft: `3px solid ${theme.palette.primary.light}`,
-// //                     }}
-// //                   >
-// //                     {pt}
-// //                   </Typography>
-// //                 </Box>
-// //               ))}
-// //             </motion.div>
-// //           </Grid>
-// //         </Grid>
-// //       </Box>
-// //     );
-// //   };
-
-// //   return (
-// //     <Box
-// //       sx={{
-// //         position: "relative",
-// //         pt: { xs: 10, md: 14 },
-// //     pb: { xs: 6, md: 10 },
-// //         background: "#ffffff",
-// //         overflow: "hidden",
-// //       }}
-// //     >
-// //       {/* Top Wave */}
-
-// //       {/* <Box
-// //         component="svg"
-// //         sx={{
-// //           position: "absolute",
-// //           top: 0,
-// //           left: 0,
-// //           width: "100%",
-// //           height: 200,
-// //           transform: "scaleY(-1)",
-// //           zIndex: 0,
-// //         }}
-// //         viewBox="0 0 1440 100"
-// //         xmlns="http://www.w3.org/2000/svg"
-// //         preserveAspectRatio="none"
-// //       >
-// //         <path
-// //           fill="rgb(10, 72, 158)"
-// //           d="M0,32L60,48C120,64,240,96,360,96C480,96,600,64,720,48C840,32,960,32,1080,32C1200,32,1320,32,1380,32L1440,32V100H1380C1320,100,1200,100,1080,100C960,100,840,100,720,100C600,100,480,100,360,100C240,100,120,100,60,100H0Z"
-// //         />
-// //       </Box> */}
-// //       {/* <Box
-// //   component="svg"
-// //   xmlns="http://www.w3.org/2000/svg"
-// //   viewBox="0 0 1440 320"
-// //   preserveAspectRatio="none"
-// //   sx={{
-// //     width: "100%",
-// //     height: "240px",
-// //     display: "block",
-// //     position: "absolute",
-// //     top: 0,
-// //     left: 0,
-// //     zIndex: 0,
-// //   }}
-// // >
-// //   <path
-// //   fill="rgb(10, 72, 158)"
-// //   d="M0,160 C300,240 600,80 900,160 C1200,240 1440,80 1440,80 L1440,0 L0,0 Z"
-// // />
-// // </Box> */}
-
-
-// //       {/* Bottom Wave */}
-// //       {/* <Box
-// //   component="svg"
-// //   sx={{
-// //     position: "absolute",
-// //     bottom: 0,
-// //     left: 0,
-// //     width: "100%",
-// //     height: 160,
-// //     zIndex: 0,
-// //   }}
-// //   viewBox="0 0 1440 160"
-// //   xmlns="http://www.w3.org/2000/svg"
-// //   preserveAspectRatio="none"
-// // >
-// //   <path
-// //     fill="#1976D2"
-// //     d="M0,64 C360,160 1080,0 1440,96 L1440,160 L0,160 Z"
-// //   />
-// // </Box> */}
-
-// //       {/* Main content */}
-// //       <Box sx={{ position: "relative", zIndex: 1 }}>
-// //         <Box
-// //           sx={{
-// //             width: "100%",
-// //             color: "white",
-// //             mixBlendMode: "lighten",
-// //           }}
-// //         ></Box>
-// //         <Box sx={{ textAlign: "center", mb: 5 }}>
-// //           <motion.div
-// //             initial={{ scaleX: 0 }}
-// //             whileInView={{ scaleX: 1 }}
-// //             viewport={{ once: true }}
-// //             transition={{ duration: 0.7, ease: "easeOut" }}
-// //             style={{ display: "inline-block" }}
-// //           >
-// //             {/* <Typography
-// //               variant="h4"
-// //               fontWeight="bold"
-// //               component="h2"
-// //               sx={{
-// //                 display: "inline-block",
-// //                 position: "relative",
-// //                 px: 1,
-// //                 "&::after": {
-// //                   content: '""',
-// //                   position: "absolute",
-// //                   left: 0,
-// //                   bottom: -6,
-// //                   height: 4,
-// //                   width: "100%",
-// //                   backgroundColor: theme.palette.primary.main,
-// //                   borderRadius: 2,
-// //                   transform: "scaleX(0)",
-// //                   transformOrigin: "left",
-// //                   transition: "transform 0.4s ease-in-out",
-// //                 },
-// //                 "&:hover::after": {
-// //                   transform: "scaleX(1)",
-// //                 },
-// //               }}
-// //             >
-// //               Assessment{" "}
-// //               <Box component="span" sx={{ color: "white" }}>
-// //                 Solutions
-// //               </Box>
-// //             </Typography> */}
-// //             <Typography
-// //   variant="h4"
-// //   fontWeight="bold"
-// //   component="h2"
-// //   sx={{
-// //     display: "inline-block",
-// //     position: "relative",
-// //     px: 1,
-// //     "&::after": {
-// //       content: '""',
-// //       position: "absolute",
-// //       left: 0,
-// //       bottom: -6,
-// //       height: 4,
-// //       width: "100%",
-// //       backgroundColor: theme.palette.primary.main,
-// //       borderRadius: 2,
-// //       transform: "scaleX(0)",
-// //       transformOrigin: "left",
-// //       transition: "transform 0.4s ease-in-out",
-// //     },
-// //     "&:hover::after": {
-// //       transform: "scaleX(1)",
-// //     },
-// //   }}
-// // >
-// //   Assessment{" "}
-// //   <Box component="span" sx={{ color: theme.palette.primary.main }}>
-// //     Solutions
-// //   </Box>
-// // </Typography>
-// //           </motion.div>
-// //         </Box>
-
-// //         {/* <Typography
-// //           variant="h6"
-// //           fontWeight="bold"
-// //           sx={{ color: theme.palette.primary.main, mb: 3 }}
-// //         >
-// //           Assessment Platforms:
-// //         </Typography> */}
-
-// //         {[
-// //           {
-// //             title: "Web-based Assessment Application",
-// //             points: [
-// //               "Interactive dashboards tailored for candidates, assessors, and administrators.",
-// //               "Comprehensive analytics and instant reporting.",
-// //             ],
-// //           },
-// //           {
-// //             title: "Online Mobile Application",
-// //             points: [
-// //               "User-friendly mobile assessments accessible anytime, anywhere.",
-// //               "Real-time tracking and notifications.",
-// //             ],
-// //           },
-// //           {
-// //             title: "Offline Mobile/Tablet Application",
-// //             points: [
-// //               "Conduct assessments seamlessly in remote or low-connectivity areas.",
-// //               "Automated data sync upon connectivity restoration.",
-// //             ],
-// //           },
-// //         ].map(renderSection)}
-
-// //         {/* <Typography
-// //           variant="h6"
-// //           fontWeight="bold"
-// //           sx={{ color: theme.palette.primary.main, my: 4 }}
-// //         >
-// //           Dedicated Assessment Portals:
-// //         </Typography> */}
-
-// //         {/* {[
-// //           {
-// //             title: "Assessir Platform",
-// //             points: [
-// //               "Specialized NSDC and MSDE-aligned assessments.",
-// //               "User-centric interface for streamlined evaluations.",
-// //             ],
-// //           },
-// //           {
-// //             title: "General CBT Platform",
-// //             points: [
-// //               "Flexible platform for coding assessments and other specialized skill evaluations.",
-// //               "Supports customizable test structures and instant result generation.",
-// //             ],
-// //           },
-// //         ].map(renderSection)} */}
-// //       </Box>
-// //     </Box>
-// //   );
-// // };
-
-// // export default Solutions;
-// import React, { useState } from "react";
-// import {
-//   Box,
-//   Typography,
-//   Paper,
-//   Dialog,
-//   DialogContent,
-//   IconButton,
-//   useTheme,
-//   useMediaQuery,
-// } from "@mui/material";
-// import CloseIcon from "@mui/icons-material/Close";
-// import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-// import LanguageIcon from "@mui/icons-material/Language";
-// import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
-// import TabletMacIcon from "@mui/icons-material/TabletMac";
-// import { AnimatePresence, motion } from "framer-motion";
-
-// /* ---------- Images for each card ---------- */
-// const imageData = {
-//   "Web-based Assessment Application": [
-//     "/assets/web-login.png",
-//     "/assets/web-dash.png",
-//     "/assets/web-evidence.png",
-//     "/assets/exam-evidance.png",
-//     "/assets/exam.png",
-//   ],
-//   "Online Mobile Application": [
-//     "/assets/web-login.png",
-//     "/assets/web-dash.png",
-//     "/assets/web-evidence.png",
-//     "/assets/exam-evidance.png",
-//     "/assets/exam.png",
-//   ],
-//   "Offline Mobile/Tablet Application": [
-//     "/assets/web-login.png",
-//     "/assets/web-dash.png",
-//     "/assets/web-evidence.png",
-//     "/assets/exam-evidance.png",
-//     "/assets/exam.png",
-//   ],
-// };
-
-// const iconSx = { color: "#1976d2", fontSize: 22 };
-// const icons = {
-//   "Web-based Assessment Application": <LanguageIcon sx={iconSx} />,
-//   "Online Mobile Application": <PhoneIphoneIcon sx={iconSx} />,
-//   "Offline Mobile/Tablet Application": <TabletMacIcon sx={iconSx} />,
-// };
-
-// /* ---------- Tight, controllable arc fan with optional mirroring ---------- */
-// const ArcFan = ({
-//   images = [],
-//   show = false,
-//   mode = "top", // 'top' | 'left' | 'right'
-//   itemWidth = 160,
-//   radius = 170,
-//   angles = { start: -120, end: -60 },
-//   stagger = 0.08,
-// }) => {
-//   const containerVariants = {
-//     hidden: { opacity: 0 },
-//     show: { opacity: 1, transition: { staggerChildren: stagger } },
-//     exit: { opacity: 0, transition: { duration: 0.12 } },
-//   };
-
-//   const itemVariants = {
-//     hidden: { opacity: 0, y: mode === "top" ? 10 : 0, x: 0, scale: 0.96 },
-//     show: {
-//       opacity: 1,
-//       x: 0,
-//       y: 0,
-//       scale: 1,
-//       transition: { type: "spring", stiffness: 260, damping: 22 },
-//     },
-//     exit: { opacity: 0, scale: 0.96, transition: { duration: 0.1 } },
-//   };
-
-//   const isTop = mode === "top";
-//   const startDeg = angles.start;
-//   const endDeg = angles.end;
-
-//   const W = isTop ? radius * 2 + itemWidth : radius + itemWidth;
-//   const H = isTop ? radius + itemWidth * 0.5 : radius * 2 + itemWidth;
-
-//   const cx =
-//     mode === "top" ? W / 2 : mode === "left" ? W - radius * 0.1 : radius * 0.1;
-//   const cy = isTop ? H - 6 : H / 2;
-
-//   const angleAt = (i) => {
-//     if (images.length <= 1) return (startDeg + endDeg) / 2;
-//     const t = i / (images.length - 1);
-//     return startDeg + t * (endDeg - startDeg);
-//   };
-
-//   const isMirror = mode === "left";
-
-//   return (
-//     <AnimatePresence>
-//       {show && (
-//         <motion.div
-//           variants={containerVariants}
-//           initial="hidden"
-//           animate="show"
-//           exit="exit"
-//           style={{
-//             position: "relative",
-//             width: W,
-//             height: H,
-//             pointerEvents: "none",
-//             transform: isMirror ? "scaleX(-1)" : "none",
-//             transformOrigin: "center",
-//           }}
-//         >
-//           {images.map((src, i) => {
-//             const deg = angleAt(i);
-//             const a = (Math.PI / 180) * deg;
-//             const x = cx + radius * Math.cos(a) - itemWidth / 2;
-//             const y = cy + radius * Math.sin(a) - (itemWidth * 9) / 32; // ~16:9
-
-//             return (
-//               <motion.img
-//                 key={src + i}
-//                 src={src}
-//                 alt={`${mode}-arc-${i}`}
-//                 variants={itemVariants}
-//                 style={{
-//                   position: "absolute",
-//                   left: x,
-//                   top: y,
-//                   width: itemWidth,
-//                   height: "auto",
-//                   borderRadius: 12,
-//                   boxShadow:
-//                     "0 10px 24px rgba(0,0,0,0.18), 0 3px 8px rgba(0,0,0,0.10)",
-//                   background: "#f6f6f6",
-//                   transform: isMirror ? "scaleX(-1)" : "none",
-//                   transformOrigin: "center",
-//                 }}
-//               />
-//             );
-//           })}
-//         </motion.div>
-//       )}
-//     </AnimatePresence>
-//   );
-// };
-
-// /* ---------- Mirror of ArcFan’s sizing for parent layout (avoids whitespace) ---------- */
-// const computeArcBox = ({ mode, itemWidth, radius }) => {
-//   const isTop = mode === "top";
-//   const W = isTop ? radius * 2 + itemWidth : radius + itemWidth;
-//   const H = isTop ? radius + itemWidth * 0.5 : radius * 2 + itemWidth;
-//   return { width: Math.round(W), height: Math.round(H) };
-// };
-
-// /* ---------- Reusable card ---------- */
-// const InfoCard = ({
-//   title,
-//   points,
-//   icon,
-//   TITLE_FS,
-//   BODY_FS,
-//   BULLET_ICON_FS,
-//   HEADER_MIN_H,
-//   ICON_SLOT,
-//   onClick,
-//   interactive = true,
-//   fixedWidth = 360,
-//   elevation = 4,
-// }) => {
-//   const theme = useTheme();
-//   return (
-//     <Paper
-//       elevation={elevation}
-//       onClick={onClick}
-//       sx={{
-//         position: "relative",
-//         width: { xs: "100%", md: fixedWidth },
-//         minHeight: { xs: "auto", md: 300 },
-//         p: 2.5,
-//         borderRadius: 3,
-//         border: (t) => `1px solid ${t.palette.divider}`,
-//         transition: interactive ? "transform .2s ease, box-shadow .2s ease" : "none",
-//         ...(interactive
-//           ? { "&:hover": { transform: "translateY(-4px)", boxShadow: 10 }, cursor: "pointer" }
-//           : { cursor: "default" }),
-//         display: "flex",
-//         flexDirection: "column",
-//         userSelect: "none",
-//         bgcolor: "background.paper",
-//       }}
-//     >
-//       {/* Header */}
-//       <Box
-//         sx={{
-//           minHeight: HEADER_MIN_H,
-//           display: "flex",
-//           flexDirection: "column",
-//           justifyContent: "flex-end",
-//         }}
-//       >
-//         <Typography
-//           variant="h6"
-//           fontWeight={800}
-//           sx={{
-//             color: theme.palette.primary.main,
-//             display: "flex",
-//             alignItems: "center",
-//             fontSize: TITLE_FS,
-//             lineHeight: 1.25,
-//             letterSpacing: 0.2,
-//           }}
-//         >
-//           <Box
-//             component="span"
-//             sx={{
-//               width: ICON_SLOT,
-//               display: "inline-flex",
-//               justifyContent: "center",
-//               alignItems: "center",
-//               mr: 1,
-//               flex: "0 0 auto",
-//             }}
-//           >
-//             {icon}
-//           </Box>
-//           <Box component="span">{title}</Box>
-//         </Typography>
-
-//         <Box
-//           sx={{
-//             mt: 1,
-//             width: "100%",
-//             height: 2,
-//             bgcolor: theme.palette.primary.light,
-//             borderRadius: 1,
-//             opacity: 0.7,
-//           }}
-//         />
-//       </Box>
-
-//       {/* Bullets */}
-//       {points.map((pt, i) => (
-//         <Box key={i} display="flex" alignItems="flex-start" mb={1.1} mt={i === 0 ? 1.25 : 0.75}>
-//           <CheckCircleIcon
-//             sx={{ color: theme.palette.primary.main, mr: 1, mt: 0.35, fontSize: BULLET_ICON_FS }}
-//           />
-//           <Typography
-//             variant="body2"
-//             color="text.secondary"
-//             sx={{
-//               fontSize: BODY_FS,
-//               lineHeight: 1.55,
-//               pl: 1,
-//               borderLeft: (t) => `2px solid ${t.palette.primary.light}`,
-//             }}
-//           >
-//             {pt}
-//           </Typography>
-//         </Box>
-//       ))}
-//     </Paper>
-//   );
-// };
-
-// /* ---------- Regular (centered) dialog with exact-fit grid ---------- */
-// const RegularArcDialog = ({
-//   open,
-//   onClose,
-//   cardIndex, // 0 left, 1 middle, 2 right
-//   cardData,
-//   images = [],
-// }) => {
-//   const theme = useTheme();
-//   const mdUp = useMediaQuery(theme.breakpoints.up("md"));
-//   const lgUp = useMediaQuery(theme.breakpoints.up("lg"));
-
-//   const cardW = lgUp ? 380 : mdUp ? 360 : 320;
-//   const cardH = 300;
-//   const imgItemW = lgUp ? 170 : mdUp ? 160 : 150;
-
-//   // Side arcs (left/right use the SAME spec as first card)
-//   const sideAngles = { start: -70, end: 70 };
-//   const sideRadius = lgUp ? 170 : mdUp ? 160 : 150;
-
-//   // Middle (top) arc: wider spread + slightly larger radius to add gaps
-//   const topAngles = { start: -150, end: -30 };
-//   const topRadius = lgUp ? 220 : mdUp ? 205 : 195;
-
-//   // IMPORTANT: Make third card behave exactly like the first → arc on the RIGHT
-//   const mode = cardIndex === 1 ? "top" : "right";
-
-//   const activeAngles = mode === "top" ? topAngles : sideAngles;
-//   const activeRadius = mode === "top" ? topRadius : sideRadius;
-
-//   const arcBox = computeArcBox({
-//     mode,
-//     itemWidth: imgItemW,
-//     radius: activeRadius,
-//   });
-
-//   // Uniform dialog width
-//   const DIALOG_W = 980;
-//   const paperSx = { width: { xs: "95vw", md: `${DIALOG_W}px` }, m: 0 };
-
-//   const contentSx = {
-//     p: { xs: 2, md: 3 },
-//     position: "relative",
-//     bgcolor: "background.default",
-//   };
-
-//   // SIDE layout: always card (left) + arc (right) — applies to cardIndex 0 and 2 now
-//   const gridSide = {
-//     display: "grid",
-//     gridTemplateColumns: `${cardW}px ${arcBox.width}px`,
-//     gridTemplateRows: `${Math.max(arcBox.height, cardH)}px`,
-//     alignItems: "center",
-//     justifyContent: "center",
-//     columnGap: { xs: 2, md: 3 },
-//   };
-
-//   // TOP layout for middle card
-//   const gridTop = {
-//     display: "grid",
-//     gridTemplateRows: `${arcBox.height}px ${cardH}px`,
-//     justifyItems: "center",
-//     alignItems: "center",
-//     rowGap: { xs: 2, md: 3 },
-//   };
-
-//   const isMiddle = cardIndex === 1;
-
-//   return (
-//     <Dialog open={open} onClose={onClose} fullWidth={false} maxWidth={false} PaperProps={{ sx: paperSx }}>
-//       <IconButton
-//         onClick={onClose}
-//         sx={{
-//           position: "absolute",
-//           right: 8,
-//           top: 8,
-//           zIndex: 2,
-//           bgcolor: "background.paper",
-//           border: (t) => `1px solid ${t.palette.divider}`,
-//           "&:hover": { bgcolor: "background.paper" },
-//         }}
-//         size="small"
-//       >
-//         <CloseIcon fontSize="small" />
-//       </IconButton>
-
-//       <DialogContent sx={contentSx}>
-//         <Box sx={isMiddle ? gridTop : gridSide}>
-//           {/* Middle card → fan top, card bottom-center */}
-//           {isMiddle ? (
-//             <>
-//               <ArcFan
-//                 images={images}
-//                 show
-//                 mode="top"
-//                 itemWidth={imgItemW}
-//                 radius={activeRadius}
-//                 angles={activeAngles}
-//               />
-//               <Box sx={{ mb: { xs: 1.5, md: 3 } }}>
-//                 <InfoCard {...cardData} interactive={false} fixedWidth={cardW} elevation={8} />
-//               </Box>
-//             </>
-//           ) : (
-//             /* Side cards (0 and 2) → EXACT SAME as first card: card left, arc right */
-//             <>
-//               <InfoCard {...cardData} interactive={false} fixedWidth={cardW} elevation={8} />
-//               <ArcFan
-//                 images={images}
-//                 show
-//                 mode="right"
-//                 itemWidth={imgItemW}
-//                 radius={activeRadius}
-//                 angles={activeAngles}
-//               />
-//             </>
-//           )}
-//         </Box>
-//       </DialogContent>
-//     </Dialog>
-//   );
-// };
-
-// /* ------------------------------ Main ------------------------------ */
-// const Solutions = () => {
-//   const theme = useTheme();
-
-//   const cards = [
-//     {
-//       title: "Web-based Assessment Application",
-//       points: [
-//         "Interactive dashboards tailored for candidates, assessors, and administrators.",
-//         "Comprehensive analytics and instant reporting.",
-//       ],
-//     },
-//     {
-//       title: "Online Mobile Application",
-//       points: [
-//         "User-friendly mobile assessments accessible anytime, anywhere.",
-//         "Real-time tracking and notifications.",
-//       ],
-//     },
-//     {
-//       title: "Offline Mobile/Tablet Application",
-//       points: [
-//         "Conduct assessments seamlessly in remote or low-connectivity areas.",
-//         "Automated data sync upon connectivity restoration.",
-//       ],
-//     },
-//   ];
-
-//   const TITLE_FS = { xs: "1.15rem", md: "1.25rem", lg: "1.35rem" };
-//   const BODY_FS = { xs: "0.95rem", md: "1.0rem" };
-//   const BULLET_ICON_FS = 18;
-//   const HEADER_MIN_H = { xs: 64, md: 88 };
-//   const ICON_SLOT = 28;
-
-//   const [open, setOpen] = useState(false);
-//   const [clickedIndex, setClickedIndex] = useState(0);
-//   const [cardData, setCardData] = useState(null);
-//   const [images, setImages] = useState([]);
-
-//   const handleCardClick = (idx, c) => {
-//     setClickedIndex(idx);
-//     setCardData({
-//       title: c.title,
-//       points: c.points,
-//       icon: icons[c.title],
-//       TITLE_FS,
-//       BODY_FS,
-//       BULLET_ICON_FS,
-//       HEADER_MIN_H,
-//       ICON_SLOT,
-//     });
-//     setImages(imageData[c.title] || []);
-//     setOpen(true);
-//   };
-
-//   // Section scroll-in animation
-//   const sectionVariants = {
-//     hidden: { opacity: 0, y: 24 },
-//     show: {
-//       opacity: 1,
-//       y: 0,
-//       transition: { duration: 0.5, ease: "easeOut", when: "beforeChildren", staggerChildren: 0.08 },
-//     },
-//   };
-
-//   const childVariants = {
-//     hidden: { opacity: 0, y: 16 },
-//     show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: "easeOut" } },
-//   };
-
-//   return (
-//     <Box sx={{ pt: { xs: 10, md: 14 }, pb: { xs: 6, md: 10 }, bgcolor: "#fff" }}>
-//       <motion.div
-//         variants={sectionVariants}
-//         initial="hidden"
-//         whileInView="show"
-//         viewport={{ once: true, amount: 0.3 }}
-//       >
-//         {/* Heading */}
-//         <motion.div variants={childVariants}>
-//           <Box sx={{ textAlign: "center", mb: 5 }}>
-//             <Typography
-//               variant="h4"
-//               fontWeight="bold"
-//               component="h2"
-//               sx={{
-//                 display: "inline-block",
-//                 position: "relative",
-//                 px: 1,
-//                 "&::after": {
-//                   content: '""',
-//                   position: "absolute",
-//                   left: 0,
-//                   bottom: -6,
-//                   height: 4,
-//                   width: "100%",
-//                   backgroundColor: theme.palette.primary.main,
-//                   borderRadius: 2,
-//                 },
-//               }}
-//             >
-//               Assessment{" "}
-//               <Box component="span" sx={{ color: theme.palette.primary.main }}>
-//                 Solutions
-//               </Box>
-//             </Typography>
-//           </Box>
-//         </motion.div>
-
-//         {/* Three clickable cards */}
-//         <Box sx={{ maxWidth: 1220, mx: "auto", px: { xs: 2, md: 0 } }}>
-//           <Box
-//             sx={{
-//               display: "flex",
-//               flexWrap: { xs: "wrap", md: "nowrap" },
-//               justifyContent: "center",
-//               alignItems: "stretch",
-//               gap: { xs: 2, md: 2 },
-//             }}
-//           >
-//             {cards.map((c, idx) => (
-//               <motion.div key={c.title} variants={childVariants}>
-//                 <InfoCard
-//                   title={c.title}
-//                   points={c.points}
-//                   icon={icons[c.title]}
-//                   TITLE_FS={TITLE_FS}
-//                   BODY_FS={BODY_FS}
-//                   BULLET_ICON_FS={BULLET_ICON_FS}
-//                   HEADER_MIN_H={HEADER_MIN_H}
-//                   ICON_SLOT={ICON_SLOT}
-//                   onClick={() => handleCardClick(idx, c)}
-//                   interactive
-//                   fixedWidth={360}
-//                   elevation={4}
-//                 />
-//               </motion.div>
-//             ))}
-//           </Box>
-//         </Box>
-//       </motion.div>
-
-//       {/* Regular modal */}
-//       <AnimatePresence>
-//         {open && cardData && (
-//           <RegularArcDialog
-//             open={open}
-//             onClose={() => setOpen(false)}
-//             cardIndex={clickedIndex}
-//             cardData={cardData}
-//             images={images}
-//           />
-//         )}
-//       </AnimatePresence>
-//     </Box>
-//   );
-// };
-
-// export default Solutions;
 import React, { useState } from "react";
 import {
   Box,
@@ -1007,7 +16,7 @@ import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
 import TabletMacIcon from "@mui/icons-material/TabletMac";
 import { AnimatePresence, motion } from "framer-motion";
 
-/* ---------- Images for each card ---------- */
+
 const imageData = {
   "Web-based Assessment Application": [
     "/assets/web-login.png",
@@ -1032,19 +41,25 @@ const imageData = {
   ],
 };
 
+const BG = "#0f2a45";
+const GREEN = "#00A859";
+const WHITE = "#ffffff";
+const MUTED = "rgba(255,255,255,0.85)";
+const MUTED_2 = "rgba(255,255,255,0.75)";
+
+
 const icons = {
   "Web-based Assessment Application": (
-    <LanguageIcon sx={{ fontSize: 42, color: "primary.main" }} />
+    <LanguageIcon sx={{ fontSize: 44, color: GREEN }} />
   ),
   "Online Mobile Application": (
-    <PhoneIphoneIcon sx={{ fontSize: 42, color: "primary.main" }} />
+    <PhoneIphoneIcon sx={{ fontSize: 44, color: GREEN }} />
   ),
   "Offline Mobile/Tablet Application": (
-    <TabletMacIcon sx={{ fontSize: 42, color: "primary.main" }} />
+    <TabletMacIcon sx={{ fontSize: 44, color: GREEN }} />
   ),
 };
 
-/* ---------- ArcFan ---------- */
 const ArcFan = ({
   images = [],
   show = false,
@@ -1128,8 +143,8 @@ const ArcFan = ({
                   height: "auto",
                   borderRadius: 12,
                   boxShadow:
-                    "0 10px 24px rgba(0,0,0,0.20), 0 6px 12px rgba(0,0,0,0.14)",
-                  background: "#f6f6f6",
+                    "0 18px 30px rgba(0,0,0,0.55), 0 8px 16px rgba(0,0,0,0.4)",
+                  background: "transparent",
                   transform: isMirror ? "scaleX(-1)" : "none",
                 }}
               />
@@ -1141,7 +156,7 @@ const ArcFan = ({
   );
 };
 
-/* ---------- Cards ---------- */
+
 const InfoCard = ({ title, points, icon, onClick, interactive = true }) => {
   return (
     <Paper
@@ -1152,22 +167,34 @@ const InfoCard = ({ title, points, icon, onClick, interactive = true }) => {
         minHeight: 320,
         borderRadius: 3,
         p: 3,
-        bgcolor: "#eaf3ff",
+        bgcolor: "rgba(255,255,255,0.08)",
+        border: `1px solid rgba(255,255,255,0.10)`,
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        boxShadow:
-          "0 10px 28px rgba(0,0,0,0.28), 0 6px 12px rgba(0,0,0,0.18)",
+        boxShadow: "0 12px 30px rgba(0,0,0,0.5)",
         cursor: interactive ? "pointer" : "default",
+        transition: "transform .28s ease, box-shadow .28s ease, border-color .28s ease, background .28s ease",
+        "&:hover": {
+          transform: "translateY(-6px)",
+          boxShadow: "0 20px 48px rgba(0,168,89,0.14)",
+          borderColor: GREEN,
+          bgcolor: "rgba(255,255,255,0.10)",
+        },
       }}
     >
       <Box>
-        {icon}
+        <Box display="flex" alignItems="center" gap={2} mb={1}>
+          {icon}
+          <Typography variant="h6" fontWeight={700} sx={{ color: WHITE }}>
+            {title}
+          </Typography>
+        </Box>
         {points.map((pt, i) => (
           <Typography
             key={i}
             variant="body2"
-            sx={{ color: "text.secondary", mt: 1 }}
+            sx={{ color: MUTED_2, mt: 1, lineHeight: 1.5 }}
           >
             • {pt}
           </Typography>
@@ -1176,16 +203,15 @@ const InfoCard = ({ title, points, icon, onClick, interactive = true }) => {
 
       <Box
         sx={{
-          bgcolor: "white",
+          bgcolor: "rgba(255,255,255,0.03)",
           borderRadius: 1,
           px: 2,
           py: 1,
           mt: 2,
           display: "inline-block",
-          boxShadow: "0 3px 8px rgba(0,0,0,0.20)",
         }}
       >
-        <Typography variant="h6" fontWeight={700} color="text.primary">
+        <Typography variant="subtitle2" fontWeight={700} color={MUTED}>
           {title}
         </Typography>
       </Box>
@@ -1193,7 +219,6 @@ const InfoCard = ({ title, points, icon, onClick, interactive = true }) => {
   );
 };
 
-/* ---------- Dialog (Responsive for all cards) ---------- */
 const RegularArcDialog = ({ open, onClose, cardIndex, cardData, images }) => {
   const theme = useTheme();
   const smDown = useMediaQuery(theme.breakpoints.down("sm"));
@@ -1207,8 +232,6 @@ const RegularArcDialog = ({ open, onClose, cardIndex, cardData, images }) => {
   const topAngles = { start: -150, end: -30 };
   const topRadius = smDown ? 150 : mdUp ? 205 : 180;
 
-  // 🔹 On small screens -> always "top"
-  // 🔹 On larger screens -> middle card is "top", others are "right"
   const mode = smDown ? "top" : cardIndex === 1 ? "top" : "right";
   const activeAngles = mode === "top" ? topAngles : sideAngles;
   const activeRadius = mode === "top" ? topRadius : sideRadius;
@@ -1224,6 +247,9 @@ const RegularArcDialog = ({ open, onClose, cardIndex, cardData, images }) => {
           width: { xs: "95vw", sm: "90vw", md: "80vw" },
           m: 0,
           borderRadius: 3,
+          bgcolor: "rgba(12,24,36,0.96)",
+          border: `1px solid rgba(255,255,255,0.06)`,
+          color: WHITE,
         },
       }}
       TransitionComponent={Zoom}
@@ -1235,7 +261,9 @@ const RegularArcDialog = ({ open, onClose, cardIndex, cardData, images }) => {
           right: 8,
           top: 8,
           zIndex: 2,
-          bgcolor: "background.paper",
+          bgcolor: "transparent",
+          color: WHITE,
+          border: "1px solid rgba(255,255,255,0.06)",
         }}
         size="small"
       >
@@ -1307,7 +335,6 @@ const RegularArcDialog = ({ open, onClose, cardIndex, cardData, images }) => {
   );
 };
 
-/* ---------- Main ---------- */
 const Solutions = () => {
   const theme = useTheme();
 
@@ -1352,10 +379,7 @@ const Solutions = () => {
   };
 
   return (
-    <Box
-      id="solutions"
-      sx={{ pt: { xs: 10, md: 14 }, pb: { xs: 6, md: 10 }, bgcolor: "#fff" }}
-    >
+    <Box id="solutions" sx={{ pt: { xs: 10, md: 14 }, pb: { xs: 6, md: 10 }, bgcolor: BG, color: WHITE }}>
       {/* Heading */}
       <Box sx={{ textAlign: "center", mb: 5 }}>
         <Typography
@@ -1370,18 +394,19 @@ const Solutions = () => {
               content: '""',
               position: "absolute",
               left: 0,
-              bottom: -6,
+              bottom: -8,
               height: 4,
               width: "0%",
-              backgroundColor: theme.palette.primary.main,
+              backgroundColor: GREEN,
               borderRadius: 2,
               transition: "width 0.3s ease",
             },
             "&:hover::after": { width: "100%" },
+            color: WHITE,
           }}
         >
           Assessment{" "}
-          <Box component="span" sx={{ color: theme.palette.primary.main }}>
+          <Box component="span" sx={{ color: GREEN }}>
             Solutions
           </Box>
         </Typography>
@@ -1409,6 +434,7 @@ const Solutions = () => {
         ))}
       </Box>
 
+      {/* Dialog */}
       <AnimatePresence>
         {open && cardData && (
           <RegularArcDialog
