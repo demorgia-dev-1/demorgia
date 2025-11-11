@@ -25,7 +25,7 @@ const cardData = [
   {
     title: "Placement Solutions",
     icon: <BusinessCenterIcon />,
-    image: "/assets/placement.jpg",
+    image: "/portfolio/jobmela2.jpg",
     points: [
       {
         text:
