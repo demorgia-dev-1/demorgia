@@ -46,7 +46,7 @@ const cardData = [
     color: GREEN,
   },
   {
-    title: "End-to-End Candidate Placement Tracking",
+    title: "End-to-End Candidate Placement Solutions",
     icon: <TrackChangesIcon />,
     image: "/assets/placement-tracking.jpg",
     points: [

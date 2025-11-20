@@ -32,7 +32,7 @@ const HeroSection = () => {
           backgroundImage: `url(${bgImage})`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
-          backgroundPosition: "center center",
+          backgroundPosition: { xs: "10% center", md: "center center" },
           display: "block",
           overflow: "hidden",
         }}
@@ -89,7 +89,7 @@ const HeroSection = () => {
               Transforming Assessment{" "}
               <Box
                 component="span"
-                sx={{ color: "var(--brand-green, #00A651)" }}
+                sx={{ color: "var(--brand-green, #04ba5cff)" }}
               >
                 &amp; Shaping Futures
               </Box>
@@ -99,7 +99,7 @@ const HeroSection = () => {
               variant="h6"
               mt={2}
               sx={{
-                fontWeight: 400,
+                fontWeight: 600,
                 color: "rgba(255,255,255,0.9)",
                 fontSize: { xs: "0.95rem", sm: "1.05rem" },
               }}
@@ -111,7 +111,7 @@ const HeroSection = () => {
               variant="h6"
               mt={2}
               sx={{
-                fontWeight: 400,
+                fontWeight: 600,
                 color: "rgba(255,255,255,0.9)",
                 fontSize: { xs: "0.95rem", sm: "1.05rem" },
               }}

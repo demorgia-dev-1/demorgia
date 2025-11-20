@@ -11,6 +11,7 @@ import {
   ListItemButton,
   Menu,
   MenuItem,
+  Collapse,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link as ScrollLink, scroller } from "react-scroll";
@@ -20,7 +21,6 @@ import { useEffect, useState, useRef } from "react";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
-import Collapse from "@mui/material/Collapse";
 
 /*Login Dropdown*/
 const LoginDropdown = () => {
@@ -166,21 +166,11 @@ const SectorsDropdown = () => {
   );
 };
 
-/*Solutions Dropdown*/
+/*Solutions Dropdown - desktop only*/
 const SolutionsDropdown = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const handleOpen = (e) => setAnchorEl(e.currentTarget);
   const handleClose = () => setAnchorEl(null);
-
-  const targets = {
-    assessment: [
-      "assessment-solution",
-      "assessment",
-      "assessmentSolution",
-      "solutions-assessment",
-      "solutions",
-    ],
-  };
 
   const goTo = (candidates) => {
     handleClose();
@@ -322,9 +312,11 @@ const Navbar = ({ onNavigate = {} }) => {
     <AppBar
       position="sticky"
       sx={{
-        background:
-         // "linear-gradient(90deg, #ffffff 0%, #ffffff 18%, #0d47a1 55%, #007f5f 100%)",
-          "linear-gradient(90deg, #ffffff 0%, #244567ff 65%)",
+        background: {
+          xs: "#ffffff",
+          sm: "linear-gradient(90deg, #ffffff 0%, #244567ff 65%)",
+        },
+        boxShadow: { xs: 1, sm: 3 },
       }}
     >
       <Toolbar sx={{ justifyContent: "space-between" }}>
@@ -377,7 +369,7 @@ const Navbar = ({ onNavigate = {} }) => {
         </Box>
 
         <IconButton
-          sx={{ display: { sm: "none" }, color: "white" }}
+          sx={{ display: { sm: "none" }, color: { xs: "black", sm: "white" } }}
           onClick={() => setDrawerOpen(true)}
         >
           <MenuIcon />
@@ -422,25 +414,43 @@ const Navbar = ({ onNavigate = {} }) => {
                       <Collapse in={solutionsOpen} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
                           <ListItemButton
+                            component="a"
+                            href="https://assessir.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            sx={{ pl: 4 }}
+                            onClick={() => setDrawerOpen(false)}
+                          >
+                            <ListItemText primary="Managed Assessment" />
+                          </ListItemButton>
+
+                          <ListItemButton
+                            component="a"
+                            href="https://dcsexam.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            sx={{ pl: 4 }}
+                            onClick={() => setDrawerOpen(false)}
+                          >
+                            <ListItemText primary="Self Serve Exam" />
+                          </ListItemButton>
+
+                          <ListItemButton
                             sx={{ pl: 4 }}
                             onClick={() => {
                               setDrawerOpen(false);
-                              smartScroll([
-                                "assessment-solution",
-                                "assessment",
-                                "assessmentSolution",
-                                "solutions-assessment",
-                                "solutions",
-                              ]);
                             }}
                           >
-                            <ListItemText primary="Assessment Solution" />
+                            <ListItemText primary="Placement Consulting" />
                           </ListItemButton>
-                          <ListItemButton sx={{ pl: 4 }} onClick={() => setDrawerOpen(false)}>
-                            <ListItemText primary="Job Fair & Placement" />
-                          </ListItemButton>
-                          <ListItemButton sx={{ pl: 4 }} onClick={() => setDrawerOpen(false)}>
-                            <ListItemText primary="Software Solution" />
+
+                          <ListItemButton
+                            sx={{ pl: 4 }}
+                            onClick={() => {
+                              setDrawerOpen(false);
+                            }}
+                          >
+                            <ListItemText primary="IT Services & Consulting" />
                           </ListItemButton>
                         </List>
                       </Collapse>
