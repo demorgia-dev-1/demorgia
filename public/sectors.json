@@ -2,201 +2,944 @@
   {
     "name": "Aerospace & Aviation SSC (AASSC)",
     "url": "/question-papers/aerospace.pdf",
-    "image": "/icons/sectors/aerospace.png"
+    "image": "/icons/sectors/aerospace.png",
+    "folder": "AASSC",
+    "files": [
+      {
+        "filename": "Aerospace CNC Machinist.xlsx",
+        "roleName": "Aerospace CNC Machinist",
+        "url": "/AASSC/Aerospace CNC Machinist.xlsx"
+      },
+      {
+        "filename": "Aircraft Airframe & Power plant Technician.xlsx",
+        "roleName": "Aircraft Airframe & Power plant Technician",
+        "url": "/AASSC/Aircraft Airframe & Power plant Technician.xlsx"
+      },
+      {
+        "filename": "Aircraft Avionics Technician.xlsx",
+        "roleName": "Aircraft Avionics Technician",
+        "url": "/AASSC/Aircraft Avionics Technician.xlsx"
+      },
+      {
+        "filename": "Airline Cabin Crew.xlsx",
+        "roleName": "Airline Cabin Crew",
+        "url": "/AASSC/Airline Cabin Crew.xlsx"
+      },
+      {
+        "filename": "Airline Customer Service Executive.xlsx",
+        "roleName": "Airline Customer Service Executive",
+        "url": "/AASSC/Airline Customer Service Executive.xlsx"
+      },
+      {
+        "filename": "Drone Operator - Multi Rotor.xlsx",
+        "roleName": "Drone Operator - Multi Rotor",
+        "url": "/AASSC/Drone Operator - Multi Rotor.xlsx"
+      },
+      {
+        "filename": "Technical Services Engineer.xlsx",
+        "roleName": "Technical Services Engineer",
+        "url": "/AASSC/Technical Services Engineer.xlsx"
+      }
+    ],
+    "hasPapers": true
   },
   {
     "name": "Agriculture Skill Council of India (ASCI)",
     "url": "/question-papers/agriculture.pdf",
-    "image": "/icons/sectors/agriculture.png"
+    "image": "/icons/sectors/agriculture.png",
+    "hasPapers": false
   },
   {
     "name": "Apparel, Made-ups & Home Furnishing SSC (AMHFSSC)",
     "url": "/question-papers/apparel.pdf",
-    "image": "/icons/sectors/apparel.png"
+    "image": "/icons/sectors/apparel.png",
+    "hasPapers": false
   },
   {
     "name": "Automative Skill Development Council (ASDC)",
     "url": "/question-papers/aerospace.pdf",
-    "image": "/icons/sectors/automotive.png"
+    "image": "/icons/sectors/automotive.png",
+    "hasPapers": false
   },
   {
     "name": "Beauty & Wellness Sector Skill Council (B&WSSC)",
     "url": "/question-papers/agriculture.pdf",
-    "image": "/icons/sectors/beauty.png"
+    "image": "/icons/sectors/beauty.png",
+    "hasPapers": false
   },
   {
     "name": "BFSI Sector Skill Council (BFSI)",
     "url": "/question-papers/apparel.pdf",
-    "image": "/icons/sectors/bfsi.png"
+    "image": "/icons/sectors/bfsi.png",
+    "folder": "BFSI",
+    "files": [
+      {
+        "filename": "Accounts Assistant.xlsx",
+        "roleName": "Accounts Assistant",
+        "url": "/BFSI/Accounts Assistant.xlsx"
+      },
+      {
+        "filename": "Accounts Executive.xlsx",
+        "roleName": "Accounts Executive",
+        "url": "/BFSI/Accounts Executive.xlsx"
+      },
+      {
+        "filename": "BEAT.xlsx",
+        "roleName": "BEAT",
+        "url": "/BFSI/BEAT.xlsx"
+      },
+      {
+        "filename": "Back Office Associate - Financial Service.xlsx",
+        "roleName": "Back Office Associate - Financial Service",
+        "url": "/BFSI/Back Office Associate - Financial Service.xlsx"
+      },
+      {
+        "filename": "Bancassurance Relationship Associate.xlsx",
+        "roleName": "Bancassurance Relationship Associate",
+        "url": "/BFSI/Bancassurance Relationship Associate.xlsx"
+      },
+      {
+        "filename": "Business CorrespondentFacilitator.xlsx",
+        "roleName": "Business CorrespondentFacilitator",
+        "url": "/BFSI/Business CorrespondentFacilitator.xlsx"
+      },
+      {
+        "filename": "Compliance Officer.xlsx",
+        "roleName": "Compliance Officer",
+        "url": "/BFSI/Compliance Officer.xlsx"
+      },
+      {
+        "filename": "Credit Administrator and Monitoring Manager.xlsx",
+        "roleName": "Credit Administrator and Monitoring Manager",
+        "url": "/BFSI/Credit Administrator and Monitoring Manager.xlsx"
+      },
+      {
+        "filename": "Credit Processing Officer.xlsx",
+        "roleName": "Credit Processing Officer",
+        "url": "/BFSI/Credit Processing Officer.xlsx"
+      },
+      {
+        "filename": "Customer Service Associate -Financial Services.xlsx",
+        "roleName": "Customer Service Associate -Financial Services",
+        "url": "/BFSI/Customer Service Associate -Financial Services.xlsx"
+      },
+      {
+        "filename": "Debt Recovery Agent.xlsx",
+        "roleName": "Debt Recovery Agent",
+        "url": "/BFSI/Debt Recovery Agent.xlsx"
+      },
+      {
+        "filename": "Equity Dealer.xlsx",
+        "roleName": "Equity Dealer",
+        "url": "/BFSI/Equity Dealer.xlsx"
+      },
+      {
+        "filename": "Financial inclusion officer.xlsx",
+        "roleName": "Financial inclusion officer",
+        "url": "/BFSI/Financial inclusion officer.xlsx"
+      },
+      {
+        "filename": "GST Assistant.xlsx",
+        "roleName": "GST Assistant",
+        "url": "/BFSI/GST Assistant.xlsx"
+      },
+      {
+        "filename": "INSURANCE AGENT.xlsx",
+        "roleName": "INSURANCE AGENT",
+        "url": "/BFSI/INSURANCE AGENT.xlsx"
+      },
+      {
+        "filename": "MIS Data Analyst -Financial Services.xlsx",
+        "roleName": "MIS Data Analyst -Financial Services",
+        "url": "/BFSI/MIS Data Analyst -Financial Services.xlsx"
+      },
+      {
+        "filename": "Microfinance Executive.xlsx",
+        "roleName": "Microfinance Executive",
+        "url": "/BFSI/Microfinance Executive.xlsx"
+      },
+      {
+        "filename": "Mutual Fund Distributor.xlsx",
+        "roleName": "Mutual Fund Distributor",
+        "url": "/BFSI/Mutual Fund Distributor.xlsx"
+      },
+      {
+        "filename": "Sales Associate - Direct Channel.xlsx",
+        "roleName": "Sales Associate - Direct Channel",
+        "url": "/BFSI/Sales Associate - Direct Channel.xlsx"
+      }
+    ],
+    "hasPapers": true
   },
   {
     "name": "BNRC (BNRC)",
     "url": "/question-papers/aerospace.pdf",
-    "image": "/icons/sectors/bnrc.png"
+    "image": "/icons/sectors/bnrc.png",
+    "hasPapers": false
   },
   {
     "name": "Capital Goods Skill Council (CGSC)",
     "url": "/question-papers/agriculture.pdf",
-    "image": "/icons/sectors/capitalgoods.png"
+    "image": "/icons/sectors/capitalgoods.png",
+    "hasPapers": false
   },
   {
     "name": "Construction Skill Development Council of India (CSDCI)",
     "url": "/question-papers/apparel.pdf",
-    "image": "/icons/sectors/construction.png"
+    "image": "/icons/sectors/construction.png",
+    "hasPapers": false
   },
   {
     "name": "Domestic Workers Sector Skill Council (DWSSC)",
     "url": "/question-papers/aerospace.pdf",
-    "image": "/icons/sectors/domestic.png"
+    "image": "/icons/sectors/domestic.png",
+    "hasPapers": false
   },
   {
     "name": "Electronics Sector Skill Council of India (ESSCI)",
     "url": "/question-papers/agriculture.pdf",
-    "image": "/icons/sectors/electronics.png"
+    "image": "/icons/sectors/electronics.png",
+    "hasPapers": false
   },
   {
     "name": "Food Industry Capacity and Skill Initiative (FICSI)",
     "url": "/question-papers/apparel.pdf",
-    "image": "/icons/sectors/food.png"
+    "image": "/icons/sectors/food.png",
+    "hasPapers": false
   },
   {
     "name": "Furniture & Fittings Skill Council (FFSC)",
     "url": "/question-papers/aerospace.pdf",
-    "image": "/icons/sectors/furniture.png"
+    "image": "/icons/sectors/furniture.png",
+    "hasPapers": false
   },
   {
     "name": "Gems And Jwellery Sector Skill Council of India (GJSSCI)",
     "url": "/question-papers/agriculture.pdf",
-    "image": "/icons/sectors/gems.png"
+    "image": "/icons/sectors/gems.png",
+    "hasPapers": false
   },
   {
     "name": "Handicrafts And Carpet Sector Skill Council (HCSSC)",
     "url": "/question-papers/apparel.pdf",
-    "image": "/icons/sectors/handicrafts.png"
+    "image": "/icons/sectors/handicrafts.png",
+    "hasPapers": false
   },
   {
     "name": "Healthcare Sector Skill Council (HSC)",
     "url": "/question-papers/aerospace.pdf",
-    "image": "/icons/sectors/healthcare.png"
+    "image": "/icons/sectors/healthcare.png",
+    "hasPapers": false
   },
   {
     "name": "Hydrocarbon Sector Skill Council (HSSC)",
     "url": "/question-papers/agriculture.pdf",
-    "image": "/icons/sectors/hydrocarbon.png"
+    "image": "/icons/sectors/hydrocarbon.png",
+    "folder": "Hydro",
+    "files": [
+      {
+        "filename": "Assistant Lab Technician - Green Hydrogen.xlsx",
+        "roleName": "Assistant Lab Technician - Green Hydrogen",
+        "url": "/Hydro/Assistant Lab Technician - Green Hydrogen.xlsx"
+      },
+      {
+        "filename": "Executive Finance Oil & Gas.xlsx",
+        "roleName": "Executive Finance Oil & Gas",
+        "url": "/Hydro/Executive Finance Oil & Gas.xlsx"
+      },
+      {
+        "filename": "Executive HR Oil & Gas.xlsx",
+        "roleName": "Executive HR Oil & Gas",
+        "url": "/Hydro/Executive HR Oil & Gas.xlsx"
+      },
+      {
+        "filename": "Fire Safety Technician (Oil & Gas).xlsx",
+        "roleName": "Fire Safety Technician (Oil & Gas)",
+        "url": "/Hydro/Fire Safety Technician (Oil & Gas).xlsx"
+      },
+      {
+        "filename": "Green Hydrogen Plant Operator (HYCQ4001) - v1.0.xlsx",
+        "roleName": "Green Hydrogen Plant Operator (HYCQ4001) - v1.0",
+        "url": "/Hydro/Green Hydrogen Plant Operator (HYCQ4001) - v1.0.xlsx"
+      },
+      {
+        "filename": "Green Hydrogen Plant Operator.xlsx",
+        "roleName": "Green Hydrogen Plant Operator",
+        "url": "/Hydro/Green Hydrogen Plant Operator.xlsx"
+      },
+      {
+        "filename": "Industrial Electrician (Oil & Gas).xlsx",
+        "roleName": "Industrial Electrician (Oil & Gas)",
+        "url": "/Hydro/Industrial Electrician (Oil & Gas).xlsx"
+      },
+      {
+        "filename": "Industrial Welder (Oil & Gas).xlsx",
+        "roleName": "Industrial Welder (Oil & Gas)",
+        "url": "/Hydro/Industrial Welder (Oil & Gas).xlsx"
+      },
+      {
+        "filename": "LPG Delivery Personnel.xlsx",
+        "roleName": "LPG Delivery Personnel",
+        "url": "/Hydro/LPG Delivery Personnel.xlsx"
+      },
+      {
+        "filename": "Lab ChemistAnalyst - Petroleum Products.xlsx",
+        "roleName": "Lab ChemistAnalyst - Petroleum Products",
+        "url": "/Hydro/Lab ChemistAnalyst - Petroleum Products.xlsx"
+      },
+      {
+        "filename": "Pipe Fitter -Oil & GasCity Gas Distribution.xlsx",
+        "roleName": "Pipe Fitter -Oil & GasCity Gas Distribution",
+        "url": "/Hydro/Pipe Fitter -Oil & GasCity Gas Distribution.xlsx"
+      },
+      {
+        "filename": "Process instrument Technician.xlsx",
+        "roleName": "Process instrument Technician",
+        "url": "/Hydro/Process instrument Technician.xlsx"
+      },
+      {
+        "filename": "Retail Outlet Attendant (Oil & Gas).xlsx",
+        "roleName": "Retail Outlet Attendant (Oil & Gas)",
+        "url": "/Hydro/Retail Outlet Attendant (Oil & Gas).xlsx"
+      }
+    ],
+    "hasPapers": true
   },
   {
     "name": "Indian Iron And Steel Sector Skill Council (IISC)",
     "url": "/question-papers/apparel.pdf",
-    "image": "/icons/sectors/steel.png"
+    "image": "/icons/sectors/steel.png",
+    "folder": "IISSSC",
+    "files": [
+      {
+        "filename": "Assistant - Electrician Sample Question paper.xlsx",
+        "roleName": "Assistant - Electrician",
+        "url": "/IISSSC/Assistant - Electrician Sample Question paper.xlsx"
+      },
+      {
+        "filename": "Assistant - Machinistя- Iron and Steel Sample Question paper.xlsx",
+        "roleName": "Assistant - Machinistя- Iron and Steel",
+        "url": "/IISSSC/Assistant - Machinistя- Iron and Steel Sample Question paper.xlsx"
+      },
+      {
+        "filename": "Assistant Electronic Mechanic Sample Question paper.xlsx",
+        "roleName": "Assistant Electronic Mechanic",
+        "url": "/IISSSC/Assistant Electronic Mechanic Sample Question paper.xlsx"
+      },
+      {
+        "filename": "Assistant Fitter - Levelling, Alignment & Balancing Sample Question paper.xlsx",
+        "roleName": "Assistant Fitter - Levelling, Alignment & Balancing",
+        "url": "/IISSSC/Assistant Fitter - Levelling, Alignment & Balancing Sample Question paper.xlsx"
+      },
+      {
+        "filename": "Assistant Mechanicя(Plant Conveyor or Operation) Sample Question paper.xlsx",
+        "roleName": "Assistant Mechanicя(Plant Conveyor or Operation)",
+        "url": "/IISSSC/Assistant Mechanicя(Plant Conveyor or Operation) Sample Question paper.xlsx"
+      },
+      {
+        "filename": "Assistant Rigger_Heavy Material Sample Question paper.xlsx",
+        "roleName": "Assistant Rigger_Heavy Material",
+        "url": "/IISSSC/Assistant Rigger_Heavy Material Sample Question paper.xlsx"
+      },
+      {
+        "filename": "Asst. Mechanic - Bearing Maintenance Sample Question paper.xlsx",
+        "roleName": "Asst. Mechanic - Bearing Maintenance",
+        "url": "/IISSSC/Asst. Mechanic - Bearing Maintenance Sample Question paper.xlsx"
+      },
+      {
+        "filename": "Coupler and Shunting Porter Sample Question paper.xlsx",
+        "roleName": "Coupler and Shunting Porter",
+        "url": "/IISSSC/Coupler and Shunting Porter Sample Question paper.xlsx"
+      },
+      {
+        "filename": "EOT Overhead Crane Operator Sample Question paper.xlsx",
+        "roleName": "EOT Overhead Crane Operator",
+        "url": "/IISSSC/EOT Overhead Crane Operator Sample Question paper.xlsx"
+      },
+      {
+        "filename": "Helper - Plant Operations & Maintenance Sample Question paper.xlsx",
+        "roleName": "Helper - Plant Operations & Maintenance",
+        "url": "/IISSSC/Helper - Plant Operations & Maintenance Sample Question paper.xlsx"
+      },
+      {
+        "filename": "Helper_Utility Hand Plant Operations Sample Question paper.xlsx",
+        "roleName": "Helper_Utility Hand Plant Operations",
+        "url": "/IISSSC/Helper_Utility Hand Plant Operations Sample Question paper.xlsx"
+      },
+      {
+        "filename": "House Keeper - Mechanised Equipment  Sample Question paper.xlsx",
+        "roleName": "House Keeper - Mechanised Equipment",
+        "url": "/IISSSC/House Keeper - Mechanised Equipment  Sample Question paper.xlsx"
+      },
+      {
+        "filename": "Mechanic High Speed Rotating Machinery (Steel Plant) Sample Question paper.xlsx",
+        "roleName": "Mechanic High Speed Rotating Machinery (Steel Plant)",
+        "url": "/IISSSC/Mechanic High Speed Rotating Machinery (Steel Plant) Sample Question paper.xlsx"
+      },
+      {
+        "filename": "Mechanic Hydraulic & Pneumatic System Sample Question paper.xlsx",
+        "roleName": "Mechanic Hydraulic & Pneumatic System",
+        "url": "/IISSSC/Mechanic Hydraulic & Pneumatic System Sample Question paper.xlsx"
+      },
+      {
+        "filename": "Prefabricated structure Installer Sample Question paper.xlsx",
+        "roleName": "Prefabricated structure Installer",
+        "url": "/IISSSC/Prefabricated structure Installer Sample Question paper.xlsx"
+      },
+      {
+        "filename": "Refractory Brick Layer Sample Question paper.xlsx",
+        "roleName": "Refractory Brick Layer",
+        "url": "/IISSSC/Refractory Brick Layer Sample Question paper.xlsx"
+      },
+      {
+        "filename": "Safety Supervisor - Steel Plant Sample Question paper.xlsx",
+        "roleName": "Safety Supervisor - Steel Plant",
+        "url": "/IISSSC/Safety Supervisor - Steel Plant Sample Question paper.xlsx"
+      },
+      {
+        "filename": "Sample Question paper.xlsx",
+        "roleName": "Sample Question paper",
+        "url": "/IISSSC/Sample Question paper.xlsx"
+      },
+      {
+        "filename": "Suraksha Saathi Sample Question paper.xlsx",
+        "roleName": "Suraksha Saathi",
+        "url": "/IISSSC/Suraksha Saathi Sample Question paper.xlsx"
+      },
+      {
+        "filename": "Welder - (GTAW)  Sample Question paper.xlsx",
+        "roleName": "Welder - (GTAW)",
+        "url": "/IISSSC/Welder - (GTAW)  Sample Question paper.xlsx"
+      }
+    ],
+    "hasPapers": true
   },
   {
     "name": "Infrastructure Equipment Skill Council (IESC)",
     "url": "/question-papers/aerospace.pdf",
-    "image": "/icons/sectors/infrastructure.png"
+    "image": "/icons/sectors/infrastructure.png",
+    "folder": "IESC",
+    "files": [
+      {
+        "filename": "Aerial Work Platform Operator Sample Question paper.xlsx",
+        "roleName": "Aerial Work Platform Operator",
+        "url": "/IESC/Aerial Work Platform Operator Sample Question paper.xlsx"
+      },
+      {
+        "filename": "Backhoe Loader Operator Sample Question paper.xlsx",
+        "roleName": "Backhoe Loader Operator",
+        "url": "/IESC/Backhoe Loader Operator Sample Question paper.xlsx"
+      },
+      {
+        "filename": "Bulldozer Operator Sample Question paper.xlsx",
+        "roleName": "Bulldozer Operator",
+        "url": "/IESC/Bulldozer Operator Sample Question paper.xlsx"
+      },
+      {
+        "filename": "Dumper Operator Sample Question paper.xlsx",
+        "roleName": "Dumper Operator",
+        "url": "/IESC/Dumper Operator Sample Question paper.xlsx"
+      },
+      {
+        "filename": "Excavator Operator Sample Question paper.xlsx",
+        "roleName": "Excavator Operator",
+        "url": "/IESC/Excavator Operator Sample Question paper.xlsx"
+      },
+      {
+        "filename": "Grader Machine Operator Sample Question paper.xlsx",
+        "roleName": "Grader Machine Operator",
+        "url": "/IESC/Grader Machine Operator Sample Question paper.xlsx"
+      },
+      {
+        "filename": "Junior Backhoe Loader Operator Sample Question paper.xlsx",
+        "roleName": "Junior Backhoe Loader Operator",
+        "url": "/IESC/Junior Backhoe Loader Operator Sample Question paper.xlsx"
+      },
+      {
+        "filename": "Junior Excavator Operator Sample Question paper.xlsx",
+        "roleName": "Junior Excavator Operator",
+        "url": "/IESC/Junior Excavator Operator Sample Question paper.xlsx"
+      },
+      {
+        "filename": "Junior Mechanic Hydraulic Sample Question paper.xlsx",
+        "roleName": "Junior Mechanic Hydraulic",
+        "url": "/IESC/Junior Mechanic Hydraulic Sample Question paper.xlsx"
+      },
+      {
+        "filename": "Mechanic (Electrical ElectronicsInstrumentation) Sample Question paper.xlsx",
+        "roleName": "Mechanic (Electrical ElectronicsInstrumentation)",
+        "url": "/IESC/Mechanic (Electrical ElectronicsInstrumentation) Sample Question paper.xlsx"
+      },
+      {
+        "filename": "Mechanic (Engine) Sample Question paper.xlsx",
+        "roleName": "Mechanic (Engine)",
+        "url": "/IESC/Mechanic (Engine) Sample Question paper.xlsx"
+      },
+      {
+        "filename": "Mechanic (Hydraulic) Sample Question paper.xlsx",
+        "roleName": "Mechanic (Hydraulic)",
+        "url": "/IESC/Mechanic (Hydraulic) Sample Question paper.xlsx"
+      },
+      {
+        "filename": "Paver Operator Sample Question paper.xlsx",
+        "roleName": "Paver Operator",
+        "url": "/IESC/Paver Operator Sample Question paper.xlsx"
+      },
+      {
+        "filename": "Supervisor Maintenance Sample Question paper.xlsx",
+        "roleName": "Supervisor Maintenance",
+        "url": "/IESC/Supervisor Maintenance Sample Question paper.xlsx"
+      },
+      {
+        "filename": "Transit and self loading Mixer Operator Sample Question paper.xlsx",
+        "roleName": "Transit and self loading Mixer Operator",
+        "url": "/IESC/Transit and self loading Mixer Operator Sample Question paper.xlsx"
+      },
+      {
+        "filename": "Wheel Loader Operator Sample Question paper.xlsx",
+        "roleName": "Wheel Loader Operator",
+        "url": "/IESC/Wheel Loader Operator Sample Question paper.xlsx"
+      }
+    ],
+    "hasPapers": true
   },
   {
     "name": "Institution of Civil Engineers Society (ICES)",
     "url": "/question-papers/agriculture.pdf",
-    "image": "/icons/sectors/civil.png"
+    "image": "/icons/sectors/civil.png",
+    "hasPapers": false
   },
   {
     "name": "Instrumentation, Automation, Surveillance & Communication (IASC)",
     "url": "/question-papers/apparel.pdf",
-    "image": "/icons/sectors/instrumentation.png"
+    "image": "/icons/sectors/instrumentation.png",
+    "folder": "IASC",
+    "files": [
+      {
+        "filename": "Building Automation Specialist.xlsx",
+        "roleName": "Building Automation Specialist",
+        "url": "/IASC/Building Automation Specialist.xlsx"
+      },
+      {
+        "filename": "DCS Programmer and Troubleshooter.xlsx",
+        "roleName": "DCS Programmer and Troubleshooter",
+        "url": "/IASC/DCS Programmer and Troubleshooter.xlsx"
+      },
+      {
+        "filename": "Industrial Automation Specialist.xlsx",
+        "roleName": "Industrial Automation Specialist",
+        "url": "/IASC/Industrial Automation Specialist.xlsx"
+      },
+      {
+        "filename": "Industrial Automation Technician.xlsx",
+        "roleName": "Industrial Automation Technician",
+        "url": "/IASC/Industrial Automation Technician.xlsx"
+      },
+      {
+        "filename": "Junior Executive-B2B Customer Relation ( Automation).xlsx",
+        "roleName": "Junior Executive-B2B Customer Relation ( Automation)",
+        "url": "/IASC/Junior Executive-B2B Customer Relation ( Automation).xlsx"
+      },
+      {
+        "filename": "PLC Programmer & Troubleshooter.xlsx",
+        "roleName": "PLC Programmer & Troubleshooter",
+        "url": "/IASC/PLC Programmer & Troubleshooter.xlsx"
+      }
+    ],
+    "hasPapers": true
   },
   {
     "name": "IT - ITES Sector Skill Council (ITITES)",
     "url": "/question-papers/aerospace.pdf",
-    "image": "/icons/sectors/it.png"
+    "image": "/icons/sectors/it.png",
+    "hasPapers": false
   },
   {
     "name": "Leather Sector Skill Council (LSSC)",
     "url": "/question-papers/agriculture.pdf",
-    "image": "/icons/sectors/leather.png"
+    "image": "/icons/sectors/leather.png",
+    "hasPapers": false
   },
   {
     "name": "Life Science Sector Skill Development Council (LSSSDC)",
     "url": "/question-papers/apparel.pdf",
-    "image": "/icons/sectors/lifescience.png"
+    "image": "/icons/sectors/lifescience.png",
+    "hasPapers": false
   },
   {
     "name": "Logistics Sector Skill Council (LSC)",
     "url": "/question-papers/apparel.pdf",
-    "image": "/icons/sectors/logistics.png"
+    "image": "/icons/sectors/logistics.png",
+    "hasPapers": true,
+    "folder": "LSC",
+    "files": [
+      {
+        "filename": "Clearance Support Agent Sample Question paper.xlsx",
+        "roleName": "Clearance Support Agent",
+        "url": "/LSC/Clearance Support Agent Sample Question paper.xlsx"
+      },
+      {
+        "filename": "Consignment Booking Assistant Sample Question paper.xlsx",
+        "roleName": "Consignment Booking Assistant",
+        "url": "/LSC/Consignment Booking Assistant Sample Question paper.xlsx"
+      },
+      {
+        "filename": "Courier Associate Operations Sample Question paper.xlsx",
+        "roleName": "Courier Associate Operations",
+        "url": "/LSC/Courier Associate Operations Sample Question paper.xlsx"
+      },
+      {
+        "filename": "Courier Delivery Executive Sample Question paper.xlsx",
+        "roleName": "Courier Delivery Executive",
+        "url": "/LSC/Courier Delivery Executive Sample Question paper.xlsx"
+      },
+      {
+        "filename": "Courier Executive - Operations Sample Question paper.xlsx",
+        "roleName": "Courier Executive - Operations",
+        "url": "/LSC/Courier Executive - Operations Sample Question paper.xlsx"
+      },
+      {
+        "filename": "Documentation Assistant Sample Question paper.xlsx",
+        "roleName": "Documentation Assistant",
+        "url": "/LSC/Documentation Assistant Sample Question paper.xlsx"
+      },
+      {
+        "filename": "Documentation Executive Sample Question paper.xlsx",
+        "roleName": "Documentation Executive",
+        "url": "/LSC/Documentation Executive Sample Question paper.xlsx"
+      },
+      {
+        "filename": "E_commerce delivery Associate Sample Question paper.xlsx",
+        "roleName": "E_commerce delivery Associate",
+        "url": "/LSC/E_commerce delivery Associate Sample Question paper.xlsx"
+      },
+      {
+        "filename": "Goods Packaging Machine Operator Sample Question paper.xlsx",
+        "roleName": "Goods Packaging Machine Operator",
+        "url": "/LSC/Goods Packaging Machine Operator Sample Question paper.xlsx"
+      },
+      {
+        "filename": "Green Hydrogen Tube Trailer_Driver Sample Question paper.xlsx",
+        "roleName": "Green Hydrogen Tube Trailer_Driver",
+        "url": "/LSC/Green Hydrogen Tube Trailer_Driver Sample Question paper.xlsx"
+      },
+      {
+        "filename": "Material Handling Equipment (MHE) Operator and Technician Sample.xlsx",
+        "roleName": "Material Handling Equipment (MHE) Operator and Technician",
+        "url": "/LSC/Material Handling Equipment (MHE) Operator and Technician Sample.xlsx"
+      },
+      {
+        "filename": "Supply Chain Executive Sample Question paper.xlsx",
+        "roleName": "Supply Chain Executive",
+        "url": "/LSC/Supply Chain Executive Sample Question paper.xlsx"
+      },
+      {
+        "filename": "Warehouse Associate Sample Question paper.xlsx",
+        "roleName": "Warehouse Associate",
+        "url": "/LSC/Warehouse Associate Sample Question paper.xlsx"
+      },
+      {
+        "filename": "Warehouse Executive Sample Question paper.xlsx",
+        "roleName": "Warehouse Executive",
+        "url": "/LSC/Warehouse Executive Sample Question paper.xlsx"
+      },
+      {
+        "filename": "Warehouse Manager Sample Question paper.xlsx",
+        "roleName": "Warehouse Manager",
+        "url": "/LSC/Warehouse Manager Sample Question paper.xlsx"
+      },
+      {
+        "filename": "Warehouse Packer Sample Question paper.xlsx",
+        "roleName": "Warehouse Packer",
+        "url": "/LSC/Warehouse Packer Sample Question paper.xlsx"
+      },
+      {
+        "filename": "Warehouse Picker Sample Question paper.xlsx",
+        "roleName": "Warehouse Picker",
+        "url": "/LSC/Warehouse Picker Sample Question paper.xlsx"
+      },
+      {
+        "filename": "Warehouse Supervisor Sample Question paper.xlsx",
+        "roleName": "Warehouse Supervisor",
+        "url": "/LSC/Warehouse Supervisor Sample Question paper.xlsx"
+      }
+    ],
+    "hasPapers": true
   },
   {
     "name": "Management & Entrepreneurship & Professional Skill Council (MEPSC)",
     "url": "/question-papers/aerospace.pdf",
-    "image": "/icons/sectors/management.png"
+    "image": "/icons/sectors/management.png",
+    "hasPapers": false
   },
   {
     "name": "Media and Entertainment Skill Council (MESC)",
     "url": "/question-papers/agriculture.pdf",
-    "image": "/icons/sectors/media.png"
+    "image": "/icons/sectors/media.png",
+    "folder": "MESC",
+    "files": [
+      {
+        "filename": "AR-VR Developer.xlsx",
+        "roleName": "AR-VR Developer",
+        "url": "/MESC/AR-VR Developer.xlsx"
+      },
+      {
+        "filename": "Account Executive.xlsx",
+        "roleName": "Account Executive",
+        "url": "/MESC/Account Executive.xlsx"
+      },
+      {
+        "filename": "Animator.xlsx",
+        "roleName": "Animator",
+        "url": "/MESC/Animator.xlsx"
+      },
+      {
+        "filename": "Assistant Cameramanя.xlsx",
+        "roleName": "Assistant Cameramanя",
+        "url": "/MESC/Assistant Cameramanя.xlsx"
+      },
+      {
+        "filename": "Dancer.xlsx",
+        "roleName": "Dancer",
+        "url": "/MESC/Dancer.xlsx"
+      },
+      {
+        "filename": "Digital Marketing Manager.xlsx",
+        "roleName": "Digital Marketing Manager",
+        "url": "/MESC/Digital Marketing Manager.xlsx"
+      },
+      {
+        "filename": "Event Manager.xlsx",
+        "roleName": "Event Manager",
+        "url": "/MESC/Event Manager.xlsx"
+      },
+      {
+        "filename": "GRAPHIC DESIGNER.xlsx",
+        "roleName": "GRAPHIC DESIGNER",
+        "url": "/MESC/GRAPHIC DESIGNER.xlsx"
+      },
+      {
+        "filename": "Make-Up Artist.xlsx",
+        "roleName": "Make-Up Artist",
+        "url": "/MESC/Make-Up Artist.xlsx"
+      },
+      {
+        "filename": "Modeller.xlsx",
+        "roleName": "Modeller",
+        "url": "/MESC/Modeller.xlsx"
+      },
+      {
+        "filename": "Search Engine Marketing Executive.xlsx",
+        "roleName": "Search Engine Marketing Executive",
+        "url": "/MESC/Search Engine Marketing Executive.xlsx"
+      },
+      {
+        "filename": "Search Engine Optimization Executive.xlsx",
+        "roleName": "Search Engine Optimization Executive",
+        "url": "/MESC/Search Engine Optimization Executive.xlsx"
+      },
+      {
+        "filename": "Social Media Executive.xlsx",
+        "roleName": "Social Media Executive",
+        "url": "/MESC/Social Media Executive.xlsx"
+      },
+      {
+        "filename": "Social Media Influencer.xlsx",
+        "roleName": "Social Media Influencer",
+        "url": "/MESC/Social Media Influencer.xlsx"
+      },
+      {
+        "filename": "Still Photographer.xlsx",
+        "roleName": "Still Photographer",
+        "url": "/MESC/Still Photographer.xlsx"
+      },
+      {
+        "filename": "THREE D-Printing Operator.xlsx",
+        "roleName": "THREE D-Printing Operator",
+        "url": "/MESC/THREE D-Printing Operator.xlsx"
+      },
+      {
+        "filename": "Technical artist -AR-VR.xlsx",
+        "roleName": "Technical artist -AR-VR",
+        "url": "/MESC/Technical artist -AR-VR.xlsx"
+      },
+      {
+        "filename": "VFX Editor.xlsx",
+        "roleName": "VFX Editor",
+        "url": "/MESC/VFX Editor.xlsx"
+      }
+    ],
+    "hasPapers": true
   },
   {
     "name": "Power Sector Skill Council (PSSC)",
     "url": "/question-papers/apparel.pdf",
-    "image": "/icons/sectors/power.png"
+    "image": "/icons/sectors/power.png",
+    "hasPapers": false
   },
   {
     "name": "Retailer's Association Skill Council of India (RASCI)",
     "url": "/question-papers/apparel.pdf",
-    "image": "/icons/sectors/retail.png"
+    "image": "/icons/sectors/retail.png",
+    "hasPapers": false
   },
   {
     "name": "Rubber, Chemical and petrochemical Skill Development Council (RCPSDC)",
     "url": "/question-papers/aerospace.pdf",
-    "image": "/icons/sectors/chemical.png"
+    "image": "/icons/sectors/chemical.png",
+    "hasPapers": false
   },
   {
     "name": "Skill Council for Green Jobs (SCGJ)",
     "url": "/question-papers/agriculture.pdf",
-    "image": "/icons/sectors/green.png"
+    "image": "/icons/sectors/green.png",
+    "folder": "SSCGJ",
+    "files": [
+      {
+        "filename": "Green Hydrogen Plant Entrepreneur.xlsx",
+        "roleName": "Green Hydrogen Plant Entrepreneur",
+        "url": "/SSCGJ/Green Hydrogen Plant Entrepreneur.xlsx"
+      },
+      {
+        "filename": "Green Hydrogen Plant Junior Technician (Desalination).xlsx",
+        "roleName": "Green Hydrogen Plant Junior Technician (Desalination)",
+        "url": "/SSCGJ/Green Hydrogen Plant Junior Technician (Desalination).xlsx"
+      },
+      {
+        "filename": "Green Hydrogen Plant Junior Technician - Power Sources.xlsx",
+        "roleName": "Green Hydrogen Plant Junior Technician - Power Sources",
+        "url": "/SSCGJ/Green Hydrogen Plant Junior Technician - Power Sources.xlsx"
+      },
+      {
+        "filename": "Green Hydrogen Plant Junior Technician-Electrolyzer.xlsx",
+        "roleName": "Green Hydrogen Plant Junior Technician-Electrolyzer",
+        "url": "/SSCGJ/Green Hydrogen Plant Junior Technician-Electrolyzer.xlsx"
+      },
+      {
+        "filename": "Green Hydrogen Plant Technicianя.xlsx",
+        "roleName": "Green Hydrogen Plant Technicianя",
+        "url": "/SSCGJ/Green Hydrogen Plant Technicianя.xlsx"
+      },
+      {
+        "filename": "Junior Technician - Mechanized Sewer Cleaning.xlsx",
+        "roleName": "Junior Technician - Mechanized Sewer Cleaning",
+        "url": "/SSCGJ/Junior Technician - Mechanized Sewer Cleaning.xlsx"
+      },
+      {
+        "filename": "Rooftop Solar Grid Engineer.xlsx",
+        "roleName": "Rooftop Solar Grid Engineer",
+        "url": "/SSCGJ/Rooftop Solar Grid Engineer.xlsx"
+      },
+      {
+        "filename": "Safai Mitra.xlsx",
+        "roleName": "Safai Mitra",
+        "url": "/SSCGJ/Safai Mitra.xlsx"
+      },
+      {
+        "filename": "Small Hydro Power Plant Technician.xlsx",
+        "roleName": "Small Hydro Power Plant Technician",
+        "url": "/SSCGJ/Small Hydro Power Plant Technician.xlsx"
+      },
+      {
+        "filename": "Solar Lighting Assembler (Elective Home Lighting System Street Lights).xlsx",
+        "roleName": "Solar Lighting Assembler (Elective Home Lighting System Street Lights)",
+        "url": "/SSCGJ/Solar Lighting Assembler (Elective Home Lighting System Street Lights).xlsx"
+      },
+      {
+        "filename": "Solar PV Installation Helper.xlsx",
+        "roleName": "Solar PV Installation Helper",
+        "url": "/SSCGJ/Solar PV Installation Helper.xlsx"
+      },
+      {
+        "filename": "Solar PV Installer (Suryamitra).xlsx",
+        "roleName": "Solar PV Installer (Suryamitra)",
+        "url": "/SSCGJ/Solar PV Installer (Suryamitra).xlsx"
+      },
+      {
+        "filename": "Solar PV Installer - Electricalя.xlsx",
+        "roleName": "Solar PV Installer - Electricalя",
+        "url": "/SSCGJ/Solar PV Installer - Electricalя.xlsx"
+      },
+      {
+        "filename": "Solar PV Maintenance Technician - Electrical (Ground Mount)я.xlsx",
+        "roleName": "Solar PV Maintenance Technician - Electrical (Ground Mount)я",
+        "url": "/SSCGJ/Solar PV Maintenance Technician - Electrical (Ground Mount)я.xlsx"
+      },
+      {
+        "filename": "Solar PV Module Manufacturing Technician.xlsx",
+        "roleName": "Solar PV Module Manufacturing Technician",
+        "url": "/SSCGJ/Solar PV Module Manufacturing Technician.xlsx"
+      },
+      {
+        "filename": "Solar Photovoltaic Entrepreneurя.xlsx",
+        "roleName": "Solar Photovoltaic Entrepreneurя",
+        "url": "/SSCGJ/Solar Photovoltaic Entrepreneurя.xlsx"
+      },
+      {
+        "filename": "Solar Photovoltaic Technician.xlsx",
+        "roleName": "Solar Photovoltaic Technician",
+        "url": "/SSCGJ/Solar Photovoltaic Technician.xlsx"
+      },
+      {
+        "filename": "Swacchta Saarthi.xlsx",
+        "roleName": "Swacchta Saarthi",
+        "url": "/SSCGJ/Swacchta Saarthi.xlsx"
+      }
+    ],
+    "hasPapers": true
   },
   {
     "name": "Skill Council for Mining Sector (SCMS)",
     "url": "/question-papers/apparel.pdf",
-    "image": "/icons/sectors/mining.png"
+    "image": "/icons/sectors/mining.png",
+    "hasPapers": false
   },
   {
     "name": "Skill Council for Person with Disability (SCPWD)",
     "url": "/question-papers/apparel.pdf",
-    "image": "/icons/sectors/disability.png"
+    "image": "/icons/sectors/disability.png",
+    "hasPapers": false
   },
   {
     "name": "Sports, Physical Education, Fitness & Leisure Skill Council (SPEFL-SC)",
     "url": "/question-papers/aerospace.pdf",
-    "image": "/icons/sectors/sports.png"
+    "image": "/icons/sectors/sports.png",
+    "hasPapers": false
   },
   {
     "name": "Telecom Sector Skill Council (TSSC)",
     "url": "/question-papers/agriculture.pdf",
-    "image": "/icons/sectors/telecom.png"
+    "image": "/icons/sectors/telecom.png",
+    "hasPapers": false
   },
   {
     "name": "Textile Sector Skill Council (TSC)",
     "url": "/question-papers/apparel.pdf",
-    "image": "/icons/sectors/textile.png"
+    "image": "/icons/sectors/textile.png",
+    "hasPapers": false
   },
   {
     "name": "Third Party Sector (TPS)",
     "url": "/question-papers/apparel.pdf",
-    "image": "/icons/sectors/thirdparty.png"
+    "image": "/icons/sectors/thirdparty.png",
+    "hasPapers": false
   },
   {
     "name": "TNSDC (TNSDC)",
     "url": "/question-papers/aerospace.pdf",
-    "image": "/icons/sectors/tnsdc.png"
+    "image": "/icons/sectors/tnsdc.png",
+    "hasPapers": false
   },
   {
     "name": "Tourism and Hospitality Skill Council (THSC)",
     "url": "/question-papers/agriculture.pdf",
-    "image": "/icons/sectors/tourism.png"
+    "image": "/icons/sectors/tourism.png",
+    "hasPapers": false
   },
   {
     "name": "Water Management And Plumbing Skill Council (WMPSC)",
     "url": "/question-papers/apparel.pdf",
-    "image": "/icons/sectors/water.png"
+    "image": "/icons/sectors/water.png",
+    "hasPapers": false
   }
 ]

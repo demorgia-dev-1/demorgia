@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import {
-  Box,
-  Typography,
-  Button,
-  Modal,
-  IconButton,
   Backdrop,
+  Box,
+  Button,
+  Chip,
+  Container,
+  IconButton,
+  Modal,
+  Stack,
+  Typography,
 } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
 import CloseIcon from "@mui/icons-material/Close";
@@ -13,28 +16,27 @@ import RequestDemoForm from "./RequestDemo";
 
 const MotionBox = motion(Box);
 
+const trustPoints = [
+  "NCVET-recognized assessment partner",
+  "Sector-focused sample paper support",
+  "Trusted delivery for large-scale skilling programs",
+];
+
 const HeroSection = () => {
   const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
-  const bgImage = "/bg.png"; 
 
   return (
     <>
       <Box
         component="section"
         sx={{
-          width: "100%",
-          minHeight: { xs: 520, md: 680 },
           position: "relative",
-          bgcolor: "#0f2a45", 
-          backgroundImage: `url(${bgImage})`,
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-          backgroundPosition: { xs: "10% center", md: "center center" },
-          display: "block",
           overflow: "hidden",
+          backgroundColor: "#0f2a45",
+          backgroundImage:
+            "linear-gradient(110deg, rgba(15,42,69,0.95) 0%, rgba(15,42,69,0.82) 45%, rgba(15,42,69,0.52) 100%), url(/bg.png)",
+          backgroundSize: "cover",
+          backgroundPosition: { xs: "center center", md: "center top" },
         }}
       >
         <Box
@@ -42,172 +44,144 @@ const HeroSection = () => {
             position: "absolute",
             inset: 0,
             background:
-              "linear-gradient(90deg, rgba(15,42,69,0.85) 0%, rgba(15,42,69,0.55) 35%, rgba(15,42,69,0.15) 100%)",
-            pointerEvents: "none",
-            zIndex: 1,
+              "radial-gradient(circle at top left, rgba(0,168,89,0.18) 0%, rgba(0,168,89,0) 34%)",
           }}
         />
 
-       
-        <MotionBox
-          initial={{ opacity: 0, x: -40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          sx={{
-            position: "relative",
-            zIndex: 2,
-            display: "flex",
-            alignItems: "center",
-            
-            minHeight: { xs: 520, md: 680 },
-            px: { xs: 3, sm: 6, md: 12 },
-          }}
-        >
-          
-          <Box
+        <Container maxWidth="lg" sx={{ position: "relative", zIndex: 1 }}>
+          <MotionBox
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
             sx={{
-              width: { xs: "100%", md: "52%", lg: "48%" },
-              mx: { xs: 0, md: 0 },
-              textAlign: { xs: "center", md: "left" },
-             
+              minHeight: { xs: 560, md: 680 },
               display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              color: "#fff",
-              pointerEvents: "auto",
-              py: { xs: 6, md: 0 },
+              alignItems: "center",
+              py: { xs: 10, md: 12 },
             }}
           >
-            <Typography
-              variant="h3"
-              fontWeight="700"
-              sx={{
-                lineHeight: 1.12,
-                fontSize: { xs: "2rem", sm: "2.6rem", md: "3.2rem" },
-              }}
-            >
-              Transforming Assessment{" "}
-              <Box
-                component="span"
-                sx={{ color: "var(--brand-green, #04ba5cff)" }}
-              >
-                &amp; Shaping Futures
-              </Box>
-            </Typography>
-
-            <Typography
-              variant="h6"
-              mt={2}
-              sx={{
-                fontWeight: 600,
-                color: "rgba(255,255,255,0.9)",
-                fontSize: { xs: "0.95rem", sm: "1.05rem" },
-              }}
-            >
-              Dynamic visual showcasing diverse assessment environments and
-              technology integration.
-            </Typography>
-            <Typography
-              variant="h6"
-              mt={2}
-              sx={{
-                fontWeight: 600,
-                color: "rgba(255,255,255,0.9)",
-                fontSize: { xs: "0.95rem", sm: "1.05rem" },
-              }}
-            >
-              India’s trusted NCVET-recognized agency awarded for excellence by
-              CSDCI.
-            </Typography>
-
-            {/* Buttons */}
-            <Box
-              mt={4}
-              sx={{
-                display: "flex",
-                flexWrap: "wrap",
-                gap: 2,
-                justifyContent: { xs: "center", md: "flex-start" },
-              }}
-            >
-              <Button
-                variant="contained"
-                onClick={handleOpen}
+            <Box sx={{ maxWidth: 720, color: "#fff" }}>
+              <Chip
+                label="Assessment • Consulting • Placement Support"
                 sx={{
-                  px: 2.5,
-                  py: 1,
-                  borderRadius: "6px",
+                  mb: 3,
+                  px: 1,
+                  height: 34,
+                  borderRadius: 99,
+                  bgcolor: "rgba(255,255,255,0.12)",
+                  color: "#f6fbff",
                   fontWeight: 600,
-                  fontSize: "0.875rem",
-                  textTransform: "uppercase",
-                  background: "linear-gradient(to right, #00a651, #007f5f)",
-                  color: "#fff",
-                  boxShadow: "none",
-                  "&:hover": {
-                    background: "linear-gradient(to right, #007f5f, #00a651)",
-                    boxShadow: "none",
-                  },
+                  letterSpacing: "0.02em",
+                  backdropFilter: "blur(8px)",
+                }}
+              />
+
+              <Typography
+                variant="h1"
+                sx={{
+                  maxWidth: 680,
+                  fontSize: { xs: "2.4rem", sm: "3.2rem", md: "4.25rem" },
+                  color: "#ffffff",
                 }}
               >
-                Request Demo
-              </Button>
+                Professional assessment solutions built for scale, trust, and
+                measurable outcomes.
+              </Typography>
 
-              <Button
-                onClick={() =>
-                  document
-                    .getElementById("solutions")
-                    ?.scrollIntoView({ behavior: "smooth" })
-                }
+              <Typography
+                variant="h6"
                 sx={{
-                  px: 2.5,
-                  py: 1,
-                  borderRadius: "6px",
-                  fontWeight: 600,
-                  fontSize: "0.875rem",
-                  textTransform: "uppercase",
-                  background: "transparent",
-                  color: "#fff",
-                  border: "1.5px solid rgba(255,255,255,0.18)",
-                  boxShadow: "none",
-                  minWidth: 170,
-                  textAlign: "center",
-                  backdropFilter: "saturate(120%)",
-                  "&:hover": {
-                    background: "rgba(255,255,255,0.04)",
-                    border: "1.5px solid rgba(255,255,255,0.26)",
-                    boxShadow: "none",
-                  },
+                  mt: 3,
+                  maxWidth: 640,
+                  color: "rgba(255,255,255,0.84)",
+                  fontWeight: 400,
+                  fontSize: { xs: "1rem", md: "1.1rem" },
                 }}
               >
-                Explore Solutions
-              </Button>
+                Demorgia helps institutions, councils, and industry partners
+                deliver reliable assessments, operational support, and skill
+                development programs with a clear, compliant, and modern process.
+              </Typography>
+
+              <Stack
+                direction={{ xs: "column", sm: "row" }}
+                spacing={2}
+                sx={{ mt: 4, alignItems: { xs: "stretch", sm: "center" } }}
+              >
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  onClick={() => setOpen(true)}
+                  sx={{
+                    minWidth: 170,
+                    py: 1.2,
+                  }}
+                >
+                  Request a Demo
+                </Button>
+                <Button
+                  variant="outlined"
+                  color="inherit"
+                  onClick={() =>
+                    document.getElementById("solutions")?.scrollIntoView({
+                      behavior: "smooth",
+                    })
+                  }
+                  sx={{
+                    minWidth: 190,
+                    py: 1.2,
+                    borderColor: "rgba(255,255,255,0.28)",
+                    color: "#ffffff",
+                    "&:hover": {
+                      borderColor: "rgba(255,255,255,0.55)",
+                      backgroundColor: "rgba(255,255,255,0.06)",
+                    },
+                  }}
+                >
+                  Explore Solutions
+                </Button>
+              </Stack>
+
+              <Stack
+                direction={{ xs: "column", md: "row" }}
+                spacing={{ xs: 1.5, md: 3 }}
+                sx={{
+                  mt: 5,
+                  pt: 3,
+                  borderTop: "1px solid rgba(255,255,255,0.14)",
+                }}
+              >
+                {trustPoints.map((item) => (
+                  <Typography
+                    key={item}
+                    variant="body2"
+                    sx={{
+                      color: "rgba(255,255,255,0.82)",
+                      fontWeight: 500,
+                    }}
+                  >
+                    {item}
+                  </Typography>
+                ))}
+              </Stack>
             </Box>
-          </Box>
-
-          
-          <Box
-            sx={{
-              display: { xs: "none", md: "block" },
-              flex: 1,
-            }}
-          />
-        </MotionBox>
+          </MotionBox>
+        </Container>
       </Box>
 
-      {/* MODAL */}
       <AnimatePresence>
         {open && (
           <Modal
             open={open}
-            onClose={handleClose}
+            onClose={() => setOpen(false)}
             closeAfterTransition
             slots={{ backdrop: Backdrop }}
             slotProps={{
               backdrop: {
-                timeout: 500,
+                timeout: 300,
                 sx: {
                   backdropFilter: "blur(6px)",
-                  backgroundColor: "rgba(0, 0, 0, 0.4)",
+                  backgroundColor: "rgba(7, 20, 34, 0.48)",
                 },
               },
             }}
@@ -219,32 +193,33 @@ const HeroSection = () => {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
+                px: 2,
               }}
             >
               <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
+                initial={{ opacity: 0, scale: 0.96 }}
                 animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.4, ease: "easeInOut" }}
+                exit={{ opacity: 0, scale: 0.96 }}
+                transition={{ duration: 0.25, ease: "easeOut" }}
                 style={{
-                  width: "90%",
-                  maxWidth: 600,
-                  background: "#fefefe",
-                  borderRadius: "16px",
-                  padding: "24px",
-                  boxShadow: "0 20px 50px rgba(0,0,0,0.25)",
+                  width: "100%",
+                  maxWidth: 640,
+                  background: "#ffffff",
+                  borderRadius: "20px",
+                  padding: "28px 24px 24px",
+                  boxShadow: "0 24px 60px rgba(0,0,0,0.18)",
                   maxHeight: "90vh",
                   overflow: "hidden",
                   position: "relative",
                 }}
               >
                 <IconButton
-                  onClick={handleClose}
-                  style={{
+                  onClick={() => setOpen(false)}
+                  sx={{
                     position: "absolute",
-                    top: 12,
-                    right: 12,
-                    color: "#555",
+                    top: 14,
+                    right: 14,
+                    color: "#5f6f81",
                     zIndex: 10,
                   }}
                 >
@@ -260,7 +235,7 @@ const HeroSection = () => {
                     "&::-webkit-scrollbar": { display: "none" },
                   }}
                 >
-                  <RequestDemoForm onClose={handleClose} />
+                  <RequestDemoForm onClose={() => setOpen(false)} />
                 </Box>
               </motion.div>
             </Box>

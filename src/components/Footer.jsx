@@ -27,7 +27,6 @@ const footerLinks = [
   { label: "Assessors", path: "/assessors" },
 ];
 
-//  Social media links
 const socialLinks = [
   { Icon: FaTwitter, href: "https://twitter.com/", label: "Twitter" },
   { Icon: FaFacebook, href: "https://www.facebook.com/", label: "Facebook" },
@@ -36,7 +35,7 @@ const socialLinks = [
   { Icon: FaLinkedin, href: "https://www.linkedin.com/", label: "LinkedIn" },
 ];
 
-const BG = "#0f2a45"; 
+const BG = "#0f2a45";
 const GREEN = "#00A859";
 const MUTED_WHITE = "rgba(255,255,255,0.85)";
 const MUTED_WHITE_FAINT = "rgba(255,255,255,0.72)";
@@ -52,7 +51,6 @@ const Footer = () => (
   >
     <Container maxWidth="lg">
       <Grid container spacing={4}>
-        {/* Logo and Description */}
         <Grid item xs={12} md={3}>
           <Box
             mb={2}
@@ -89,13 +87,19 @@ const Footer = () => (
           <Typography variant="body2" sx={{ color: MUTED_WHITE_FAINT }}>
             Empowering Individuals and Industries through Accurate Assessments,
             Strategic Consultancy, and Innovative Solutions.
-            <strong style={{ color: MUTED_WHITE }}> Unlocking Potential, Driving Growth.</strong>
+            <strong style={{ color: MUTED_WHITE }}>
+              {" "}
+              Unlocking Potential, Driving Growth.
+            </strong>
           </Typography>
         </Grid>
 
-        {/* Useful Links */}
         <Grid item xs={12} md={3}>
-          <Typography variant="h6" gutterBottom sx={{ fontWeight: 600, color: "#fff" }}>
+          <Typography
+            variant="h6"
+            gutterBottom
+            sx={{ fontWeight: 600, color: "#fff" }}
+          >
             USEFUL LINKS
           </Typography>
           <Divider sx={{ width: 40, bgcolor: GREEN, mb: 1 }} />
@@ -117,9 +121,12 @@ const Footer = () => (
           ))}
         </Grid>
 
-        {/* Contact */}
         <Grid item xs={12} md={3}>
-          <Typography variant="h6" gutterBottom sx={{ fontWeight: 600, color: "#fff" }}>
+          <Typography
+            variant="h6"
+            gutterBottom
+            sx={{ fontWeight: 600, color: "#fff" }}
+          >
             CONTACT US
           </Typography>
           <Divider sx={{ width: 40, bgcolor: GREEN, mb: 1 }} />
@@ -131,27 +138,50 @@ const Footer = () => (
             Noida 62, UP 201309, India
             <br />
             <br />
-            <strong style={{ color: MUTED_WHITE }}>Phone:</strong> <a href="tel:+911203229282" style={{ color: GREEN, textDecoration: "none" }}>+91-120-3229282</a>
+            <strong style={{ color: MUTED_WHITE }}>Phone:</strong>{" "}
+            <a
+              href="tel:+911203229282"
+              style={{ color: GREEN, textDecoration: "none" }}
+            >
+              +91-120-3229282
+            </a>
             <br />
-            <strong style={{ color: MUTED_WHITE }}>Phone:</strong> <a href="tel:+911203116273" style={{ color: GREEN, textDecoration: "none" }}>+91-120-3116273</a>
+            <strong style={{ color: MUTED_WHITE }}>Phone:</strong>{" "}
+            <a
+              href="tel:+911203116273"
+              style={{ color: GREEN, textDecoration: "none" }}
+            >
+              +91-120-3116273
+            </a>
             <br />
-            <strong style={{ color: MUTED_WHITE }}>Email:</strong> <a href="mailto:hrd@demorgia.com" style={{ color: GREEN, textDecoration: "none" }}>hrd@demorgia.com</a>
+            <strong style={{ color: MUTED_WHITE }}>Email:</strong>{" "}
+            <a
+              href="mailto:hrd@demorgia.com"
+              style={{ color: GREEN, textDecoration: "none" }}
+            >
+              hrd@demorgia.com
+            </a>
           </Typography>
         </Grid>
 
-        {/* Group Company and Newsletter */}
         <Grid item xs={12} md={3}>
-          <Typography variant="h6" gutterBottom sx={{ fontWeight: 600, color: "#fff" }}>
+          <Typography
+            variant="h6"
+            gutterBottom
+            sx={{ fontWeight: 600, color: "#fff" }}
+          >
             GROUP COMPANY
           </Typography>
           <Divider sx={{ width: 40, bgcolor: GREEN, mb: 1 }} />
           <Typography variant="body2" mb={2} sx={{ color: MUTED_WHITE_FAINT }}>
-            <strong style={{ color: MUTED_WHITE }}>"Vikram Aviation Pvt Ltd"</strong> <br />
+            <strong style={{ color: MUTED_WHITE }}>
+              "Vikram Aviation Pvt Ltd"
+            </strong>{" "}
+            <br />
             Trusted Partner for Precision Calibration, Expert Repairs, Composite
             Maintenance, and Consumable Solutions.
           </Typography>
 
-          {/* Newsletter */}
           <Box display="flex">
             <TextField
               size="small"
@@ -192,7 +222,6 @@ const Footer = () => (
             </Button>
           </Box>
 
-          {/*  Social Media Icons with Working Links */}
           <Box mt={2}>
             {socialLinks.map(({ Icon, href, label }, i) => (
               <IconButton
@@ -210,12 +239,12 @@ const Footer = () => (
                       label === "Facebook"
                         ? "#1877F2"
                         : label === "Twitter"
-                        ? "#1DA1F2"
-                        : label === "Instagram"
-                        ? "#E1306C"
-                        : label === "LinkedIn"
-                        ? "#0A66C2"
-                        : GREEN,
+                          ? "#1DA1F2"
+                          : label === "Instagram"
+                            ? "#E1306C"
+                            : label === "LinkedIn"
+                              ? "#0A66C2"
+                              : GREEN,
                   },
                 }}
               >
@@ -226,12 +255,14 @@ const Footer = () => (
         </Grid>
       </Grid>
 
-      {/* Bottom Bar */}
       <Box mt={6} textAlign="center">
         <Divider sx={{ bgcolor: "rgba(255,255,255,0.06)", mb: 2 }} />
         <Typography variant="body2" sx={{ color: MUTED_WHITE }} mt={2}>
-          © 2025 <strong style={{ color: GREEN }}>Demorgia Consulting Services Pvt Ltd</strong>. All
-          rights reserved.
+          © 2025{" "}
+          <strong style={{ color: GREEN }}>
+            Demorgia Consulting Services Pvt Ltd
+          </strong>
+          . All rights reserved.
         </Typography>
       </Box>
     </Container>

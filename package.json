@@ -27,7 +27,8 @@
     "react-simple-chatbot": "^0.5.0",
     "react-simple-typewriter": "^5.0.1",
     "styled-components": "^4.4.1",
-    "swiper": "^11.2.10"
+    "swiper": "^11.2.10",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@eslint/js": "^9.29.0",
