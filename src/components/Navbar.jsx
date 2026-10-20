@@ -49,11 +49,9 @@ const solutionsItems = [
 ];
 
 const sortSamplePaperSectors = (sectors) =>
-  [...sectors].sort(
-    (a, b) =>
-      Number(Boolean(b.hasPapers)) - Number(Boolean(a.hasPapers)) ||
-      a.name.localeCompare(b.name)
-  );
+  [...sectors]
+    .filter((s) => s.hasPapers)
+    .sort((a, b) => a.name.localeCompare(b.name));
 
 /* ─── Solutions Dropdown ─── */
 const SolutionsDropdown = () => {

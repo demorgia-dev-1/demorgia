@@ -31,14 +31,57 @@ const CHUNK_SIZE = 10;
  * Imported dynamically so SheetJS only loads when user actually previews.
  */
 const parseExcelBuffer = async (arrayBuffer) => {
-  const XLSX = await import("xlsx");
-  const data = new Uint8Array(arrayBuffer);
-  const workbook = XLSX.read(data, { type: "array" });
-  const sheetName = workbook.SheetNames[0];
-  const worksheet = workbook.Sheets[sheetName];
-  const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, defval: "" });
+  const ExcelJS = (await import("exceljs")).default || await import("exceljs");
+  const workbook = new ExcelJS.Workbook();
+  await workbook.xlsx.load(arrayBuffer);
+  
+  const worksheet = workbook.worksheets[0];
+  
+  const imagesByRowCol = {};
+  for (const image of worksheet.getImages()) {
+    const row = image.range.tl.nativeRow;
+    const col = image.range.tl.nativeCol;
+    const media = workbook.model.media.find((m) => m.index === image.imageId);
+    
+    if (media && media.buffer) {
+      let binary = "";
+      const bytes = new Uint8Array(media.buffer);
+      for (let i = 0; i < bytes.byteLength; i++) {
+        binary += String.fromCharCode(bytes[i]);
+      }
+      const base64 = btoa(binary);
+      const dataUrl = `data:image/${media.extension};base64,${base64}`;
+      if (!imagesByRowCol[row]) imagesByRowCol[row] = {};
+      imagesByRowCol[row][col] = dataUrl;
+    }
+  }
 
-  // Find the true header row (contains both "Question No" and "Questions")
+  const rowCount = worksheet.rowCount;
+  const colCount = worksheet.columnCount;
+  const jsonData = [];
+  
+  for (let i = 1; i <= rowCount; i++) {
+    const rowValues = [];
+    const row = worksheet.getRow(i);
+    for (let j = 1; j <= (colCount || 10); j++) {
+      const cell = row.getCell(j);
+      let val = cell.value;
+      if (val !== null && val !== undefined) {
+        if (typeof val === "object" && val.richText) {
+          val = val.richText.map((t) => t.text).join("");
+        } else if (typeof val === "object" && val.sharedFormula) {
+          val = val.result !== undefined ? val.result : "";
+        } else if (val instanceof Date) {
+          val = val.toString();
+        }
+      } else {
+        val = "";
+      }
+      rowValues.push(String(val).trim());
+    }
+    jsonData.push(rowValues);
+  }
+
   let headerIdx = jsonData.findIndex(
     (row) =>
       row &&
@@ -56,7 +99,6 @@ const parseExcelBuffer = async (arrayBuffer) => {
       )
   );
 
-  // Fallback: row with "Questions" + "Option A"
   if (headerIdx === -1) {
     headerIdx = jsonData.findIndex(
       (row) =>
@@ -66,9 +108,8 @@ const parseExcelBuffer = async (arrayBuffer) => {
     );
   }
 
-  if (headerIdx === -1) headerIdx = 6; // last resort default
+  if (headerIdx === -1) headerIdx = 6;
 
-  // Extract job role info from rows above header
   let jobRole = "";
   for (let i = 0; i < headerIdx; i++) {
     const row = jsonData[i];
@@ -80,25 +121,58 @@ const parseExcelBuffer = async (arrayBuffer) => {
     }
   }
 
-  const questions = jsonData
-    .slice(headerIdx + 1)
-    .filter((r) => r && r.length > 1 && r[0] !== "")
-    .map((r) => {
-      const text = r[1];
-      if (!text) return null;
-      return {
-        num: r[0] || "",
-        text: String(text).trim(),
+  const questions = [];
+  let currentQuestion = null;
+
+  for (let i = headerIdx + 1; i < jsonData.length; i++) {
+    const r = jsonData[i] || [];
+    const rowImages = imagesByRowCol[i] || {};
+    
+    const qNum = String(r[0] || "").trim();
+    const qText = String(r[1] || "").trim();
+    
+    const hasAnyContent = qNum || qText || r[2] || r[3] || r[4] || r[5] || r[6] || Object.keys(rowImages).length > 0;
+    if (!hasAnyContent) continue;
+
+    if (qNum !== "") {
+      currentQuestion = {
+        num: qNum,
+        text: qText,
+        image: rowImages[1] || null,
         options: [
-          { label: "A", text: r[2] ? String(r[2]).trim() : "" },
-          { label: "B", text: r[3] ? String(r[3]).trim() : "" },
-          { label: "C", text: r[4] ? String(r[4]).trim() : "" },
-          { label: "D", text: r[5] ? String(r[5]).trim() : "" },
-        ].filter((o) => o.text),
-        answer: r[6] ? String(r[6]).trim() : "",
+          { label: "A", text: String(r[2] || "").trim(), image: rowImages[2] || null },
+          { label: "B", text: String(r[3] || "").trim(), image: rowImages[3] || null },
+          { label: "C", text: String(r[4] || "").trim(), image: rowImages[4] || null },
+          { label: "D", text: String(r[5] || "").trim(), image: rowImages[5] || null },
+        ],
+        answer: String(r[6] || "").trim(),
       };
-    })
-    .filter(Boolean);
+      questions.push(currentQuestion);
+    } else if (currentQuestion) {
+      if (qText) currentQuestion.text += "\n" + qText;
+      if (rowImages[1] && !currentQuestion.image) currentQuestion.image = rowImages[1];
+      
+      if (r[2]) currentQuestion.options[0].text += "\n" + String(r[2]).trim();
+      if (rowImages[2] && !currentQuestion.options[0].image) currentQuestion.options[0].image = rowImages[2];
+      
+      if (r[3]) currentQuestion.options[1].text += "\n" + String(r[3]).trim();
+      if (rowImages[3] && !currentQuestion.options[1].image) currentQuestion.options[1].image = rowImages[3];
+      
+      if (r[4]) currentQuestion.options[2].text += "\n" + String(r[4]).trim();
+      if (rowImages[4] && !currentQuestion.options[2].image) currentQuestion.options[2].image = rowImages[4];
+      
+      if (r[5]) currentQuestion.options[3].text += "\n" + String(r[5]).trim();
+      if (rowImages[5] && !currentQuestion.options[3].image) currentQuestion.options[3].image = rowImages[5];
+      
+      if (r[6]) currentQuestion.answer += " " + String(r[6]).trim();
+    }
+  }
+
+  questions.forEach(q => {
+    q.text = q.text.trim();
+    q.options = q.options.filter(o => o.text.trim() || o.image);
+    q.answer = String(q.answer).trim();
+  });
 
   return { jobRole, questions };
 };
@@ -133,9 +207,16 @@ const QuestionCard = React.memo(({ q, showAnswers, hasAnswers }) => (
       >
         {q.num}
       </Box>
-      <Typography variant="body2" fontWeight={500} sx={{ lineHeight: 1.55, color: WHITE }}>
-        {q.text}
-      </Typography>
+      <Box>
+        <Typography variant="body2" fontWeight={500} sx={{ lineHeight: 1.55, color: WHITE, whiteSpace: "pre-line" }}>
+          {q.text}
+        </Typography>
+        {q.image && (
+          <Box sx={{ mt: 1.5, mb: 0.5 }}>
+            <img src={q.image} alt="Question figure" style={{ maxWidth: "100%", maxHeight: 200, borderRadius: 4 }} />
+          </Box>
+        )}
+      </Box>
     </Box>
 
     {/* Options */}
@@ -157,7 +238,7 @@ const QuestionCard = React.memo(({ q, showAnswers, hasAnswers }) => (
                 bgcolor: isCorrect ? "rgba(0,168,89,0.14)" : "rgba(255,255,255,0.025)",
                 border: `1px solid ${isCorrect ? GREEN : "rgba(255,255,255,0.06)"}`,
                 display: "flex",
-                alignItems: "center",
+                alignItems: "flex-start",
                 gap: 1,
               }}
             >
@@ -173,16 +254,26 @@ const QuestionCard = React.memo(({ q, showAnswers, hasAnswers }) => (
                   justifyContent: "center",
                   fontSize: "0.7rem",
                   fontWeight: 700,
+                  mt: 0.25,
                 }}
               >
                 {opt.label}
               </Box>
-              <Typography
-                variant="caption"
-                sx={{ color: isCorrect ? WHITE : "rgba(255,255,255,0.78)", lineHeight: 1.4 }}
-              >
-                {opt.text}
-              </Typography>
+              <Box>
+                {opt.text && (
+                  <Typography
+                    variant="caption"
+                    sx={{ color: isCorrect ? WHITE : "rgba(255,255,255,0.78)", lineHeight: 1.4, whiteSpace: "pre-line", wordBreak: "break-word" }}
+                  >
+                    {opt.text}
+                  </Typography>
+                )}
+                {opt.image && (
+                  <Box sx={{ mt: opt.text ? 1 : 0 }}>
+                    <img src={opt.image} alt={`Option ${opt.label}`} style={{ maxWidth: "100%", maxHeight: 150, borderRadius: 4 }} />
+                  </Box>
+                )}
+              </Box>
             </Box>
           </Grid>
         );

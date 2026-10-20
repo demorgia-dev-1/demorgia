@@ -187,7 +187,80 @@
     "name": "Construction Skill Development Council of India (CSDCI)",
     "url": "/question-papers/apparel.pdf",
     "image": "/icons/sectors/construction.png",
-    "hasPapers": false
+    "hasPapers": true,
+    "folder": "CSDCI",
+    "files": [
+      {
+        "filename": "1. Sample Question paper Assistant Construction Painter & Decorator.xlsx",
+        "roleName": "Assistant Construction Painter & Decorator",
+        "url": "/CSDCI/1. Sample Question paper Assistant Construction Painter & Decorator.xlsx"
+      },
+      {
+        "filename": "10. Sample Question paper Fabricator.xlsx",
+        "roleName": "Fabricator",
+        "url": "/CSDCI/10. Sample Question paper Fabricator.xlsx"
+      },
+      {
+        "filename": "11. Sample Question paper Mason Tilling.xlsx",
+        "roleName": "Mason Tilling",
+        "url": "/CSDCI/11. Sample Question paper Mason Tilling.xlsx"
+      },
+      {
+        "filename": "12. Sample Question paper Rural Mason.xlsx",
+        "roleName": "Rural Mason",
+        "url": "/CSDCI/12. Sample Question paper Rural Mason.xlsx"
+      },
+      {
+        "filename": "13. Sample Question paper Tile Mason Basic.xlsx",
+        "roleName": "Tile Mason Basic",
+        "url": "/CSDCI/13. Sample Question paper Tile Mason Basic.xlsx"
+      },
+      {
+        "filename": "18. Sample Question paper Plaster Mason Basic.xlsx",
+        "roleName": "Plaster Mason Basic",
+        "url": "/CSDCI/18. Sample Question paper Plaster Mason Basic.xlsx"
+      },
+      {
+        "filename": "2. Sample Question paper Assistant Electrician.xlsx",
+        "roleName": "Assistant Electrician",
+        "url": "/CSDCI/2. Sample Question paper Assistant Electrician.xlsx"
+      },
+      {
+        "filename": "3. Sample Question paper Assistant Mason.xlsx",
+        "roleName": "Assistant Mason",
+        "url": "/CSDCI/3. Sample Question paper Assistant Mason.xlsx"
+      },
+      {
+        "filename": "4. Sample Question paper Assistant Shuttering Carpenter.xlsx",
+        "roleName": "Assistant Shuttering Carpenter",
+        "url": "/CSDCI/4. Sample Question paper Assistant Shuttering Carpenter.xlsx"
+      },
+      {
+        "filename": "5. Sample Question paper Bar Bender & Steel Fixer.xlsx",
+        "roleName": "Bar Bender & Steel Fixer",
+        "url": "/CSDCI/5. Sample Question paper Bar Bender & Steel Fixer.xlsx"
+      },
+      {
+        "filename": "6. Sample Question paper Brick Mason-Advance.xlsx",
+        "roleName": "Brick Mason-Advance",
+        "url": "/CSDCI/6. Sample Question paper Brick Mason-Advance.xlsx"
+      },
+      {
+        "filename": "7. Sample Question paper Brick Mason Basic.xlsx",
+        "roleName": "Brick Mason Basic",
+        "url": "/CSDCI/7. Sample Question paper Brick Mason Basic.xlsx"
+      },
+      {
+        "filename": "8. Sample Question paper Concrete Mason Basic.xlsx",
+        "roleName": "Concrete Mason Basic",
+        "url": "/CSDCI/8. Sample Question paper Concrete Mason Basic.xlsx"
+      },
+      {
+        "filename": "9. Sample Question paper Construction Painter & Decorator.xlsx",
+        "roleName": "Construction Painter & Decorator",
+        "url": "/CSDCI/9. Sample Question paper Construction Painter & Decorator.xlsx"
+      }
+    ]
   },
   {
     "name": "Domestic Workers Sector Skill Council (DWSSC)",
@@ -211,7 +284,30 @@
     "name": "Furniture & Fittings Skill Council (FFSC)",
     "url": "/question-papers/aerospace.pdf",
     "image": "/icons/sectors/furniture.png",
-    "hasPapers": false
+    "folder": "FFSC",
+    "files": [
+      {
+        "filename": "Sample QP - Boat Maker Basic PMVK.xlsx",
+        "roleName": "Boat Maker Basic PMVK",
+        "url": "/FFSC/Sample QP - Boat Maker Basic PMVK.xlsx"
+      },
+      {
+        "filename": "Sample QP - Carpenter Basic PMVK.xlsx",
+        "roleName": "Carpenter Basic PMVK",
+        "url": "/FFSC/Sample QP - Carpenter Basic PMVK.xlsx"
+      },
+      {
+        "filename": "Sample QP Multipurpose Assistant- Furniture.xlsx",
+        "roleName": "Multipurpose Assistant - Furniture",
+        "url": "/FFSC/Sample QP Multipurpose Assistant- Furniture.xlsx"
+      },
+      {
+        "filename": "Sample QP Multipurpose Draughtsperson (Design and Build).xlsx",
+        "roleName": "Multipurpose Draughtsperson (Design and Build)",
+        "url": "/FFSC/Sample QP Multipurpose Draughtsperson (Design and Build).xlsx"
+      }
+    ],
+    "hasPapers": true
   },
   {
     "name": "Gems And Jwellery Sector Skill Council of India (GJSSCI)",
@@ -229,7 +325,55 @@
     "name": "Healthcare Sector Skill Council (HSC)",
     "url": "/question-papers/aerospace.pdf",
     "image": "/icons/sectors/healthcare.png",
-    "hasPapers": false
+    "folder": "HSC",
+    "files": [
+      {
+        "filename": "Ayurveda Ahara and Poshan  Sahayak.xlsx",
+        "roleName": "Ayurveda Ahara and Poshan Sahayak",
+        "url": "/HSC/Ayurveda Ahara and Poshan  Sahayak.xlsx"
+      },
+      {
+        "filename": "Cupping therapy assistant.xlsx",
+        "roleName": "Cupping Therapy Assistant",
+        "url": "/HSC/Cupping therapy assistant.xlsx"
+      },
+      {
+        "filename": "Emergency _care_technician.xlsx",
+        "roleName": "Emergency Care Technician",
+        "url": "/HSC/Emergency _care_technician.xlsx"
+      },
+      {
+        "filename": "GDA_Advance.xlsx",
+        "roleName": "GDA Advance",
+        "url": "/HSC/GDA_Advance.xlsx"
+      },
+      {
+        "filename": "Geriactric CareGiver.xlsx",
+        "roleName": "Geriatric Caregiver",
+        "url": "/HSC/Geriactric CareGiver.xlsx"
+      },
+      {
+        "filename": "Geriatric care assistant.xlsx",
+        "roleName": "Geriatric Care Assistant",
+        "url": "/HSC/Geriatric care assistant.xlsx"
+      },
+      {
+        "filename": "Panchakarma Technician.xlsx",
+        "roleName": "Panchakarma Technician",
+        "url": "/HSC/Panchakarma Technician.xlsx"
+      },
+      {
+        "filename": "Yoga Training Assistant.xlsx",
+        "roleName": "Yoga Training Assistant",
+        "url": "/HSC/Yoga Training Assistant.xlsx"
+      },
+      {
+        "filename": "yoga wellness trainer.xlsx",
+        "roleName": "Yoga Wellness Trainer",
+        "url": "/HSC/yoga wellness trainer.xlsx"
+      }
+    ],
+    "hasPapers": true
   },
   {
     "name": "Hydrocarbon Sector Skill Council (HSSC)",
@@ -306,7 +450,7 @@
     "hasPapers": true
   },
   {
-    "name": "Indian Iron And Steel Sector Skill Council (IISC)",
+    "name": "Indian Iron And Steel Sector Skill Council (IISSSC)",
     "url": "/question-papers/apparel.pdf",
     "image": "/icons/sectors/steel.png",
     "folder": "IISSSC",
@@ -663,8 +807,7 @@
         "roleName": "Warehouse Supervisor",
         "url": "/LSC/Warehouse Supervisor Sample Question paper.xlsx"
       }
-    ],
-    "hasPapers": true
+    ]
   },
   {
     "name": "Management & Entrepreneurship & Professional Skill Council (MEPSC)",
@@ -940,6 +1083,19 @@
     "name": "Water Management And Plumbing Skill Council (WMPSC)",
     "url": "/question-papers/apparel.pdf",
     "image": "/icons/sectors/water.png",
-    "hasPapers": false
+    "hasPapers": true,
+    "folder": "WMPSC",
+    "files": [
+      {
+        "filename": "14. Sample Question paper Jal Virtan Sanchalak.xlsx",
+        "roleName": "Jal Virtan Sanchalak",
+        "url": "/WMPSC/14. Sample Question paper Jal Virtan Sanchalak.xlsx"
+      },
+      {
+        "filename": "15. Sample Question paper Plumber General.xlsx",
+        "roleName": "Plumber General",
+        "url": "/WMPSC/15. Sample Question paper Plumber General.xlsx"
+      }
+    ]
   }
 ]
