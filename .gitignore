@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Private certificate evidence (never commit or deploy)
+private-evidence/certifications/
+
+# Generated build archives
+*-build-*.zip
